@@ -1,0 +1,5 @@
+### helper_preflight
+### command: sh /mnt/UDISK/helper-script/helper.sh --preflight
+
+Preflight report written to: /mnt/UDISK/printer_data/backups/k2pro_helper/k2pro_preflight_report.txt
+Upload this file if you want the next patch to be matched to the printer exactly.

@@ -1,0 +1,37 @@
+### printer_config_listing
+### command: sh -c find /mnt/UDISK/printer_data/config -maxdepth 2 -type f 2>/dev/null | sort
+
+/mnt/UDISK/printer_data/config/.git/COMMIT_EDITMSG
+/mnt/UDISK/printer_data/config/.git/HEAD
+/mnt/UDISK/printer_data/config/.git/config
+/mnt/UDISK/printer_data/config/.git/description
+/mnt/UDISK/printer_data/config/.git/index
+/mnt/UDISK/printer_data/config/.gitignore
+/mnt/UDISK/printer_data/config/.moonraker.conf.bkp
+/mnt/UDISK/printer_data/config/KAMP/Adaptive_Meshing.cfg
+/mnt/UDISK/printer_data/config/KAMP/KAMP_Settings.cfg
+/mnt/UDISK/printer_data/config/KAMP/Line_Purge.cfg
+/mnt/UDISK/printer_data/config/box.cfg
+/mnt/UDISK/printer_data/config/factory_printer.cfg
+/mnt/UDISK/printer_data/config/fans_control.cfg
+/mnt/UDISK/printer_data/config/gcode_macro.cfg
+/mnt/UDISK/printer_data/config/moonraker.conf
+/mnt/UDISK/printer_data/config/moonraker.conf.pre-spoolman-20260704055953.bak
+/mnt/UDISK/printer_data/config/moonraker.conf.pre-targeted-upstream-20260704083948.bak
+/mnt/UDISK/printer_data/config/motor_control.cfg
+/mnt/UDISK/printer_data/config/printer-20260703_183431.cfg
+/mnt/UDISK/printer_data/config/printer-20260703_191244.cfg
+/mnt/UDISK/printer_data/config/printer-20260703_201549.cfg
+/mnt/UDISK/printer_data/config/printer-20260704_103540.cfg
+/mnt/UDISK/printer_data/config/printer-20260704_112833.cfg
+/mnt/UDISK/printer_data/config/printer-20260705_085105.cfg
+/mnt/UDISK/printer_data/config/printer-20260705_102726.cfg
+/mnt/UDISK/printer_data/config/printer-20260705_103052.cfg
+/mnt/UDISK/printer_data/config/printer-20260706_154425.cfg
+/mnt/UDISK/printer_data/config/printer-20260707_161256.cfg
+/mnt/UDISK/printer_data/config/printer-20260708_175304.cfg
+/mnt/UDISK/printer_data/config/printer.cfg
+/mnt/UDISK/printer_data/config/printer_params.cfg
+/mnt/UDISK/printer_data/config/sensorless.cfg
+/mnt/UDISK/printer_data/config/shapers_calibration.cfg
+/mnt/UDISK/printer_data/config/useful_macros.cfg
