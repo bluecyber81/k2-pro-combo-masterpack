@@ -11,8 +11,8 @@ ZIP unveraendert aufheben. Es enthaelt echte Drucker-Backups, lokale IPs, Geraet
 Nur in ein privates Repo hochladen.
 Nicht in ein oeffentliches Repo laden, ausser du entfernst vorher mindestens:
 
-- `live_snapshot_20260708_204124/remote_files/*.tar.gz`
-- `live_snapshot_20260708_204124/reports/`
+- `live_snapshot_20260710_210033/remote_files/*.tar.gz`
+- `live_snapshot_20260710_210033/reports/`
 - alle Dateien mit lokalen IPs, Seriennummern, Materialdatenbank oder Systemdetails
 
 Die Helper-Quelle allein ist deutlich unkritischer als die Live-Backups.

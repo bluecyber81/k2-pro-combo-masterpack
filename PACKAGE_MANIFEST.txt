@@ -1,95 +1,128 @@
 K2 Pro Combo Masterpack manifest
-Generated: 2026-07-08 20:41:24 Europe/Berlin snapshot, packaged current run
-File count before manifest/hash files: 91
+Generated: 2026-07-10 21:05 Europe/Berlin
+File count before manifest/hash files: 124
 
-docs/BACKUP_AND_RESTORE.md`t1985
-docs/CURRENT_STATE_20260708_204124.md`t2494
-docs/GITHUB_OR_ARCHIVE_UPLOAD.md`t782
-helper-source-v5.2.21.59-health-proc-detect/camera_watchdog.py`t1450
-helper-source-v5.2.21.59-health-proc-detect/creality_timelapse_recover.py`t16107
-helper-source-v5.2.21.59-health-proc-detect/docs/CFS_COMMUNICATION_READONLY_2026-07-06.md`t1946
-helper-source-v5.2.21.59-health-proc-detect/docs/FIRMWARE_V1_1_5_5_ANALYSIS.txt`t1273
-helper-source-v5.2.21.59-health-proc-detect/docs/HEALTH_PROC_DETECT_2026-07-08.md`t838
-helper-source-v5.2.21.59-health-proc-detect/docs/K2_PRO_COMBO_SAFE_POLICY_2026-07-07.md`t1813
-helper-source-v5.2.21.59-health-proc-detect/docs/SPOOLMAN_CFS_SYNC_SETUP_K2_PRO.md`t1633
-helper-source-v5.2.21.59-health-proc-detect/docs/UPSTREAM_SYNC_2026-06-30.md`t1757
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/material_box_config.json`t88
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/material_box_info.json`t4007
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/material_database.json`t272110
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/material_modify_info.json`t6010
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/material_option.json`t1255
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/PATCH_SUMMARY.json`t2947
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/remain_material_data.json`t59
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/tn_data.json`t1944
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/usrMaterial/3290576467/6a411c2e675aeed9758673af-1`t1639
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/usrMaterial/3290576467/6a420c0c675aeed9759cf4e9`t1531
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/usrMaterial/3290576467/6a47a778675aeed97543dbf3`t6623
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/usrMaterial/3290576467/k2pro-esun-epla-hs-gray`t1540
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/usrMaterial/3290576467/k2pro-sovol-pla-steel-blue`t1544
-helper-source-v5.2.21.59-health-proc-detect/files/cfs_db_patch/usrMaterial/userMaterial.json`t1036
-helper-source-v5.2.21.59-health-proc-detect/go2rtc`t4588084
-helper-source-v5.2.21.59-health-proc-detect/go2rtc.yaml`t282
-helper-source-v5.2.21.59-health-proc-detect/helper.sh`t38717
-helper-source-v5.2.21.59-health-proc-detect/k2rtc.py`t1944
-helper-source-v5.2.21.59-health-proc-detect/nginx_go2rtc.py`t4678
-helper-source-v5.2.21.59-health-proc-detect/README.md`t42567
-helper-source-v5.2.21.59-health-proc-detect/REVIEW_NOTES_K2_PRO.md`t35965
-helper-source-v5.2.21.59-health-proc-detect/scripts/backup.sh`t5398
-helper-source-v5.2.21.59-health-proc-detect/scripts/camera.sh`t23995
-helper-source-v5.2.21.59-health-proc-detect/scripts/cfs_db_guard.py`t11507
-helper-source-v5.2.21.59-health-proc-detect/scripts/cfs_db_guard.sh`t3139
-helper-source-v5.2.21.59-health-proc-detect/scripts/cfs_protocol_report.sh`t9433
-helper-source-v5.2.21.59-health-proc-detect/scripts/cfs_safety_scan.sh`t14170
-helper-source-v5.2.21.59-health-proc-detect/scripts/creality_timelapse_recover.sh`t4306
-helper-source-v5.2.21.59-health-proc-detect/scripts/deep_file_audit_k2pro.sh`t8547
-helper-source-v5.2.21.59-health-proc-detect/scripts/dependency_audit_k2pro.sh`t10648
-helper-source-v5.2.21.59-health-proc-detect/scripts/entware.sh`t12952
-helper-source-v5.2.21.59-health-proc-detect/scripts/fans.sh`t5116
-helper-source-v5.2.21.59-health-proc-detect/scripts/fluidd.sh`t9488
-helper-source-v5.2.21.59-health-proc-detect/scripts/git_backup.sh`t5134
-helper-source-v5.2.21.59-health-proc-detect/scripts/health.sh`t48455
-helper-source-v5.2.21.59-health-proc-detect/scripts/helixscreen.sh`t9133
-helper-source-v5.2.21.59-health-proc-detect/scripts/kamp.sh`t6159
-helper-source-v5.2.21.59-health-proc-detect/scripts/m600.sh`t6652
-helper-source-v5.2.21.59-health-proc-detect/scripts/mainsail.sh`t10720
-helper-source-v5.2.21.59-health-proc-detect/scripts/menu_audit_k2pro.sh`t8492
-helper-source-v5.2.21.59-health-proc-detect/scripts/mobileraker.sh`t2111
-helper-source-v5.2.21.59-health-proc-detect/scripts/moonraker.sh`t6393
-helper-source-v5.2.21.59-health-proc-detect/scripts/nozzle_camera_recover.sh`t7359
-helper-source-v5.2.21.59-health-proc-detect/scripts/octoeverywhere.sh`t3755
-helper-source-v5.2.21.59-health-proc-detect/scripts/preflight_k2pro.sh`t10328
-helper-source-v5.2.21.59-health-proc-detect/scripts/S98nozzle_camera_recover`t699
-helper-source-v5.2.21.59-health-proc-detect/scripts/shapers.sh`t11567
-helper-source-v5.2.21.59-health-proc-detect/scripts/spoolman_cfs_status.sh`t1410
-helper-source-v5.2.21.59-health-proc-detect/scripts/spoolman_cfs.sh`t4300
-helper-source-v5.2.21.59-health-proc-detect/scripts/system.sh`t23734
-helper-source-v5.2.21.59-health-proc-detect/scripts/timelapse.sh`t3790
-helper-source-v5.2.21.59-health-proc-detect/scripts/uninstalled_audit_k2pro.sh`t3469
-helper-source-v5.2.21.59-health-proc-detect/scripts/useful_macros.sh`t12734
-helper-source-v5.2.21.59-health-proc-detect/scripts/z_offset.sh`t2759
-helper-source-v5.2.21.59-health-proc-detect/spoolman_cfs_map.example.json`t202
-helper-source-v5.2.21.59-health-proc-detect/spoolman_cfs_sync.py`t20547
-helper-source-v5.2.21.59-health-proc-detect/START_HERE_K2_PRO_COMBO.md`t1393
-live_snapshot_20260708_204124/K2PRO_MASTERPACK_LIVE_SUMMARY_20260708_204124.txt`t2990
-live_snapshot_20260708_204124/remote_files/helper-script-live_20260708_204124.tar.gz`t4769423
-live_snapshot_20260708_204124/remote_files/k2pro_config_system_20260708_204402.tar.gz`t255385
-live_snapshot_20260708_204124/reports/helper_backup_run_20260708_204124.txt`t373
-live_snapshot_20260708_204124/reports/helper_dependency_audit_20260708_204124.txt`t6857
-live_snapshot_20260708_204124/reports/helper_health_20260708_204124.txt`t11116
-live_snapshot_20260708_204124/reports/helper_health_camera_20260708_204124.txt`t1869
-live_snapshot_20260708_204124/reports/helper_health_cfs_20260708_204124.txt`t3922
-live_snapshot_20260708_204124/reports/helper_health_firmware_20260708_204124.txt`t530
-live_snapshot_20260708_204124/reports/helper_health_frontends_20260708_204124.txt`t980
-live_snapshot_20260708_204124/reports/helper_listing_20260708_204124.txt`t1984
-live_snapshot_20260708_204124/reports/helper_menu_audit_20260708_204124.txt`t5980
-live_snapshot_20260708_204124/reports/helper_nozzle_camera_diagnose_20260708_204124.txt`t77922
-live_snapshot_20260708_204124/reports/helper_preflight_20260708_204124.txt`t268
-live_snapshot_20260708_204124/reports/helper_status_20260708_204124.txt`t2902
-live_snapshot_20260708_204124/reports/printer_config_listing_20260708_204124.txt`t1939
-live_snapshot_20260708_204124/reports/system_identity_20260708_204124.txt`t834
-live_snapshot_20260708_204124/SHA256SUMS.txt`t2970
-README.md`t1802
-reference_previous_context/K2-Pro-Combo-ChatGPT-Uebergabe-2026-07-07-reference-only.md`t9012
-reference_previous_context/README_REFERENCE_ONLY.md`t335
-scripts/collect_k2pro_masterpack_snapshot.sh`t3532
-scripts/run_live_snapshot_from_windows.ps1`t866
+docs/BACKUP_AND_RESTORE.md	2529
+docs/CURRENT_STATE_20260710_210033.md	3182
+docs/GITHUB_OR_ARCHIVE_UPLOAD.md	782
+helixscreen/helixscreen_k2pro_overrides_20260710.tar.gz	3254
+helixscreen/README.md	684
+helper-source-v5.2.21.61-maintenance-sync/camera_watchdog.py	1450
+helper-source-v5.2.21.61-maintenance-sync/creality_timelapse_recover.py	16107
+helper-source-v5.2.21.61-maintenance-sync/docs/CFS_COMMUNICATION_READONLY_2026-07-06.md	1946
+helper-source-v5.2.21.61-maintenance-sync/docs/FIRMWARE_V1_1_5_5_ANALYSIS.txt	1273
+helper-source-v5.2.21.61-maintenance-sync/docs/HEALTH_PROC_DETECT_2026-07-08.md	838
+helper-source-v5.2.21.61-maintenance-sync/docs/K2_PRO_COMBO_SAFE_POLICY_2026-07-07.md	1813
+helper-source-v5.2.21.61-maintenance-sync/docs/SPOOLMAN_CFS_SYNC_SETUP_K2_PRO.md	1633
+helper-source-v5.2.21.61-maintenance-sync/docs/UPSTREAM_SYNC_2026-06-30.md	1757
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/material_box_config.json	88
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/material_box_info.json	4007
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/material_database.json	272110
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/material_modify_info.json	6010
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/material_option.json	1255
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/PATCH_SUMMARY.json	2947
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/remain_material_data.json	59
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/tn_data.json	1944
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/usrMaterial/3290576467/6a411c2e675aeed9758673af-1	1639
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/usrMaterial/3290576467/6a420c0c675aeed9759cf4e9	1531
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/usrMaterial/3290576467/6a47a778675aeed97543dbf3	6623
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/usrMaterial/3290576467/k2pro-esun-epla-hs-gray	1540
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/usrMaterial/3290576467/k2pro-sovol-pla-steel-blue	1544
+helper-source-v5.2.21.61-maintenance-sync/files/cfs_db_patch/usrMaterial/userMaterial.json	1036
+helper-source-v5.2.21.61-maintenance-sync/go2rtc	4588084
+helper-source-v5.2.21.61-maintenance-sync/go2rtc.yaml	282
+helper-source-v5.2.21.61-maintenance-sync/helper.sh	39745
+helper-source-v5.2.21.61-maintenance-sync/k2rtc.py	1944
+helper-source-v5.2.21.61-maintenance-sync/nginx_go2rtc.py	4678
+helper-source-v5.2.21.61-maintenance-sync/README.md	42276
+helper-source-v5.2.21.61-maintenance-sync/REVIEW_NOTES_K2_PRO.md	34957
+helper-source-v5.2.21.61-maintenance-sync/scripts/backup.sh	5398
+helper-source-v5.2.21.61-maintenance-sync/scripts/camera.sh	23995
+helper-source-v5.2.21.61-maintenance-sync/scripts/cfs_db_guard.py	13514
+helper-source-v5.2.21.61-maintenance-sync/scripts/cfs_db_guard.sh	3646
+helper-source-v5.2.21.61-maintenance-sync/scripts/cfs_protocol_report.sh	9433
+helper-source-v5.2.21.61-maintenance-sync/scripts/cfs_rs485_report.sh	5229
+helper-source-v5.2.21.61-maintenance-sync/scripts/cfs_safety_scan.sh	14170
+helper-source-v5.2.21.61-maintenance-sync/scripts/creality_timelapse_recover.sh	4306
+helper-source-v5.2.21.61-maintenance-sync/scripts/deep_file_audit_k2pro.sh	8927
+helper-source-v5.2.21.61-maintenance-sync/scripts/dependency_audit_k2pro.sh	10648
+helper-source-v5.2.21.61-maintenance-sync/scripts/entware.sh	12952
+helper-source-v5.2.21.61-maintenance-sync/scripts/fans.sh	5116
+helper-source-v5.2.21.61-maintenance-sync/scripts/fluidd.sh	9488
+helper-source-v5.2.21.61-maintenance-sync/scripts/git_backup.sh	5204
+helper-source-v5.2.21.61-maintenance-sync/scripts/health.sh	48632
+helper-source-v5.2.21.61-maintenance-sync/scripts/helixscreen.sh	9133
+helper-source-v5.2.21.61-maintenance-sync/scripts/kamp.sh	6159
+helper-source-v5.2.21.61-maintenance-sync/scripts/m600.sh	6647
+helper-source-v5.2.21.61-maintenance-sync/scripts/mainsail.sh	10720
+helper-source-v5.2.21.61-maintenance-sync/scripts/menu_audit_k2pro.sh	8836
+helper-source-v5.2.21.61-maintenance-sync/scripts/mobileraker.sh	2111
+helper-source-v5.2.21.61-maintenance-sync/scripts/moonraker.sh	6393
+helper-source-v5.2.21.61-maintenance-sync/scripts/nozzle_camera_recover.sh	7359
+helper-source-v5.2.21.61-maintenance-sync/scripts/octoeverywhere.sh	3755
+helper-source-v5.2.21.61-maintenance-sync/scripts/preflight_k2pro.sh	10326
+helper-source-v5.2.21.61-maintenance-sync/scripts/S98nozzle_camera_recover	699
+helper-source-v5.2.21.61-maintenance-sync/scripts/shapers.sh	11567
+helper-source-v5.2.21.61-maintenance-sync/scripts/spoolman_cfs_status.sh	3052
+helper-source-v5.2.21.61-maintenance-sync/scripts/spoolman_cfs.sh	4300
+helper-source-v5.2.21.61-maintenance-sync/scripts/system.sh	23734
+helper-source-v5.2.21.61-maintenance-sync/scripts/timelapse.sh	3790
+helper-source-v5.2.21.61-maintenance-sync/scripts/uninstalled_audit_k2pro.sh	3884
+helper-source-v5.2.21.61-maintenance-sync/scripts/useful_macros.sh	12734
+helper-source-v5.2.21.61-maintenance-sync/scripts/z_offset.sh	2759
+helper-source-v5.2.21.61-maintenance-sync/spoolman_cfs_map.example.json	202
+helper-source-v5.2.21.61-maintenance-sync/spoolman_cfs_sync.py	20458
+helper-source-v5.2.21.61-maintenance-sync/START_HERE_K2_PRO_COMBO.md	1391
+live_snapshot_20260708_204124/K2PRO_MASTERPACK_LIVE_SUMMARY_20260708_204124.txt	2990
+live_snapshot_20260708_204124/remote_files/helper-script-live_20260708_204124.tar.gz	4769423
+live_snapshot_20260708_204124/remote_files/k2pro_config_system_20260708_204402.tar.gz	255385
+live_snapshot_20260708_204124/reports/helper_backup_run_20260708_204124.txt	373
+live_snapshot_20260708_204124/reports/helper_dependency_audit_20260708_204124.txt	6857
+live_snapshot_20260708_204124/reports/helper_health_20260708_204124.txt	11116
+live_snapshot_20260708_204124/reports/helper_health_camera_20260708_204124.txt	1869
+live_snapshot_20260708_204124/reports/helper_health_cfs_20260708_204124.txt	3922
+live_snapshot_20260708_204124/reports/helper_health_firmware_20260708_204124.txt	530
+live_snapshot_20260708_204124/reports/helper_health_frontends_20260708_204124.txt	980
+live_snapshot_20260708_204124/reports/helper_listing_20260708_204124.txt	1984
+live_snapshot_20260708_204124/reports/helper_menu_audit_20260708_204124.txt	5980
+live_snapshot_20260708_204124/reports/helper_nozzle_camera_diagnose_20260708_204124.txt	77922
+live_snapshot_20260708_204124/reports/helper_preflight_20260708_204124.txt	268
+live_snapshot_20260708_204124/reports/helper_status_20260708_204124.txt	2902
+live_snapshot_20260708_204124/reports/printer_config_listing_20260708_204124.txt	1939
+live_snapshot_20260708_204124/reports/system_identity_20260708_204124.txt	834
+live_snapshot_20260708_204124/SHA256SUMS.txt	2970
+live_snapshot_20260710_210033/K2PRO_MASTERPACK_LIVE_SUMMARY_20260710_210033.txt	4449
+live_snapshot_20260710_210033/remote_files/helper-script-live_20260710_210033.tar.gz	4786288
+live_snapshot_20260710_210033/remote_files/k2pro_config_system_20260710_210320.tar.gz	308560
+live_snapshot_20260710_210033/reports/helixscreen_pi_20260710_210033.txt	1642
+live_snapshot_20260710_210033/reports/helper_backup_run_20260710_210033.txt	373
+live_snapshot_20260710_210033/reports/helper_cfs_db_guard_status_20260710_210033.txt	345
+live_snapshot_20260710_210033/reports/helper_cfs_protocol_report_20260710_210033.txt	2397
+live_snapshot_20260710_210033/reports/helper_deep_file_audit_20260710_210033.txt	28927
+live_snapshot_20260710_210033/reports/helper_dependency_audit_20260710_210033.txt	6857
+live_snapshot_20260710_210033/reports/helper_entware_status_20260710_210033.txt	742
+live_snapshot_20260710_210033/reports/helper_git_backup_status_20260710_210033.txt	353
+live_snapshot_20260710_210033/reports/helper_health_20260710_210033.txt	10695
+live_snapshot_20260710_210033/reports/helper_health_camera_20260710_210033.txt	1869
+live_snapshot_20260710_210033/reports/helper_health_cfs_20260710_210033.txt	3541
+live_snapshot_20260710_210033/reports/helper_health_firmware_20260710_210033.txt	530
+live_snapshot_20260710_210033/reports/helper_health_frontends_20260710_210033.txt	980
+live_snapshot_20260710_210033/reports/helper_listing_20260710_210033.txt	1984
+live_snapshot_20260710_210033/reports/helper_menu_audit_20260710_210033.txt	6292
+live_snapshot_20260710_210033/reports/helper_nozzle_camera_diagnose_20260710_210033.txt	74744
+live_snapshot_20260710_210033/reports/helper_preflight_20260710_210033.txt	268
+live_snapshot_20260710_210033/reports/helper_spoolman_cfs_status_20260710_210033.txt	3444
+live_snapshot_20260710_210033/reports/helper_status_20260710_210033.txt	2744
+live_snapshot_20260710_210033/reports/helper_timelapse_recover_status_20260710_210033.txt	410
+live_snapshot_20260710_210033/reports/helper_uninstalled_audit_20260710_210033.txt	1636
+live_snapshot_20260710_210033/reports/printer_config_listing_20260710_210033.txt	2279
+live_snapshot_20260710_210033/reports/service_process_status_20260710_210033.txt	4437
+live_snapshot_20260710_210033/reports/system_identity_20260710_210033.txt	834
+live_snapshot_20260710_210033/SHA256SUMS.txt	4686
+PUBLISH_TO_GITHUB.md	679
+README.md	2660
+reference_previous_context/K2-Pro-Combo-ChatGPT-Uebergabe-2026-07-07-reference-only.md	9012
+reference_previous_context/README_REFERENCE_ONLY.md	335
+scripts/collect_k2pro_masterpack_snapshot.sh	4408
+scripts/publish_private_repo.ps1	682
+scripts/run_live_snapshot_from_windows.ps1	894

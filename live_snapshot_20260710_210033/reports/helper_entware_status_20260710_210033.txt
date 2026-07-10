@@ -1,0 +1,26 @@
+### helper_entware_status
+### command: sh /mnt/UDISK/helper-script/helper.sh --entware-status
+
+
+Entware status:
+  opkg: installed (opkg version d038e5b6d155784575f62a66a8bb7e874173e92e (2022-02-24))
+
+Tool check:
+  opkg         /opt/bin/opkg
+  bash         /opt/bin/bash
+  bc           /opt/bin/bc
+  xz           /opt/bin/xz
+  file         /opt/bin/file
+  nano         /opt/bin/nano
+  git          /opt/bin/git
+  curl         /opt/bin/curl
+  sftp-server  /usr/bin/sftp-server
+  sqlite3      /opt/bin/sqlite3
+  jq           /opt/bin/jq
+  tree         /opt/sbin/tree
+  diff         /opt/bin/diff
+  wget         /opt/bin/wget
+  ss           /usr/bin/ss
+  unzip        /usr/bin/unzip
+  base64       /usr/bin/base64
+  timeout      /opt/bin/timeout

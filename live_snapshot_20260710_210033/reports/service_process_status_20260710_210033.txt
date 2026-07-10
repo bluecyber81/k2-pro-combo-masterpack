@@ -1,0 +1,55 @@
+### service_process_status
+### command: sh -c 
+    date
+    /etc/init.d/moonraker status 2>/dev/null || true
+    /etc/init.d/go2rtc status 2>/dev/null || true
+    /etc/init.d/S99spoolman_cfs_sync status 2>/dev/null || true
+    ps w | grep -E "[m]oonraker|[k]lippy|[g]o2rtc|[s]poolman_cfs_sync|[c]reality_timelapse" || true
+    netstat -lntp 2>/dev/null || true
+
+
+Fri Jul 10 21:03:16 CEST 2026
+running
+running: 8994
+2026-07-10 20:26:16 OK slot T1B already active as spool 2
+2026-07-10 20:31:07 OK slot T1B already active as spool 2; CFS metadata current for 4 mapped slots
+2026-07-10 20:31:22 OK slot T1B already active as spool 2
+2026-07-10 20:36:13 OK slot T1B already active as spool 2; CFS metadata current for 4 mapped slots
+2026-07-10 20:36:28 OK slot T1B already active as spool 2
+2026-07-10 20:41:18 OK slot T1B already active as spool 2; CFS metadata current for 4 mapped slots
+2026-07-10 20:41:34 OK slot T1B already active as spool 2
+2026-07-10 20:42:33 Spoolman CFS sync started
+2026-07-10 20:42:33 OK startup readiness: Moonraker and Spoolman ready
+2026-07-10 20:42:33 INFO daemon repeat log compression active (ok heartbeat=1800s, warn repeat=300s)
+2026-07-10 20:42:33 OK slot T1B already active as spool 2; CFS metadata current for 4 mapped slots
+2026-07-10 20:42:48 OK slot T1B already active as spool 2
+2026-07-10 20:47:39 OK slot T1B already active as spool 2; CFS metadata current for 4 mapped slots
+2026-07-10 20:47:54 OK slot T1B already active as spool 2
+2026-07-10 20:52:45 OK slot T1B already active as spool 2; CFS metadata current for 4 mapped slots
+2026-07-10 20:53:00 OK slot T1B already active as spool 2
+2026-07-10 20:57:51 OK slot T1B already active as spool 2; CFS metadata current for 4 mapped slots
+2026-07-10 20:58:06 OK slot T1B already active as spool 2
+2026-07-10 21:02:57 OK slot T1B already active as spool 2; CFS metadata current for 4 mapped slots
+2026-07-10 21:03:12 OK slot T1B already active as spool 2
+ 3958 root      4:41 /usr/share/moonraker-env/bin/python /usr/share/moonraker/moonraker.py -c /mnt/UDISK/printer_data/config/moonraker.conf -l /mnt/UDISK/printer_data/logs/moonraker.log
+ 4402 root     14:04 /usr/share/klippy-env/bin/python /usr/share/klipper/klippy/klippy.py /mnt/UDISK//printer_data/config/printer.cfg -l /mnt/UDISK//printer_data/logs/klippy.log -a /tmp/klippy_uds
+ 4800 root      0:19 python3 -B /mnt/UDISK/helper-script/creality_timelapse_recover.py --daemon
+ 5709 root     13:20 /mnt/UDISK/helper-script/go2rtc -config /mnt/UDISK/helper-script/go2rtc.yaml
+ 8994 root      0:02 /usr/bin/python3 -B /mnt/UDISK/helper-script/spoolman_cfs_sync.py --daemon
+25386 root      0:00 sh -c      date     /etc/init.d/moonraker status 2>/dev/null || true     /etc/init.d/go2rtc status 2>/dev/null || true     /etc/init.d/S99spoolman_cfs_sync status 2>/dev/null || true     ps w | grep -E "[m]oonraker|[k]lippy|[g]o2rtc|[s]poolman_cfs_sync|[c]reality_timelapse" || true     netstat -lntp 2>/dev/null || true 
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      3485/webrtc_local
+tcp        0      0 0.0.0.0:5037            0.0.0.0:*               LISTEN      1830/adbd
+tcp        0      0 0.0.0.0:9998            0.0.0.0:*               LISTEN      3842/web-server
+tcp        0      0 0.0.0.0:9999            0.0.0.0:*               LISTEN      3842/web-server
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      3842/web-server
+tcp        0      0 0.0.0.0:7125            0.0.0.0:*               LISTEN      3958/python
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      24058/dropbear
+tcp        0      0 0.0.0.0:4408            0.0.0.0:*               LISTEN      2566/nginx.conf -g 
+tcp        0      0 0.0.0.0:4409            0.0.0.0:*               LISTEN      2566/nginx.conf -g 
+tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      3842/web-server
+tcp        0      0 :::1984                 :::*                    LISTEN      5709/go2rtc
+tcp        0      0 :::8554                 :::*                    LISTEN      5709/go2rtc
+tcp        0      0 :::8555                 :::*                    LISTEN      5709/go2rtc
+tcp        0      0 :::22                   :::*                    LISTEN      24058/dropbear

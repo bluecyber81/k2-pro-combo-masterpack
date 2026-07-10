@@ -1,38 +1,49 @@
 # K2 Pro Combo Masterpack
 
-Stand: 2026-07-08 20:41:24 Europe/Berlin
+Stand: 2026-07-10 21:05 Europe/Berlin
 
-Dieses Paket ist der aktuelle Arbeits- und Sicherungsstand fuer den Creality K2 Pro Combo auf `192.168.178.74`.
-Es enthaelt keine Passwoerter, Tokens oder SSH-Zugangsdaten.
+Aktueller Arbeits-, Diagnose- und Wiederherstellungsstand fuer den Creality K2 Pro Combo. Das Paket enthaelt keine Passwoerter, Tokens, privaten SSH-Schluessel oder Browser-Sitzungen.
 
-## Wichtig zuerst
+## Bestaetigter Live-Stand
 
-- Live-Zugriff wurde verifiziert: `root`, Host `K2Pro-Chris`, Firmware `1.1.6.3`.
-- Installierter Helper: `v5.2.21.59-health-proc-detect`.
-- Frischer Live-Snapshot: `live_snapshot_20260708_204124/`.
-- Frisches Config/System-Backup: `live_snapshot_20260708_204124/remote_files/k2pro_config_system_20260708_204402.tar.gz`.
-- Frischer kompletter Helper-Snapshot: `live_snapshot_20260708_204124/remote_files/helper-script-live_20260708_204124.tar.gz`.
-- Live-Health: `OK 65 / WARN 4 / FAIL 0`.
+- Drucker-Firmware: `1.1.6.3`
+- CFS-Firmware: `1.4.2`
+- Helper: `v5.2.21.61-maintenance-sync`
+- Fluidd: `1.37.2`
+- Mainsail: `2.18.2`
+- go2rtc: `1.9.14`
+- HelixScreen auf dem separaten Raspberry Pi: `v0.99.88`
+- Gesamt-Health: `OK 69 / WARN 0 / FAIL 0`
+- CFS-Health: `OK 23 / WARN 0 / FAIL 0`
+- Kamera-Health: `OK 12 / WARN 0 / FAIL 0`
 
-## Struktur
+## Aktuelle Struktur
 
-- `docs/` - aktuelle Zusammenfassung, Warnungen, Backup/Restore-Hinweise.
-- `scripts/` - Script zum erneuten Erzeugen eines Live-Snapshots.
-- `live_snapshot_20260708_204124/` - heute direkt vom Drucker gezogene Reports, Backups und Hashes.
-- `helper-source-v5.2.21.59-health-proc-detect/` - die aktuelle Helper-Quelle zum Lesen/Pruefen/Neuinstallieren.
-- `reference_previous_context/` - aeltere Uebergabe vom 2026-07-07, nur als Kontext, nicht als aktueller Stand.
+- `docs/CURRENT_STATE_20260710_210033.md` - kompakter, bestaetigter Ist-Stand.
+- `docs/BACKUP_AND_RESTORE.md` - sichere Wiederherstellungsreihenfolge.
+- `helper-source-v5.2.21.61-maintenance-sync/` - bereinigte Helper-Quelle ohne Laufzeitdaten.
+- `helixscreen/` - getestete Raspberry-Pi-/HelixScreen-Overrides fuer den K2 Pro Combo.
+- `live_snapshot_20260710_210033/` - Reports, Helper-Snapshot und Config/System-Backup vom Drucker.
+- `scripts/` - erneute Live-Snapshot-Erstellung unter Windows und auf dem Drucker.
+- `live_snapshot_20260708_204124/` - vorheriger historischer Stand.
+- `reference_previous_context/` - aeltere Uebergabe, nur als Referenz.
 
-## Nicht blind machen
+## Wichtige Verbesserungen seit dem alten Stand
 
-- Kein Core-Klipper/Moonraker-Update ueber Web-Update auf diesem Creality-Stack.
-- Kein Firmware-/MCU-/CFS-Flash ohne konkreten Grund.
-- Keine direkten CFS-Load/Unload/Extrude-Tests per Makro.
-- Kein `SAVE_CONFIG` nur wegen `auto_addr`.
-- Nozzle-AI-Kamera nicht dauerhaft erzwingen; sie ist Creality-gesteuert und im Idle oft standby/offline.
+- CFS-Materialdatenbank und beide benutzerdefinierten Profile sind konsistent.
+- Alle vier CFS-Slots sind mit Spoolman verbunden; der aktive Slot stimmt.
+- Helper-Menue, Installationsstatus und Git-Backup-Erkennung wurden korrigiert.
+- Lokales Config-Git ist sauber und hat den aktuellen Kammer-Temperaturabgleich committed.
+- Entware-Paketlisten wurden aktualisiert; keine Pakete sind ausstehend.
+- HelixScreen-Timerwerte wurden auf gueltige Werte korrigiert, Landschaftsmodus und CFS-sichere Sensorrolle bleiben updatefest.
+- Raspberry Pi, HelixScreen, Moonraker-Zugriff, Kamera und Spoolman wurden vom Pi aus mit HTTP 200 validiert.
 
-## Aktueller Hinweis
+## Nicht blind aktualisieren
 
-Der frische Health-Check hat `WARN 4`, aber `FAIL 0`.
-Die wichtigste Warnung ist repairable CFS-Materialdatenbank-Drift. Details stehen in:
+- Creality-Klipper und -Moonraker sind herstellerspezifische Forks. Kein Vanilla-Core-Update ueber Fluidd/Mainsail erzwingen.
+- Keine Firmware-, MCU- oder CFS-Flashs ohne konkretes, fuer K2 Pro bestaetigtes Paket.
+- Keine direkten CFS-Load/Unload/Extrude-Tests per Fremdmakro.
+- Nozzle-AI-Kamera nicht dauerhaft einschalten; Creality aktiviert sie bedarfsgesteuert.
+- Spoolman `0.24.0` existiert upstream, ist aber im verwendeten Home-Assistant-App-Kanal noch nicht als installierbarer Build freigegeben. Installiert und kanalaktuell ist `0.23.1-0`.
 
-`docs/CURRENT_STATE_20260708_204124.md`
+Details und Hashes stehen in `docs/CURRENT_STATE_20260710_210033.md` und `SHA256SUMS_PACKAGE.txt`.

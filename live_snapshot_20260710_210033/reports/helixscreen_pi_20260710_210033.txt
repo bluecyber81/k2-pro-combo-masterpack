@@ -1,0 +1,48 @@
+K2 Pro Combo HelixScreen final report
+Fri 10 Jul 21:08:23 CEST 2026
+
+=== SYSTEM ===
+k2-helixscreen
+Debian GNU/Linux 13 (trixie)
+Linux k2-helixscreen 6.18.37-v8-16k+ #1988 SMP PREEMPT Wed Jul  1 15:42:40 BST 2026 aarch64 GNU/Linux
+ 21:08:23 up 33 min,  1 user,  load average: 0.28, 0.14, 0.11
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/mmcblk0p2  117G   11G  102G   9% /
+               total        used        free      shared  buff/cache   available
+Mem:           7.9Gi       355Mi       7.2Gi        14Mi       394Mi       7.5Gi
+Swap:          2.0Gi          0B       2.0Gi
+=== HELIX ===
+{"project_name":"helixscreen","project_owner":"prestonbrown","version":"v0.99.88","asset_name":"helixscreen-pi.zip"}
+service=active
+update_path=active
+landscape_path=active
+klipperscreen=disabled/inactive
+moonraker=disabled/inactive
+/home/mks/helixscreen/config/settings.json:
+  dim_sec=600
+  sleep_sec=1800
+  rotation_probed=True
+  animations_enabled=False
+  language=de
+  printer_count=1
+/home/mks/printer_data/config/helixscreen/settings.json:
+  dim_sec=600
+  sleep_sec=1800
+  rotation_probed=True
+  animations_enabled=False
+  language=de
+  printer_count=1
+printer_image_bytes=427692
+8c7c7581cfb564289cda58d4f53714bd41c44c0737cd7604de54e5ce0b4ba326  /home/mks/helixscreen-k2-pro-combo-overrides.sh
+=== CONNECTIVITY ===
+moonraker=HTTP 200 bytes>=64
+mainsail_camera=HTTP 200 bytes>=64
+spoolman=HTTP 200 bytes>=64
+=== PACKAGE_STATE ===
+Reading state information...
+Calculating upgrade...
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+=== CURRENT_BOOT_WARNINGS ===

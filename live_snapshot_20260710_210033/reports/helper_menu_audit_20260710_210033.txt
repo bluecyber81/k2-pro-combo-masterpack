@@ -1,0 +1,66 @@
+### helper_menu_audit
+### command: sh /mnt/UDISK/helper-script/helper.sh --menu-audit
+
+
+K2 Pro Combo helper menu suitability audit
+Model=F012 Board=CR0CN200400C10 Firmware=1.1.6.3
+This is read-only. No router/Fritzbox/WAN settings are changed.
+
+[OK] Printer identity matches K2 Pro Combo.
+[OK] 300x300x300 size marker found.
+[WARN] CFS/Box direct load macros exist; use display/official CFS workflow, not direct BOX_LOAD_MATERIAL tests.
+No  Fit           Menu item                  State       Note
+--  ------------- -------------------------- ----------- ------------------------------
+1   OK            Preflight report           available   read-only
+2   OK            Backup                     available   recommended before installs
+3   OK            Installed features         available   read-only
+4   CAUTION       Moonraker Extensions       installed   local update_manager/metadata basis; do not update Creality core blindly
+5   OK            Fans Control               installed   fan0/fan2 present
+6   CAUTION       Useful Macros              installed   moves/heats; SAVE_CONFIG blocks CFS auto_addr; chamber heater present
+7   SPECIAL       M600 manual change         available   blocked when CFS/Box is detected; only for non-CFS manual printers
+8   CAUTION       Improved Shapers           installed   resonance_tester present; SAVE_CONFIG blocks CFS auto_addr
+9   OK            Fluidd                     installed   local port 4408
+10  OK            Mainsail                   installed   local port 4409
+11  CAUTION       Moonraker Timelapse        available   optional; Creality Timelapse Recover is preferred on this printer
+12  OK            Camera Support             installed   local go2rtc bridge/proxy
+13  EXTERNAL      OctoEverywhere             available   official cloud installer only after explicit confirmation
+14  INFO          Mobileraker                available   phone app uses Moonraker directly; Companion recommended on Raspi/Debian
+15  CAUTION       Entware                    installed   internet/system package manager; only if explicitly wanted
+16  OK            Git Backup local           installed   local config Git history; remote push optional/manual
+17  BLOCKED       Save Z-Offset              available   expert-only; SAVE_CONFIG blocks CFS auto_addr
+18  OK            KAMP-K2 adaptive mesh      installed   installed/tested on this printer; keep SAVE_CONFIG warning
+19  TEST-ONLY     HelixScreen                available   upstream K2 Pro support exists; stock display/CFS/AI must be retested
+20  OK            Restore/remove menu        available   restore backup is visible before remove actions
+21  OK            Restore backup             available   interactive restore; no longer hidden behind an unused handler
+22  OK            Restart Klipper            available   service restart
+23  OK            Restart Moonraker          available   service restart
+24  OK            Restart Nginx              available   local web service restart
+25  OK            View Klipper log           available   read-only
+26  OK            View Moonraker log         available   read-only
+27  OK            Expert status              available   read-only
+28  OK            Camera health              available   read-only checks
+29  OK            CFS/BOX diagnosis          available   read-only checks
+30  OK            Full helper health         available   read-only checks
+31  OK            Restart camera bridge      available   local helper camera restart
+32  OK            Menu audit                 available   this report
+33  OK            Fluidd/Mainsail health     available   read-only UI/API checks
+34  OK            Firmware health            available   read-only firmware summary
+35  OK            Moonraker queue fix        available   backs up config; fixes G-code preview metadata race
+36  OK            CFS safety scan            available   read-only config/G-code/log scan
+37  OK            Timelapse Recover          installed   renders Creality main_output.h264 to stock delay_image MP4
+38  OK            Uninstalled audit          available   read-only check for modules intentionally kept off
+39  OK            HelixScreen audit          available   read-only stock-display/Helix compatibility check
+40  OK            Dependency audit           available   read-only command/service/port/dependency matrix
+41  OK            CFS Material DB Guard      installed   keeps eSUN/Sovol custom CFS profiles durable after boot
+42  OK            CFS DB repair              available   backup-first JSON repair, no CFS/BOX commands
+43  OK            CFS DB guard status        available   read-only guard check
+44  OK            CFS protocol/slot report   available   read-only bus model, slot and DB mapping report
+45  OK            Deep file/script audit     available   read-only scripts/configs/services/logs audit
+46  OK            Timelapse Recover status   available   status is visible in Status menu
+47  OK            Entware status             installed   status is visible in Status menu
+48  OK            Nozzle AI USB diagnose     available   read-only UVC/BIND/hotplug/video-node report; does not force camera on
+49  OK            CFS RS485 bus report       available   read-only log decoder; separates normal polling from real CFS errors
+50  OK            CFS DB archive status      available   read-only CFS DB guard backup overview; rotation is separate/manual
+
+Recommended first run: Preflight -> Backup -> Installed overview -> Full health -> CFS/BOX -> Camera -> Frontends -> Firmware -> Menu audit -> Dependency audit -> Deep file/script audit -> CFS RS485 bus report.
+Recommended for this printer now: keep Moonraker/Fluidd/Mainsail/Camera helper fixes, keep tested KAMP-K2, keep CFS Material DB Guard, use Creality Timelapse Recover for stock time-lapse MP4 creation, use CFS/display for material handling, keep local Git Backup for config history, scan CFS-related G-code before printing, use the CFS protocol/slot report and RS485 bus report after firmware resets or CFS symptoms, keep Nozzle AI camera on Creality on-demand control and diagnose USB/UVC only when AI fails, keep Z-Offset locked, keep Moonraker Timelapse optional, and treat HelixScreen as a separate reversible display experiment only.

@@ -1,0 +1,40 @@
+### helper_listing
+### command: sh -c ls -la /mnt/UDISK/helper-script 2>/dev/null; echo; test -f /mnt/UDISK/helper-script/.installed && cat /mnt/UDISK/helper-script/.installed || true
+
+total 4724
+drwxr-xr-x    6 root     root          4096 Jul 10 20:42 .
+drwxr-xr-x    8 root     root          4096 Jul  9 20:42 ..
+-rw-r--r--    1 root     root           160 Jul 10 19:30 .creality_timelapse_recover_state.json
+-rw-r--r--    1 root     root           193 Jul 10 20:42 .installed
+-rw-r--r--    1 root     root         42276 Jul 10 20:42 README.md
+-rw-r--r--    1 root     root         34957 Jul 10 20:42 REVIEW_NOTES_K2_PRO.md
+-rw-r--r--    1 root     root          1391 Jul 10 20:42 START_HERE_K2_PRO_COMBO.md
+-rwxr-xr-x    1 root     root          1450 Jul  7 20:44 camera_watchdog.py
+-rwxr-xr-x    1 root     root         16107 Jul  7 20:44 creality_timelapse_recover.py
+drwxr-xr-x    2 root     root          4096 Jul  7 21:14 docs
+drwxr-xr-x    3 root     root          4096 Jul  7 20:44 files
+-rwxr-xr-x    1 root     root       4588084 Jul  7 20:44 go2rtc
+-rw-r--r--    1 root     root           282 Jul  7 20:44 go2rtc.yaml
+-rwxr-xr-x    1 root     root         39745 Jul 10 20:42 helper.sh
+-rwxr-xr-x    1 root     root          1944 Jul  7 20:44 k2rtc.py
+-rwxr-xr-x    1 root     root          4678 Jul  7 20:44 nginx_go2rtc.py
+drwxr-xr-x    2 root     root          4096 Jul 10 20:59 reports
+drwxr-xr-x    2 root     root          4096 Jul 10 20:42 scripts
+-rw-r--r--    1 root     root           202 Jul  7 20:44 spoolman_cfs_map.example.json
+-rw-r--r--    1 root     root           276 Jul  7 21:08 spoolman_cfs_map.json
+-rwxr-xr-x    1 root     root         20458 Jul 10 20:42 spoolman_cfs_sync.py
+-rw-r--r--    1 root     root         18441 Jul  8 05:20 spoolman_cfs_sync.pyc
+
+moonraker_extensions
+mainsail
+camera_support
+fluidd_updated
+fans_control_macros
+useful_macros
+improved_shapers
+creality_timelapse_recover
+spoolman_cfs_sync
+entware
+kamp
+cfs_db_guard
+git_backup

@@ -1,0 +1,69 @@
+### helper_health_cfs
+### command: sh /mnt/UDISK/helper-script/helper.sh --health-cfs
+
+
+== CFS / BOX ==
+Safety: this check is read-only; it does not load, unload, extrude or move CFS filament.
+CFS_CHECK_ATTEMPT|1
+BOX_STATE|connect
+BOX_ENABLE|1
+BOX_AUTO_REFILL|1
+BOX_FILAMENT_USEUP|1
+T1_STATE|connect
+T1_VERSION|1.4.2
+T1_SN|100009738533426CRQV
+T1_REMAIN|100,100,100,100
+T1_MATERIAL|101001,090001,000002,090002
+MOTOR_READY|True
+FILAMENT_SENSOR_ENABLED|False
+FILAMENT_DETECTED|False
+SAVE_CONFIG_PENDING|False
+SAVE_CONFIG_PENDING_ITEMS|
+AUTO_ADDR_ONLY_PENDING|False
+[0;32m[OK][0m CFS/BOX and motor_control are connected
+[0;32m[OK][0m CFS/T1 firmware matches 2026-07-07 handover baseline: 1.4.2
+[0;32m[OK][0m Direct BOX/CFS macro hazards are known; helper avoids direct load/refresh tests
+[0;32m[OK][0m Creality M8200/CR_BOX_* material-change path exists
+
+CFS command/log safety scan summary:
+CFS_SCAN_SUMMARY|official_box=True|direct_box_path=True|config_risk=0|gcode_risk=0|config_direct_risk=0|gcode_direct_risk=0|config_official=0|gcode_official=0|config_hits=0|gcode_hits=0|gcode_files_scanned=15|gcode_files_total=15|gcode_scan_limited=False|log_severe_hits=0|log_timeout_hits=28|log_error_hits=28|log_noise_hits=113|log_hits=141
+[0;32m[OK][0m No direct high-risk CFS commands found in custom config files
+[0;32m[OK][0m No direct high-risk CFS commands found in scanned G-code files
+[0;32m[OK][0m No recent severe CFS error log evidence found by safety scan
+[0;32m[OK][0m CFS RS485 timeout level acceptable in compact scan: 28
+[0;32m[OK][0m CFS bus raw-frame/noise level acceptable in compact scan: 113
+CFS_PROTOCOL_SUMMARY|status_error=False|state=connect|t1_state=connect|t1_version=1.4.2|slot_count=4|blank_live_labels=1|db_missing=0|db_ambiguous=1|official_m8200=True|stock_start_end=True
+[0;32m[OK][0m CFS protocol report confirms official M8200/CR_BOX path
+[0;32m[OK][0m CFS protocol report confirms stock START/END CFS hooks
+[0;32m[OK][0m CFS protocol report found no missing live material DB IDs
+[0;32m[OK][0m CFS protocol report notes DB-backed blank live labels: 1
+[0;32m[OK][0m CFS protocol report notes shared/ambiguous generic DB IDs: 1
+
+CFS material database integrity:
+DB_JSON_OK|material_database.json|272110
+DB_JSON_OK|material_box_info.json|3890
+DB_JSON_OK|material_modify_info.json|5789
+DB_JSON_OK|tn_data.json|973
+DB_JSON_OK|usrMaterial/userMaterial.json|1036
+DB_JSON_OK|material_option.json|1255
+DB_PROFILE_COUNT|52
+DB_LIVE_ID_MATCH|101001,090001,000002,090002
+DB_CUSTOM_PROFILE_OK|90001|eSUN/ePLA-HS+ Gray
+DB_CUSTOM_PROFILE_OK|90002|Sovol/PLA Steel Blue
+[0;32m[OK][0m CFS material database matches live CFS slots
+[0;32m[OK][0m CFS material DB guard is installed
+2026-07-10 21:02:55 No CFS DB repair needed: profile 90001 already ok; profile 90002 already ok; material options already ok; user materials already ok
+2026-07-10 21:02:55 VERIFY profile 90001=ok
+2026-07-10 21:02:55 VERIFY profile 90002=ok
+[0;32m[OK][0m CFS material DB guard check passed
+[0;32m[OK][0m No recent CFS key60/direct macro evidence in last 2000 klippy lines
+[0;32m[OK][0m RS485 timeout noise acceptable in last 1000 klippy lines: 24
+[0;32m[OK][0m RS485 buf_len/noisy-frame level acceptable in last 1000 klippy lines: 1
+[0;32m[OK][0m Serial_485 unknown/noisy frame level acceptable in last 1000 klippy lines: 98
+[0;32m[OK][0m GET_BOX_STATE polling level acceptable in last 500 klippy lines: 68
+[0;32m[OK][0m No recent motor_control ready-callback bug evidence
+
+== Summary ==
+OK: 23
+WARN: 0
+FAIL: 0

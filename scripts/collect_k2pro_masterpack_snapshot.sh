@@ -69,6 +69,23 @@ run_helper_report helper_health_firmware --health-firmware
 run_helper_report helper_nozzle_camera_diagnose --nozzle-camera-diagnose
 run_helper_report helper_dependency_audit --dependency-audit
 run_helper_report helper_menu_audit --menu-audit
+run_helper_report helper_uninstalled_audit --uninstalled-audit
+run_helper_report helper_deep_file_audit --deep-file-audit
+run_helper_report helper_spoolman_cfs_status --spoolman-cfs-status
+run_helper_report helper_cfs_protocol_report --cfs-protocol-report
+run_helper_report helper_cfs_db_guard_status --cfs-db-guard-status
+run_helper_report helper_timelapse_recover_status --timelapse-recover-status
+run_helper_report helper_entware_status --entware-status
+run_helper_report helper_git_backup_status --git-backup-status
+
+capture service_process_status sh -c '
+    date
+    /etc/init.d/moonraker status 2>/dev/null || true
+    /etc/init.d/go2rtc status 2>/dev/null || true
+    /etc/init.d/S99spoolman_cfs_sync status 2>/dev/null || true
+    ps w | grep -E "[m]oonraker|[k]lippy|[g]o2rtc|[s]poolman_cfs_sync|[c]reality_timelapse" || true
+    netstat -lntp 2>/dev/null || true
+'
 
 if [ -d "$HELPER_DIR" ]; then
     HELPER_TAR="$REMOTE_DIR/helper-script-live_${STAMP}.tar.gz"

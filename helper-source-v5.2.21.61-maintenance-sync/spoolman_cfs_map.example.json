@@ -1,0 +1,8 @@
+{
+  "_comment": "Set enabled to true and map T1A/T1B/T1C/T1D to your real Spoolman spool IDs before enabling CFS sync.",
+  "enabled": false,
+  "T1A": null,
+  "T1B": null,
+  "T1C": null,
+  "T1D": null
+}

@@ -1,68 +1,54 @@
 # Backup And Restore Notes
 
-## Was im frischen Backup steckt
+## Aktuelle Sicherungen
 
-Das frische Config/System-Backup wurde durch den installierten Helper erstellt:
+- Voller Live-Snapshot: `live_snapshot_20260710_210033/`
+- Config/System: `live_snapshot_20260710_210033/remote_files/k2pro_config_system_20260710_210320.tar.gz`
+- Kompletter Helper: `live_snapshot_20260710_210033/remote_files/helper-script-live_20260710_210033.tar.gz`
+- Bereinigte Neuinstallationsquelle: `helper-source-v5.2.21.61-maintenance-sync/`
+- Separates Home-Assistant-Teilbackup fuer Spoolman wurde am 2026-07-10 erzeugt.
 
-`live_snapshot_20260708_204124/remote_files/k2pro_config_system_20260708_204402.tar.gz`
+Das Config/System-Archiv enthaelt die Druckerkonfiguration, Moonraker-Datenbank, CFS-/Materialdaten und relevante Systemdateien. Der Helper-Snapshot enthaelt den installierten Live-Stand inklusive lokaler Laufzeitkonfiguration.
 
-Der Helper-Backup-Scope umfasst:
+## Sichere Reihenfolge nach Firmware-Reset
 
-- `/mnt/UDISK/printer_data/config`
-- `/mnt/UDISK/printer_data/database`
-- `/mnt/UDISK/creality/userdata/box`
-- Helper-Installmarker `.installed`
-- relevante Systemdateien wie `rc.local`, `nginx.conf`, Moonraker init/rc.d Dateien
-- `df -h` und `uname` als Kontext
+1. Drucker vollstaendig starten und Firmware-/Boardkennung pruefen.
+2. Vor jeder Wiederherstellung einen neuen Ist-Stand sichern.
+3. Helper nach `/mnt/UDISK/helper-script` zurueckspielen und Rechte pruefen.
+4. `helper.sh --preflight` und `helper.sh --status` ausfuehren.
+5. Druckerkonfiguration nur bei passender K2-Pro-Firmware wiederherstellen.
+6. Klipper/Moonraker neu starten und `helper.sh --health` ausfuehren.
+7. CFS nur lesend mit `helper.sh --health-cfs` und `scripts/cfs_db_guard.sh` pruefen.
+8. Spoolman-Mapping mit `helper.sh --spoolman-cfs-status` kontrollieren.
+9. Kamera, Timelapse, Fluidd und Mainsail einzeln pruefen.
 
-Der komplette Helper-Snapshot liegt hier:
-
-`live_snapshot_20260708_204124/remote_files/helper-script-live_20260708_204124.tar.gz`
-
-## Restore-Grundsatz
-
-Restore nur machen, wenn es einen konkreten Grund gibt.
-Vor jedem Restore zuerst ein neues Pre-Restore-Backup erzeugen.
-
-Der installierte Helper hat eine interaktive Restore-Funktion:
+## Helper-Befehle
 
 ```sh
 cd /mnt/UDISK/helper-script
 sh helper.sh --backup
-sh helper.sh --restore
+sh helper.sh --preflight
+sh helper.sh --health
+sh helper.sh --health-cfs
+sh helper.sh --spoolman-cfs-status
+sh helper.sh --health-camera
+sh helper.sh --health-frontends
 ```
 
-Der Restore-Pfad stellt standardmaessig nur `/mnt/UDISK/printer_data/config` wieder her.
-Systemdateien und CFS-Materialdatenbankdaten im Tarball sind fuer manuelle Rettung gedacht.
+Die interaktive Helper-Restore-Funktion stellt standardmaessig nur `printer_data/config` wieder her. System- und CFS-Daten aus dem Tarball sind fuer eine kontrollierte manuelle Rettung gedacht.
 
-## Frischen Snapshot spaeter erneut erzeugen
+## Nicht automatisch wiederherstellen
 
-Vom Windows-Rechner aus kann das Script in `scripts/` erneut genutzt werden.
-Passwort nicht in Dateien speichern.
+- Keine fremde oder Vanilla-Klipper-/Moonraker-Core-Version.
+- Keine MCU-/CFS-Firmware aus einem Backup flashen.
+- Keine direkten CFS-Materialbewegungsbefehle zum Testen.
+- Keine Nozzle-AI-Kamera dauerhaft erzwingen.
+- Keine Spoolman-Datenbank ueberschreiben, bevor das Home-Assistant-Backup und der aktuelle Serverstand geprueft wurden.
 
-Beispiel:
+## Neuen Snapshot erzeugen
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\run_live_snapshot_from_windows.ps1 -Password "DEIN_PASSWORT"
 ```
 
-Das erzeugt auf dem Drucker wieder einen Ordner unter:
-
-`/mnt/UDISK/printer_data/backups/codex/`
-
-Danach kann der Ordner per `pscp -r` lokal heruntergeladen werden.
-
-## Aktuelle CFS-Warnung
-
-Der Live-Health-Check meldete repairable CFS-Materialdatenbank-Drift.
-Nicht blind reparieren, wenn gerade ein Druck laeuft oder der Drucker aktiv arbeitet.
-
-Bei ruhigem Idle-Zustand waere der vorgesehene Helper-Befehl:
-
-```sh
-cd /mnt/UDISK/helper-script
-sh helper.sh --backup
-sh helper.sh --cfs-db-repair
-sh helper.sh --health-cfs
-sh helper.sh --health
-```
+Passwoerter bleiben ausserhalb des Repositories. Vor einer Veroeffentlichung immer erneut nach Tokens, privaten Schluesseln und Laufzeitdateien suchen.

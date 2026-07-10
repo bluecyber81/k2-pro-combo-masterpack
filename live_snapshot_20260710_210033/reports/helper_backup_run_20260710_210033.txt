@@ -1,0 +1,6 @@
+Backup Klipper configuration and important system files? [y/n]: 
+[0;32m[INFO][0m Backing up Klipper configuration and system scripts...
+[0;32m[OK][0m Backup saved to: /mnt/UDISK/printer_data/backups/k2pro_helper/k2pro_config_system_20260710_210320.tar.gz
+[0;32m[INFO][0m Backup size: 304.0K
+[0;32m[INFO][0m Keeping last 7 full backups. Older full backups removed.
+

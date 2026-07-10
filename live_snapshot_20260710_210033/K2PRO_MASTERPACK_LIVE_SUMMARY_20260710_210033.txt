@@ -1,0 +1,37 @@
+K2 Pro Combo live masterpack snapshot
+stamp:20260710_210033
+root_dir:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033
+date:Fri Jul 10 21:00:34 CEST 2026
+hostname:K2Pro-Chris
+id:uid=0(root) gid=0(root)
+uname:Linux K2Pro-Chris 5.4.61 #1 SMP PREEMPT Wed Jun 17 14:14:41 CST 2026 armv7l GNU/Linux
+firmware:version=1.1.6.3
+helper_header:# Creality K2 Pro Combo Helper Script - maintenance sync v5.2.21.61 - firmware aware
+
+report:system_identity:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/system_identity_20260710_210033.txt:rc=0
+report:helper_listing:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_listing_20260710_210033.txt:rc=0
+report:printer_config_listing:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/printer_config_listing_20260710_210033.txt:rc=0
+report:helper_status:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_status_20260710_210033.txt:rc=0
+report:helper_preflight:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_preflight_20260710_210033.txt:rc=0
+report:helper_health:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_health_20260710_210033.txt:rc=0
+report:helper_health_camera:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_health_camera_20260710_210033.txt:rc=0
+report:helper_health_frontends:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_health_frontends_20260710_210033.txt:rc=0
+report:helper_health_cfs:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_health_cfs_20260710_210033.txt:rc=0
+report:helper_health_firmware:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_health_firmware_20260710_210033.txt:rc=0
+report:helper_nozzle_camera_diagnose:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_nozzle_camera_diagnose_20260710_210033.txt:rc=0
+report:helper_dependency_audit:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_dependency_audit_20260710_210033.txt:rc=0
+report:helper_menu_audit:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_menu_audit_20260710_210033.txt:rc=0
+report:helper_uninstalled_audit:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_uninstalled_audit_20260710_210033.txt:rc=0
+report:helper_deep_file_audit:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_deep_file_audit_20260710_210033.txt:rc=0
+report:helper_spoolman_cfs_status:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_spoolman_cfs_status_20260710_210033.txt:rc=0
+report:helper_cfs_protocol_report:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_cfs_protocol_report_20260710_210033.txt:rc=0
+report:helper_cfs_db_guard_status:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_cfs_db_guard_status_20260710_210033.txt:rc=0
+report:helper_timelapse_recover_status:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_timelapse_recover_status_20260710_210033.txt:rc=0
+report:helper_entware_status:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_entware_status_20260710_210033.txt:rc=0
+report:helper_git_backup_status:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_git_backup_status_20260710_210033.txt:rc=0
+report:service_process_status:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/service_process_status_20260710_210033.txt:rc=0
+helper_snapshot:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/remote_files/helper-script-live_20260710_210033.tar.gz:rc=0
+backup_run:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/reports/helper_backup_run_20260710_210033.txt:rc=0
+config_backup:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/remote_files/k2pro_config_system_20260710_210320.tar.gz
+sha256s:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033/SHA256SUMS.txt
+DONE:/mnt/UDISK/printer_data/backups/codex/k2pro_masterpack_20260710_210033
