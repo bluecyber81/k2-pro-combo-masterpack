@@ -1,0 +1,55 @@
+
+Helper installation overview
+============================
+Helper: # Creality K2 Pro Combo Helper Script - v5.2.21.62-cfs-safe-tools - firmware aware
+Printer: model=F012 board=CR0CN200400C10 firmware=1.1.6.3
+Install marker: /mnt/UDISK/helper-script/.installed
+Klipper PID(s): 4402
+Moonraker PID(s): 3958
+
+Tracked helper modules
+----------------------
+  [OK]   Moonraker extensions            marked=yes detected=yes  Moonraker config wrapper/start patch
+  [OK]   Fluidd updated                  marked=yes detected=yes  web UI, usually :4408
+  [OK]   Mainsail                        marked=yes detected=yes  web UI, usually :4409
+  [OK]   Camera support                  marked=yes detected=yes  go2rtc/WebRTC bridge
+  [OK]   Fans control macros             marked=yes detected=yes  K2 Pro fan macro cfg
+  [OK]   Useful macros                   marked=yes detected=yes  CFS-safe utility macros
+  [OK]   Improved shapers                marked=yes detected=yes  input shaper helpers
+  [OK]   KAMP-K2 adaptive mesh           marked=yes detected=yes  adaptive mesh tested on live K2 Pro
+  [OK]   Creality timelapse recover      marked=yes detected=yes  stock timelapse MP4 recover
+  [OK]   Spoolman CFS sync               marked=yes detected=yes  service/worker present; active map exists
+  [OK]   CFS Safe Tools                  marked=yes detected=yes  passive CFS diagnostics and event statistics
+  [OK]   Entware                         marked=yes detected=yes  package manager and tools
+  [OK]   Git Backup local                marked=yes detected=yes  local config history; remote optional
+  [--]   OctoEverywhere                  marked=no  detected=no   cloud remote access, explicit installer only
+  [--]   Mobileraker helper              marked=no  detected=no   phone app uses Moonraker directly; companion belongs on Raspi/Debian
+  [--]   Moonraker timelapse             marked=no  detected=no   Moonraker timelapse plugin
+  [--]   M600 manual change              marked=no  detected=no   manual filament macro; only without CFS/Box
+
+Detected extra state
+--------------------
+  [INFO] KAMP-K2 detected: KAMP config or include is present.
+  [INFO] restore_bed_mesh.py present.
+  [OK]   /usr/bin/wget present.
+  [OK]   curl present.
+  [OK]   Active moonraker.conf exists in printer_data/config.
+  [WARN] SAVE_CONFIG pending includes bed_mesh: bed_mesh default
+         Do not press SAVE_CONFIG after KAMP adaptive tests; restart Klipper/FIRMWARE_RESTART to discard the temporary mesh.
+
+
+Installed features:
+  [0;32m✓[0m moonraker_extensions
+  [0;32m✓[0m mainsail
+  [0;32m✓[0m camera_support
+  [0;32m✓[0m fluidd_updated
+  [0;32m✓[0m fans_control_macros
+  [0;32m✓[0m useful_macros
+  [0;32m✓[0m improved_shapers
+  [0;32m✓[0m creality_timelapse_recover
+  [0;32m✓[0m spoolman_cfs_sync
+  [0;32m✓[0m entware
+  [0;32m✓[0m kamp
+  [0;32m✓[0m cfs_db_guard
+  [0;32m✓[0m git_backup
+  [0;32m✓[0m cfs_safe_tools

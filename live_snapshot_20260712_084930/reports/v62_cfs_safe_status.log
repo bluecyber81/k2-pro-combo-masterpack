@@ -1,0 +1,15 @@
+running: 29467
+== CFS Safe Tools ==
+Safety: passive only; no G-code, CFS/BOX, serial, cutter, heater or motor commands.
+BUILD|cfs-safe-tools-1.0
+LIVE|box=connect|t1=connect|fw=1.4.2|slot=T1A|spool=1|print=standby|filament=False
+ENV|temperature_c=28.0|humidity_percent=28.0|mode=0|measuring_wheel=-15660.4677734375
+DB|profiles=52|live_ids=101001,090001,000002,090002|missing=none|custom_90001=True|custom_90002=True|option=True
+RS485|timeouts=54|unknown_frames=214|buf_len=1|severe=0
+[OK] CFS_CONNECTED: CFS/BOX and T1 are connected
+[OK] HUMIDITY_OK: CFS humidity is 28%
+[OK] DB_OK: Live IDs and custom CFS profiles are present
+[OK] SPOOLMAN_OK: CFS slot map and active Spoolman spool agree
+[OK] RS485_OK: RS485 polling noise is within the known baseline
+SUMMARY|OK=5|WARN=0|FAIL=0
+STATE|/mnt/UDISK/helper-script/state/cfs_safe_tools_state.json

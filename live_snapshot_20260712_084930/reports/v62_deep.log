@@ -1,0 +1,260 @@
+K2 Pro Combo deep file/script audit
+Safety: read-only only. No flash, heat, move, print, load, unload or CFS command is sent.
+Sun Jul 12 08:47:01 CEST 2026
+
+Printer state
+{"result": {"eventtime": 134294.841492953, "status": {"print_stats": {"filename": "", "total_duration": 0.0, "print_duration": 0.0, "filament_used": 0.0, "state": "standby", "message": "", "info": {"total_layer": null, "current_layer": null}, "power_loss": 0, "z_pos": 147.97371111113176}, "webhooks": {"state": "ready", "state_message": "Printer is ready"}, "extruder": {"temperature": 29.14, "target": 0.0, "power": 0.0, "can_extrude": false, "extrude_below_min_temp_err_is_report": false, "nozzle_diameter": 0.4, "pressure_advance": 0.044, "smooth_time": 0.04}, "heater_bed": {"temperature": 24.59, "target": 0.0, "power": 0.0}, "virtual_sdcard": {"file_path": null, "progress": 0.0, "is_active": false, "file_position": 0.0, "file_size": 0.0, "first_layer_stop": false, "layer": 0, "layer_count": 0, "run_dis": -283.0, "bed_mesh_calibate_state": false, "cur_print_data": {"end_time": 1783778923.1939065, "filament_used": 7658.17005999387, "filename": "can-lid-basic-click-500and330ml.stl_PLA_40m14s.gcode", "metadata": {"size": 3018688, "modified": 1783755049.1222484, "uuid": "8100687d-4882-45af-8816-1938272e822a", "slicer": "Creality", "slicer_version": "7.2.0.5226", "gcode_start_byte": 31596, "gcode_end_byte": 2987486, "layer_count": 48, "object_height": 9.6, "estimated_time": 2414, "layer_height": 0.2, "first_layer_height": 0.2, "filament_type": "PLA", "flush_para": {"flush_multiplier": 1.0, "flush_volumes_matrix": [0]}, "model_info": {"MINX": 108.0, "MINY": 80.27, "MINZ": 0.0, "MAXX": 179.34, "MAXY": 206.07, "MAXZ": 9.65, "multicolor_method": 0, "MaterialType": "PLA"}, "default_filament_colour": ["#FFFFFF"], "filament_used_g": ["22.89"]}, "print_duration": 2423.160466530011, "start_time": 1783776339.1750257, "status": "completed", "total_duration": 2513.148721948004}}}}}
+
+Shell syntax
+OK    helper.sh                                      /mnt/UDISK/helper-script/helper.sh
+OK    backup.sh                                      /mnt/UDISK/helper-script/scripts/backup.sh
+OK    camera.sh                                      /mnt/UDISK/helper-script/scripts/camera.sh
+OK    cfs_db_guard.sh                                /mnt/UDISK/helper-script/scripts/cfs_db_guard.sh
+OK    cfs_protocol_report.sh                         /mnt/UDISK/helper-script/scripts/cfs_protocol_report.sh
+OK    cfs_rs485_report.sh                            /mnt/UDISK/helper-script/scripts/cfs_rs485_report.sh
+OK    cfs_safe_tools.sh                              /mnt/UDISK/helper-script/scripts/cfs_safe_tools.sh
+OK    cfs_safety_scan.sh                             /mnt/UDISK/helper-script/scripts/cfs_safety_scan.sh
+OK    creality_timelapse_recover.sh                  /mnt/UDISK/helper-script/scripts/creality_timelapse_recover.sh
+OK    deep_file_audit_k2pro.sh                       /mnt/UDISK/helper-script/scripts/deep_file_audit_k2pro.sh
+OK    dependency_audit_k2pro.sh                      /mnt/UDISK/helper-script/scripts/dependency_audit_k2pro.sh
+OK    entware.sh                                     /mnt/UDISK/helper-script/scripts/entware.sh
+OK    fans.sh                                        /mnt/UDISK/helper-script/scripts/fans.sh
+OK    fluidd.sh                                      /mnt/UDISK/helper-script/scripts/fluidd.sh
+OK    git_backup.sh                                  /mnt/UDISK/helper-script/scripts/git_backup.sh
+OK    health.sh                                      /mnt/UDISK/helper-script/scripts/health.sh
+OK    helixscreen.sh                                 /mnt/UDISK/helper-script/scripts/helixscreen.sh
+OK    kamp.sh                                        /mnt/UDISK/helper-script/scripts/kamp.sh
+OK    m600.sh                                        /mnt/UDISK/helper-script/scripts/m600.sh
+OK    mainsail.sh                                    /mnt/UDISK/helper-script/scripts/mainsail.sh
+OK    menu_audit_k2pro.sh                            /mnt/UDISK/helper-script/scripts/menu_audit_k2pro.sh
+OK    mobileraker.sh                                 /mnt/UDISK/helper-script/scripts/mobileraker.sh
+OK    moonraker.sh                                   /mnt/UDISK/helper-script/scripts/moonraker.sh
+OK    nozzle_camera_recover.sh                       /mnt/UDISK/helper-script/scripts/nozzle_camera_recover.sh
+OK    octoeverywhere.sh                              /mnt/UDISK/helper-script/scripts/octoeverywhere.sh
+OK    preflight_k2pro.sh                             /mnt/UDISK/helper-script/scripts/preflight_k2pro.sh
+OK    shapers.sh                                     /mnt/UDISK/helper-script/scripts/shapers.sh
+OK    spoolman_cfs.sh                                /mnt/UDISK/helper-script/scripts/spoolman_cfs.sh
+OK    spoolman_cfs_status.sh                         /mnt/UDISK/helper-script/scripts/spoolman_cfs_status.sh
+OK    system.sh                                      /mnt/UDISK/helper-script/scripts/system.sh
+OK    timelapse.sh                                   /mnt/UDISK/helper-script/scripts/timelapse.sh
+OK    uninstalled_audit_k2pro.sh                     /mnt/UDISK/helper-script/scripts/uninstalled_audit_k2pro.sh
+OK    useful_macros.sh                               /mnt/UDISK/helper-script/scripts/useful_macros.sh
+OK    z_offset.sh                                    /mnt/UDISK/helper-script/scripts/z_offset.sh
+OK    S98nozzle_camera_recover                       /mnt/UDISK/helper-script/scripts/S98nozzle_camera_recover
+OK    S97cfs_safe_monitor                            /etc/init.d/S97cfs_safe_monitor
+OK    S98cfs_db_guard                                /etc/init.d/S98cfs_db_guard
+OK    S98nozzle_camera_recover                       /etc/init.d/S98nozzle_camera_recover
+OK    S99camera                                      /etc/init.d/S99camera
+OK    S99spoolman_cfs_sync                           /etc/init.d/S99spoolman_cfs_sync
+OK    S99swupdate_autorun                            /etc/init.d/S99swupdate_autorun
+OK    S99timelapse_recover                           /etc/init.d/S99timelapse_recover
+
+Python compile
+OK    nginx_go2rtc.py                                /mnt/UDISK/helper-script/nginx_go2rtc.py
+OK    camera_watchdog.py                             /mnt/UDISK/helper-script/camera_watchdog.py
+OK    spoolman_cfs_sync.py                           /mnt/UDISK/helper-script/spoolman_cfs_sync.py
+OK    cfs_safe_tools.py                              /mnt/UDISK/helper-script/scripts/cfs_safe_tools.py
+OK    cfs_db_guard.py                                /mnt/UDISK/helper-script/scripts/cfs_db_guard.py
+OK    test_cfs_db_guard.py                           /mnt/UDISK/helper-script/tests/test_cfs_db_guard.py
+OK    k2rtc.py                                       /mnt/UDISK/helper-script/k2rtc.py
+OK    creality_timelapse_recover.py                  /mnt/UDISK/helper-script/creality_timelapse_recover.py
+
+JSON and Creality data formats
+OK    .creality_timelapse_recover_state.json         valid JSON: /mnt/UDISK/helper-script/.creality_timelapse_recover_state.json
+OK    PATCH_SUMMARY.json                             valid JSON: /mnt/UDISK/helper-script/files/cfs_db_patch/PATCH_SUMMARY.json
+OK    material_box_config.json                       valid JSON: /mnt/UDISK/helper-script/files/cfs_db_patch/material_box_config.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/helper-script/files/cfs_db_patch/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/helper-script/files/cfs_db_patch/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/helper-script/files/cfs_db_patch/material_modify_info.json
+OK    material_option.json                           valid JSON: /mnt/UDISK/helper-script/files/cfs_db_patch/material_option.json
+OK    remain_material_data.json                      valid JSON: /mnt/UDISK/helper-script/files/cfs_db_patch/remain_material_data.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/helper-script/files/cfs_db_patch/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/helper-script/files/cfs_db_patch/usrMaterial/userMaterial.json
+OK    spoolman_cfs_map.example.json                  valid JSON: /mnt/UDISK/helper-script/spoolman_cfs_map.example.json
+OK    spoolman_cfs_map.json                          valid JSON: /mnt/UDISK/helper-script/spoolman_cfs_map.json
+OK    cfs_db_guard_state.json                        valid JSON: /mnt/UDISK/helper-script/state/cfs_db_guard_state.json
+OK    cfs_safe_tools_state.json                      valid JSON: /mnt/UDISK/helper-script/state/cfs_safe_tools_state.json
+OK    material_box_config.json                       valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_before_spoolman_20260705_203931/material_box_config.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_before_spoolman_20260705_203931/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_before_spoolman_20260705_203931/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_before_spoolman_20260705_203931/material_modify_info.json
+OK    material_option.json                           valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_before_spoolman_20260705_203931/material_option.json
+OK    remain_material_data.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_before_spoolman_20260705_203931/remain_material_data.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_before_spoolman_20260705_203931/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_before_spoolman_20260705_203931/usrMaterial/userMaterial.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_160744/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_160744/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_160744/material_modify_info.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_160744/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_160744/usrMaterial/userMaterial.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_160846/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_160846/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_160846/material_modify_info.json
+OK    material_option.json                           valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_160846/material_option.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_160846/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_160846/usrMaterial/userMaterial.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_175218/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_175218/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_175218/material_modify_info.json
+OK    material_option.json                           valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_175218/material_option.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_175218/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_175218/usrMaterial/userMaterial.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_183230/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_183230/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_183230/material_modify_info.json
+OK    material_option.json                           valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_183230/material_option.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_183230/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_183230/usrMaterial/userMaterial.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_202214/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_202214/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_202214/material_modify_info.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_202214/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260706_202214/usrMaterial/userMaterial.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260708_164554_2835/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260708_164554_2835/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260708_164554_2835/material_modify_info.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260708_164554_2835/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260708_164554_2835/usrMaterial/userMaterial.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260708_211252_30622/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260708_211252_30622/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260708_211252_30622/material_modify_info.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260708_211252_30622/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260708_211252_30622/usrMaterial/userMaterial.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260710_142353_1933/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260710_142353_1933/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260710_142353_1933/material_modify_info.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260710_142353_1933/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260710_142353_1933/usrMaterial/userMaterial.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260710_193104_3046/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260710_193104_3046/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260710_193104_3046/material_modify_info.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260710_193104_3046/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260710_193104_3046/usrMaterial/userMaterial.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260711_074155_4434/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260711_074155_4434/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260711_074155_4434/material_modify_info.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260711_074155_4434/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260711_074155_4434/usrMaterial/userMaterial.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260712_084452_29445/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260712_084452_29445/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260712_084452_29445/material_modify_info.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260712_084452_29445/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_guard_before_repair_20260712_084452_29445/usrMaterial/userMaterial.json
+OK    material_box_config.json                       valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_repair_20260706_153235/material_box_config.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_repair_20260706_153235/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_repair_20260706_153235/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_repair_20260706_153235/material_modify_info.json
+OK    remain_material_data.json                      valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_repair_20260706_153235/remain_material_data.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_repair_20260706_153235/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/cfs_db_repair_20260706_153235/usrMaterial/userMaterial.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/archive/filament_slot_update_20260703_170428/usrMaterial/userMaterial.json
+OK    material_box_config.json                       valid JSON: /mnt/UDISK/creality/userdata/box/material_box_config.json
+OK    material_box_info.json                         valid JSON: /mnt/UDISK/creality/userdata/box/material_box_info.json
+OK    material_database.json                         valid JSON: /mnt/UDISK/creality/userdata/box/material_database.json
+OK    material_modify_info.json                      valid JSON: /mnt/UDISK/creality/userdata/box/material_modify_info.json
+OK    material_option.json                           valid JSON: /mnt/UDISK/creality/userdata/box/material_option.json
+OK    remain_material_data.json                      valid JSON: /mnt/UDISK/creality/userdata/box/remain_material_data.json
+OK    tn_data.json                                   valid JSON: /mnt/UDISK/creality/userdata/box/tn_data.json
+OK    userMaterial.json                              valid JSON: /mnt/UDISK/creality/userdata/box/usrMaterial/userMaterial.json
+OK    iotprint_info.json                             valid JSON: /mnt/UDISK/creality/userdata/cloud/iotprint_info.json
+INFO  tb_info.json                                   Creality encrypted/private data, size=1152, skipped JSON parse: /mnt/UDISK/creality/userdata/cloud/tb_info.json
+INFO  user_info.json                                 Creality encrypted/private data, size=3712, skipped JSON parse: /mnt/UDISK/creality/userdata/cloud/user_info.json
+OK    cam_detect_config.json                         valid JSON: /mnt/UDISK/creality/userdata/config/cam_detect_config.json
+OK    cam_version.json                               valid JSON: /mnt/UDISK/creality/userdata/config/cam_version.json
+OK    device_structure_config.json                   valid JSON: /mnt/UDISK/creality/userdata/config/device_structure_config.json
+OK    flow_rate.json                                 valid JSON: /mnt/UDISK/creality/userdata/config/flow_rate.json
+OK    gcode_layer.json                               valid JSON: /mnt/UDISK/creality/userdata/config/gcode_layer.json
+OK    maintenance_item.json                          valid JSON: /mnt/UDISK/creality/userdata/config/maintenance_item.json
+OK    print_para_config.json                         valid JSON: /mnt/UDISK/creality/userdata/config/print_para_config.json
+OK    real_zmax.json                                 valid JSON: /mnt/UDISK/creality/userdata/config/real_zmax.json
+OK    server_config.json                             valid JSON: /mnt/UDISK/creality/userdata/config/server_config.json
+OK    speed_mode.json                                valid JSON: /mnt/UDISK/creality/userdata/config/speed_mode.json
+OK    system_config.json                             valid JSON: /mnt/UDISK/creality/userdata/config/system_config.json
+OK    system_version.json                            valid JSON: /mnt/UDISK/creality/userdata/config/system_version.json
+OK    temperature_info.json                          valid JSON: /mnt/UDISK/creality/userdata/config/temperature_info.json
+INFO  user_data_not_deleted.json                     Creality encrypted/private data, size=108, skipped JSON parse: /mnt/UDISK/creality/userdata/config/user_data_not_deleted.json
+OK    user_print_refer.json                          valid JSON: /mnt/UDISK/creality/userdata/config/user_print_refer.json
+OK    z_pos.json                                     valid JSON: /mnt/UDISK/creality/userdata/config/z_pos.json
+OK    delay_image_info.json                          valid JSON: /mnt/UDISK/creality/userdata/delay_image/delay_image_info.json
+OK    fault_code_info.json                           valid JSON: /mnt/UDISK/creality/userdata/fault_code/fault_code_info.json
+OK    print_history_record.json                      valid JSON: /mnt/UDISK/creality/userdata/history/print_history_record.json
+OK    log_config.json                                valid JSON: /mnt/UDISK/creality/userdata/log/log_config.json
+INFO  pipe-20260711.json                             Creality GUI event stream, approx_events=57, size=53414: /mnt/UDISK/creality/gui/config/pipe-20260711.json
+INFO  pipe-20260712.json                             Creality GUI event stream, approx_events=9, size=11898: /mnt/UDISK/creality/gui/config/pipe-20260712.json
+INFO  print_list-20260711.json                       Creality GUI event stream, approx_events=2, size=2259: /mnt/UDISK/creality/gui/config/print_list-20260711.json
+INFO  upload_data_offset.json                        Creality offset text table, lines=3: /mnt/UDISK/creality/gui/config/upload_data_offset.json
+JSON_SUMMARY|ok=116
+
+Klipper include references
+OK    include line 10                                sensorless.cfg -> 1 file(s)
+OK    include line 11                                gcode_macro.cfg -> 1 file(s)
+OK    include line 12                                printer_params.cfg -> 1 file(s)
+OK    include line 13                                box.cfg -> 1 file(s)
+OK    include line 14                                motor_control.cfg -> 1 file(s)
+OK    include line 15                                fans_control.cfg -> 1 file(s)
+OK    include line 16                                useful_macros.cfg -> 1 file(s)
+OK    include line 17                                shapers_calibration.cfg -> 1 file(s)
+OK    include line 415                               KAMP/KAMP_Settings.cfg -> 1 file(s)
+INCLUDE_SUMMARY|fail=0
+
+Executable permissions
+OK    go2rtc                                         executable: /mnt/UDISK/helper-script/go2rtc
+OK    helper.sh                                      executable: /mnt/UDISK/helper-script/helper.sh
+OK    backup.sh                                      executable: /mnt/UDISK/helper-script/scripts/backup.sh
+OK    camera.sh                                      executable: /mnt/UDISK/helper-script/scripts/camera.sh
+OK    cfs_db_guard.sh                                executable: /mnt/UDISK/helper-script/scripts/cfs_db_guard.sh
+OK    cfs_protocol_report.sh                         executable: /mnt/UDISK/helper-script/scripts/cfs_protocol_report.sh
+OK    cfs_rs485_report.sh                            executable: /mnt/UDISK/helper-script/scripts/cfs_rs485_report.sh
+OK    cfs_safe_tools.sh                              executable: /mnt/UDISK/helper-script/scripts/cfs_safe_tools.sh
+OK    cfs_safety_scan.sh                             executable: /mnt/UDISK/helper-script/scripts/cfs_safety_scan.sh
+OK    creality_timelapse_recover.sh                  executable: /mnt/UDISK/helper-script/scripts/creality_timelapse_recover.sh
+OK    deep_file_audit_k2pro.sh                       executable: /mnt/UDISK/helper-script/scripts/deep_file_audit_k2pro.sh
+OK    dependency_audit_k2pro.sh                      executable: /mnt/UDISK/helper-script/scripts/dependency_audit_k2pro.sh
+OK    entware.sh                                     executable: /mnt/UDISK/helper-script/scripts/entware.sh
+OK    fans.sh                                        executable: /mnt/UDISK/helper-script/scripts/fans.sh
+OK    fluidd.sh                                      executable: /mnt/UDISK/helper-script/scripts/fluidd.sh
+OK    git_backup.sh                                  executable: /mnt/UDISK/helper-script/scripts/git_backup.sh
+OK    health.sh                                      executable: /mnt/UDISK/helper-script/scripts/health.sh
+OK    helixscreen.sh                                 executable: /mnt/UDISK/helper-script/scripts/helixscreen.sh
+OK    kamp.sh                                        executable: /mnt/UDISK/helper-script/scripts/kamp.sh
+OK    m600.sh                                        executable: /mnt/UDISK/helper-script/scripts/m600.sh
+OK    mainsail.sh                                    executable: /mnt/UDISK/helper-script/scripts/mainsail.sh
+OK    menu_audit_k2pro.sh                            executable: /mnt/UDISK/helper-script/scripts/menu_audit_k2pro.sh
+OK    mobileraker.sh                                 executable: /mnt/UDISK/helper-script/scripts/mobileraker.sh
+OK    moonraker.sh                                   executable: /mnt/UDISK/helper-script/scripts/moonraker.sh
+OK    nozzle_camera_recover.sh                       executable: /mnt/UDISK/helper-script/scripts/nozzle_camera_recover.sh
+OK    octoeverywhere.sh                              executable: /mnt/UDISK/helper-script/scripts/octoeverywhere.sh
+OK    preflight_k2pro.sh                             executable: /mnt/UDISK/helper-script/scripts/preflight_k2pro.sh
+OK    shapers.sh                                     executable: /mnt/UDISK/helper-script/scripts/shapers.sh
+OK    spoolman_cfs.sh                                executable: /mnt/UDISK/helper-script/scripts/spoolman_cfs.sh
+OK    spoolman_cfs_status.sh                         executable: /mnt/UDISK/helper-script/scripts/spoolman_cfs_status.sh
+OK    system.sh                                      executable: /mnt/UDISK/helper-script/scripts/system.sh
+OK    timelapse.sh                                   executable: /mnt/UDISK/helper-script/scripts/timelapse.sh
+OK    uninstalled_audit_k2pro.sh                     executable: /mnt/UDISK/helper-script/scripts/uninstalled_audit_k2pro.sh
+OK    useful_macros.sh                               executable: /mnt/UDISK/helper-script/scripts/useful_macros.sh
+OK    z_offset.sh                                    executable: /mnt/UDISK/helper-script/scripts/z_offset.sh
+OK    S98nozzle_camera_recover                       executable: /mnt/UDISK/helper-script/scripts/S98nozzle_camera_recover
+OK    S97cfs_safe_monitor                            executable: /etc/init.d/S97cfs_safe_monitor
+OK    S98cfs_db_guard                                executable: /etc/init.d/S98cfs_db_guard
+OK    S98nozzle_camera_recover                       executable: /etc/init.d/S98nozzle_camera_recover
+OK    S99camera                                      executable: /etc/init.d/S99camera
+OK    S99spoolman_cfs_sync                           executable: /etc/init.d/S99spoolman_cfs_sync
+OK    S99swupdate_autorun                            executable: /etc/init.d/S99swupdate_autorun
+OK    S99timelapse_recover                           executable: /etc/init.d/S99timelapse_recover
+
+Broken symlinks
+OK    broken symlinks                                none
+
+Nginx config
+OK    nginx.conf                                     syntax ok
+
+Recent severe logs
+OK    moonraker.log                                  no severe hits in last 1000 lines
+OK    klippy.log                                     no severe hits in last 1000 lines
+OK    camera_startup.log                             no severe hits in last 1000 lines
+OK    go2rtc.log                                     no severe hits in last 1000 lines
+OK    watchdog.log                                   no severe hits in last 1000 lines
+
+Summary
+OK=225 INFO=7 WARN=0 FAIL=0
+REPORT=/mnt/UDISK/helper-script/reports/deep_file_audit_20260712_084701.txt

@@ -2,10 +2,10 @@
 
 ## Aktuelle Sicherungen
 
-- Voller Live-Snapshot: `live_snapshot_20260710_210033/`
-- Config/System: `live_snapshot_20260710_210033/remote_files/k2pro_config_system_20260710_210320.tar.gz`
-- Kompletter Helper: `live_snapshot_20260710_210033/remote_files/helper-script-live_20260710_210033.tar.gz`
-- Bereinigte Neuinstallationsquelle: `helper-source-v5.2.21.61-maintenance-sync/`
+- Voller Live-Snapshot: `live_snapshot_20260712_084930/`
+- Config/System: `live_snapshot_20260712_084930/remote_files/k2pro_config_system_20260712_084930.tar.gz`
+- Kompletter Helper: `live_snapshot_20260712_084930/remote_files/helper-script-live-v62-20260712_085000.tar.gz`
+- Bereinigte Neuinstallationsquelle: `helper-source-v5.2.21.62-cfs-safe-tools/`
 - Separates Home-Assistant-Teilbackup fuer Spoolman wurde am 2026-07-10 erzeugt.
 
 Das Config/System-Archiv enthaelt die Druckerkonfiguration, Moonraker-Datenbank, CFS-/Materialdaten und relevante Systemdateien. Der Helper-Snapshot enthaelt den installierten Live-Stand inklusive lokaler Laufzeitkonfiguration.
@@ -31,6 +31,8 @@ sh helper.sh --preflight
 sh helper.sh --health
 sh helper.sh --health-cfs
 sh helper.sh --spoolman-cfs-status
+sh helper.sh --cfs-safe-status
+sh helper.sh --cfs-safe-events
 sh helper.sh --health-camera
 sh helper.sh --health-frontends
 ```

@@ -1,0 +1,118 @@
+
+K2 Pro Combo dependency audit
+Safety: read-only only. This does not install, flash, move, heat or restart.
+
+Core commands
+-------------
+OK    sh                             /bin/sh
+OK    python3                        /usr/bin/python3
+OK    awk                            /usr/bin/awk
+OK    sed                            /bin/sed
+OK    grep                           /bin/grep
+OK    find                           /usr/bin/find
+OK    stat                           /bin/stat
+OK    tar                            /bin/tar
+OK    gzip                           /bin/gzip
+OK    curl                           /usr/bin/curl
+OK    wget                           /usr/bin/wget
+OK    ss                             /usr/bin/ss
+OK    netstat                        /bin/netstat
+OK    ip                             /sbin/ip
+OK    jq                             /usr/bin/jq
+OK    sqlite3                        /usr/bin/sqlite3
+OK    unzip                          /usr/bin/unzip
+OK    xz                             /usr/bin/xz
+OK    base64                         /usr/bin/base64
+OK    timeout                        /usr/bin/timeout
+OK    bash                           /usr/bin/bash
+OK    git                            /usr/bin/git
+OK    rsync                          /usr/bin/rsync
+OK    scp                            /usr/bin/scp
+OK    sftp-server                    /usr/bin/sftp-server
+OK    ffmpeg                         /usr/bin/ffmpeg
+OK    file                           /usr/bin/file
+OK    nano                           /usr/bin/nano
+OK    opkg                           /usr/bin/opkg
+OK    tree                           /usr/bin/tree
+OK    udevadm                        /sbin/udevadm
+OK    v4l2-ctl                       /usr/bin/v4l2-ctl
+
+Command versions
+----------------
+python3            Python 3.9.12
+curl               curl 8.2.1 (arm-openwrt-linux-gnu) libcurl/8.2.1 OpenSSL/3.0.10 zlib/1.2.13
+wget               wget: warning: unsupported option ignored: --version
+ip                 ip utility, iproute2-5.11.0
+sqlite3            3.41.2 2023-03-22 11:56:21 0d1fc92f94cb6b76bffe3ec34d69cffde2924203304e8ffc4155597af0c191da
+git                git version 2.39.2
+ffmpeg             ffmpeg version 4.3.6 Copyright (c) 2000-2023 the FFmpeg developers
+OK    wget usable                    present; version/help flags may be limited on embedded builds
+OK    ip json                        Moonraker network parser compatible
+
+Package files and feature install state
+---------------------------------------
+OK    helper.sh                      /mnt/UDISK/helper-script/helper.sh
+OK    go2rtc binary                  /mnt/UDISK/helper-script/go2rtc
+OK    go2rtc.yaml                    /mnt/UDISK/helper-script/go2rtc.yaml
+OK    CFS DB guard script            /mnt/UDISK/helper-script/scripts/cfs_db_guard.py
+OK    CFS DB patch snapshot          /mnt/UDISK/helper-script/files/cfs_db_patch/material_database.json
+OK    CFS protocol report            /mnt/UDISK/helper-script/scripts/cfs_protocol_report.sh
+OK    CFS Safe Tools worker          /mnt/UDISK/helper-script/scripts/cfs_safe_tools.py
+OK    CFS Safe Tools service source  /mnt/UDISK/helper-script/scripts/S97cfs_safe_monitor
+OK    installed marker               /mnt/UDISK/helper-script/.installed
+OK    nozzle camera init helper      /mnt/UDISK/helper-script/scripts/S98nozzle_camera_recover
+OK    nozzle camera recover script   /mnt/UDISK/helper-script/scripts/nozzle_camera_recover.sh
+OK    Creality USB camera mapper     /etc/hotplug.d/usb/60-v4l
+OK    moonraker.conf                 /mnt/UDISK/printer_data/config/moonraker.conf
+OK    camera service                 /etc/rc.d/S99camera
+OK    timelapse recover service      /etc/rc.d/S99timelapse_recover
+OK    spoolman sync service          /etc/rc.d/S99spoolman_cfs_sync
+OK    CFS DB guard service           /etc/rc.d/S98cfs_db_guard
+OK    CFS Safe Tools service         /etc/rc.d/S97cfs_safe_monitor
+OK    fluidd webroot                 /usr/share/fluidd
+OK    mainsail webroot               /usr/share/mainsail
+OK    KAMP config                    /mnt/UDISK/printer_data/config/KAMP
+OK    restore_bed_mesh.py            /usr/share/klipper/klippy/extras/restore_bed_mesh.py
+OK    Git config history             /mnt/UDISK/printer_data/config/.git
+INFO  OctoEverywhere service         not installed: /etc/init.d/octoeverywhere /etc/rc.d/S99octoeverywhere
+OK    spoolman sync worker           /mnt/UDISK/helper-script/spoolman_cfs_sync.py
+OK    spoolman active CFS slot map   /mnt/UDISK/helper-script/spoolman_cfs_map.json
+OK    spoolman example CFS slot map  /mnt/UDISK/helper-script/spoolman_cfs_map.example.json
+INFO  handover baseline script       not installed: /mnt/UDISK/helper-script/scripts/handover_baseline_k2pro.sh
+OK    spoolman CFS status script     /mnt/UDISK/helper-script/scripts/spoolman_cfs_status.sh
+OK    K2 Pro safe policy document    /mnt/UDISK/helper-script/docs/K2_PRO_COMBO_SAFE_POLICY_2026-07-07.md
+INFO  HelixScreen service            not installed: /etc/init.d/S99helixscreen
+
+Listening ports
+---------------
+OK    Creality web                   listening on 80
+OK    Moonraker                      listening on 7125
+OK    Fluidd                         listening on 4408
+OK    Mainsail                       listening on 4409
+OK    go2rtc                         listening on 1984
+OK    Creality WebRTC local          listening on 8000
+
+Helper syntax checks
+--------------------
+OK    helper shell syntax            helper.sh
+OK    script shell syntax            all shell scripts passed
+OK    python compile                 helper Python files passed
+
+Feature dependency notes
+------------------------
+INFO  Moonraker core                 Creality bundled core; do not blindly update via web UI
+INFO  Moonraker Timelapse            keep off while Creality Timelapse Recover works
+INFO  M600                           blocked on CFS/Box; only for non-CFS manual printers
+INFO  Z-Offset macros                blocked unless deliberately testing
+INFO  HelixScreen                    test-only; stock display/CFS/AI must be retested after install
+INFO  CFS DB Guard                   safe boot repair only; no BOX/CFS load, unload, extrude or refresh command
+INFO  Git Backup local               safe local config snapshots; GitHub remote is optional/manual
+INFO  OctoEverywhere                 cloud remote access; official installer only after backup and explicit confirmation
+INFO  Mobileraker                    phone app can use Moonraker directly; Companion belongs on Raspberry Pi/Debian
+INFO  Nozzle AI camera               Creality on-demand camera; use helper.sh --nozzle-camera-diagnose for USB/UVC/BIND evidence before recovery
+INFO  Spoolman CFS Sync              active slot map is not overwritten by the package; use --spoolman-cfs-status, copy/edit spoolman_cfs_map.example.json with real IDs, then enable
+
+Summary
+-------
+OK=71 WARN_OR_INFO=14 FAIL=0
+Result: dependency baseline is complete for the current installed feature set.

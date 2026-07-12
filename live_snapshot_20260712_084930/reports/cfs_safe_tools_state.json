@@ -1,0 +1,97 @@
+{
+  "active_print_session": null,
+  "build": "cfs-safe-tools-1.0",
+  "current": {
+    "active_slot": "T1A",
+    "active_spool": 1,
+    "box_state": "connect",
+    "filament_detected": false,
+    "humidity_percent": 28.0,
+    "measuring_wheel": -15660.4677734375,
+    "mode": "0",
+    "print_file": "",
+    "print_state": "standby",
+    "t1_state": "connect",
+    "timestamp": "2026-07-12 08:50:06"
+  },
+  "events_since_start": 0,
+  "last_full_status": {
+    "active_slot": "T1A",
+    "active_spool": 1,
+    "box_state": "connect",
+    "build": "cfs-safe-tools-1.0",
+    "database": {
+      "custom_profiles": {
+        "90001": "eSUN/ePLA-HS+ Gray",
+        "90002": "Sovol/PLA Steel Blue"
+      },
+      "live_ids": [
+        "101001",
+        "090001",
+        "000002",
+        "090002"
+      ],
+      "material_option_present": true,
+      "missing_live_ids": [],
+      "profile_count": 52
+    },
+    "expected_spool": 1,
+    "filament_detected": false,
+    "findings": [
+      {
+        "code": "CFS_CONNECTED",
+        "level": "OK",
+        "message": "CFS/BOX and T1 are connected"
+      },
+      {
+        "code": "HUMIDITY_OK",
+        "level": "OK",
+        "message": "CFS humidity is 28%"
+      },
+      {
+        "code": "DB_OK",
+        "level": "OK",
+        "message": "Live IDs and custom CFS profiles are present"
+      },
+      {
+        "code": "SPOOLMAN_OK",
+        "level": "OK",
+        "message": "CFS slot map and active Spoolman spool agree"
+      },
+      {
+        "code": "RS485_OK",
+        "level": "OK",
+        "message": "RS485 polling noise is within the known baseline"
+      }
+    ],
+    "humidity_percent": 28.0,
+    "map": {
+      "enabled": true,
+      "missing": [],
+      "slots": {
+        "T1A": 1,
+        "T1B": 2,
+        "T1C": 3,
+        "T1D": 4
+      }
+    },
+    "measuring_wheel": -15660.4677734375,
+    "mode": "0",
+    "print_file": "",
+    "print_state": "standby",
+    "rs485": {
+      "buf_len": 1,
+      "severe": 0,
+      "timeouts": 54,
+      "unknown_frames": 215
+    },
+    "spoolman_connected": true,
+    "t1_state": "connect",
+    "t1_version": "1.4.2",
+    "temperature_c": 28.0,
+    "timestamp": "2026-07-12 08:49:59"
+  },
+  "last_print_session": null,
+  "recent_events": [],
+  "updated": "2026-07-12 08:50:06"
+}

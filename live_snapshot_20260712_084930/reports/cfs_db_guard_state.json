@@ -1,0 +1,14 @@
+{
+  "official_profile_count": 50,
+  "custom_profile_count": 2,
+  "total_profile_count": 52,
+  "custom_profile_ids": [
+    "90001",
+    "90002"
+  ],
+  "official_fingerprint_sha256": "b47830039ca9a451ae78512983d4d620ff1ab07e97b6fd026bd1d1c8b8e5087b",
+  "schema_version": 1,
+  "last_seen": "2026-07-12T08:44:53",
+  "official_database_changed_since_last_run": false,
+  "previous_official_fingerprint_sha256": null
+}

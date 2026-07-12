@@ -1,0 +1,238 @@
+
+== Helper files ==
+[0;32m[OK][0m helper.sh is executable
+[0;32m[OK][0m scripts directory exists
+[0;32m[OK][0m S98nozzle_camera_recover is executable
+[0;32m[OK][0m .installed exists
+[0;32m[OK][0m Shell syntax check passed
+[0;32m[OK][0m Python helper compile check passed
+
+
+Installed features:
+  [0;32m✓[0m moonraker_extensions
+  [0;32m✓[0m mainsail
+  [0;32m✓[0m camera_support
+  [0;32m✓[0m fluidd_updated
+  [0;32m✓[0m fans_control_macros
+  [0;32m✓[0m useful_macros
+  [0;32m✓[0m improved_shapers
+  [0;32m✓[0m creality_timelapse_recover
+  [0;32m✓[0m spoolman_cfs_sync
+  [0;32m✓[0m entware
+  [0;32m✓[0m kamp
+  [0;32m✓[0m cfs_db_guard
+  [0;32m✓[0m git_backup
+  [0;32m✓[0m cfs_safe_tools
+
+
+== Camera ==
+[0;32m[OK][0m go2rtc binary is executable
+go2rtc API listening
+process counts: go2rtc=1 k2rtc=0 watchdog=1
+ 5709 root      2h25 /mnt/UDISK/helper-script/go2rtc -config /mnt/UDISK/helper-script/go2rtc.yaml
+ 5724 root      1:26 python3 -B /mnt/UDISK/helper-script/camera_watchdog.py
+[0;32m[OK][0m one go2rtc process
+[0;32m[OK][0m direct go2rtc mode without k2rtc.py process
+[0;32m[OK][0m one camera_watchdog.py process
+[0;32m[OK][0m go2rtc listens on 1984
+[0;32m[OK][0m nginx go2rtc proxy blocks exist for Fluidd/Mainsail
+[0;32m[OK][0m go2rtc streams|200|application/json|117|attempt=1
+[0;32m[OK][0m go2rtc direct frame|200|image/jpeg|1024|attempt=1
+[0;32m[OK][0m Fluidd go2rtc frame proxy|200|image/jpeg|1024|attempt=1
+[0;32m[OK][0m Mainsail go2rtc frame proxy|200|image/jpeg|1024|attempt=1
+[0;32m[OK][0m Mainsail go2rtc WebRTC page|200|text/html; charset=utf-8|1024|attempt=1
+WEBCAM_COUNT|1
+WEBCAM_K2_SERVICE|webrtc-go2rtc
+WEBCAM_K2_ENABLED|True
+WEBCAM_K2_ICON|mdiWebcam
+WEBCAM_K2_TARGET_FPS|20
+WEBCAM_K2_TARGET_FPS_IDLE|20
+WEBCAM_K2_ASPECT_RATIO|16:9
+WEBCAM_K2_STREAM|http://192.168.178.74:1984/stream.html?src=k2camera&mode=webrtc
+WEBCAM_K2_SNAPSHOT|http://192.168.178.74:1984/api/frame.jpeg?src=k2camera
+[0;32m[OK][0m Moonraker webcam entry is K2/Mainsail compatible
+CAMERA_MAIN_ONLINE|1
+NOZZLE_AI_CAMERA_ONLINE|0
+NOZZLE_AI_CAMERA_SUB_NODES|missing
+NOZZLE_AI_CAMERA_VIDEO_NODES|/dev/video0 /dev/video1
+[INFO] Nozzle AI camera is offline/standby; Creality may enable it on demand, run nozzle camera recover only if AI calibration fails
+[INFO] NOZZLE_USB_DIAG|gpio=1|sub_nodes=missing|video_nodes=/dev/video0 /dev/video1 |legacy_video2=missing|hotplug=present|udevadm=present|recent_usb_log_hits=75
+
+== Creality Timelapse Recover ==
+[0;32m[OK][0m S99timelapse_recover service exists
+[0;32m[OK][0m one creality_timelapse_recover daemon process
+[0;32m[OK][0m timelapse recover status command succeeded
+[0;32m[OK][0m Creality delay_image switch is enabled
+COUNT|23
+[0;32m[OK][0m Creality delay_image list files exist
+
+== Fluidd / Mainsail ==
+[0;32m[OK][0m Fluidd installed: v1.37.2
+[0;32m[OK][0m Mainsail installed: v2.18.2
+[0;32m[OK][0m Fluidd UI|200|text/html|1024|attempt=1
+[0;32m[OK][0m Mainsail UI|200|text/html|1024|attempt=1
+SENSORS_LIST|OK|200
+TIMELAPSE_SETTINGS|OK|200
+PERIPHERALS_CANBUS|OK|200
+DEVICE_POWER_DEVICES|OK|200
+UPDATE_STATUS_PASSIVE|OK|200
+METASCAN|OK|1familie_wendt_namensschild.st.gcode|thumbnails=3
+[0;32m[OK][0m Frontend compatibility API checks passed
+MAINSAIL_LANGUAGE|de
+MAINSAIL_INIT_VERSION|2.18.0
+MAINSAIL_WEBCAM_PANEL|True
+MAINSAIL_SPOOLMAN_PANEL|True
+[0;32m[OK][0m Mainsail dashboard is K2 Pro Combo friendly
+PRINTER_INFO_WS|OK|printer.info
+OBJECTS_LIST_WS|OK|printer.objects.list
+OBJECTS_QUERY_WS|OK|printer.objects.query
+SERVER_INFO_WS|OK|server.info
+[0;32m[OK][0m Frontend WebSocket compatibility checks passed
+
+== Spoolman CFS Sync ==
+[0;32m[OK][0m Spoolman CFS sync worker is executable
+[0;32m[OK][0m Spoolman CFS active slot map exists
+SPOOLMAN_MAP|state=enabled
+SPOOLMAN_MAP|ids_1_to_4=True
+SPOOLMAN_MAP|detail=enabled=True slots=T1A:1,T1B:2,T1C:3,T1D:4
+[INFO] Spoolman CFS slot map uses IDs 1-4; live Spoolman can use these as real IDs
+[0;32m[OK][0m Spoolman CFS slot map is enabled and all T1A/T1B/T1C/T1D IDs are positive
+running: 8994
+2026-07-12 07:58:33 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-12 07:58:48 OK slot T1A already active as spool 1
+2026-07-12 08:03:39 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-12 08:03:54 OK slot T1A already active as spool 1
+2026-07-12 08:08:45 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-12 08:09:00 OK slot T1A already active as spool 1
+2026-07-12 08:13:51 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-12 08:14:06 OK slot T1A already active as spool 1
+2026-07-12 08:18:57 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-12 08:19:12 OK slot T1A already active as spool 1
+2026-07-12 08:24:03 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-12 08:24:18 OK slot T1A already active as spool 1
+2026-07-12 08:29:09 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-12 08:29:24 OK slot T1A already active as spool 1
+2026-07-12 08:34:15 OK slot T1A already active as spool 1; CFS metadata updated T1A:1
+2026-07-12 08:34:30 OK slot T1A already active as spool 1
+2026-07-12 08:39:20 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-12 08:39:36 OK slot T1A already active as spool 1
+2026-07-12 08:44:26 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-12 08:44:42 OK slot T1A already active as spool 1
+[0;32m[OK][0m Spoolman CFS sync service is running
+SPOOLMAN_CONNECTED|True
+SPOOLMAN_ACTIVE_SPOOL|1
+[0;32m[OK][0m Moonraker Spoolman connection is healthy
+
+== Firmware / System ==
+[0;32m[OK][0m OTA firmware version: 1.1.6.3
+[0;32m[OK][0m Firmware matches the 2026-07-07 K2 Pro Combo reference: 1.1.6.3
+SYS_VERSION|1.1.6.3
+HW_VERSION|CR0CN200400C10
+APP_VERSION|1
+[0;32m[OK][0m Hardware version matches K2 Pro/F012 family: CR0CN200400C10
+[INFO] No local firmware image found on UDISK for current version 1.1.6.3; runtime firmware is still current
+
+== Moonraker ==
+[0;32m[OK][0m Moonraker startup uses UDISK wrapper config
+[0;32m[OK][0m Moonraker queue_gcode_uploads is enabled for G-code metadata scans
+[0;32m[OK][0m Moonraker object processing is enabled for exclude-object and G-code object metadata
+STATE|ready
+FAILED|[]
+WARNINGS|[]
+UPDATE_MANAGER|True
+UPDATE_BUSY|False
+UPDATE_KEYS|klipper,moonraker
+VENDOR_UPDATE_WARN|Creality zip/vendor tree produces git validation warnings; do not update core Klipper/Moonraker here.
+[0;32m[OK][0m Moonraker API checks passed
+
+== CFS / BOX ==
+Safety: this check is read-only; it does not load, unload, extrude or move CFS filament.
+CFS_CHECK_ATTEMPT|1
+BOX_STATE|connect
+BOX_ENABLE|1
+BOX_AUTO_REFILL|1
+BOX_FILAMENT_USEUP|0
+T1_STATE|connect
+T1_VERSION|1.4.2
+T1_SN|100009738533426CRQV
+T1_REMAIN|24,100,100,100
+T1_MATERIAL|101001,090001,000002,090002
+MOTOR_READY|True
+FILAMENT_SENSOR_ENABLED|False
+FILAMENT_DETECTED|False
+SAVE_CONFIG_PENDING|True
+SAVE_CONFIG_PENDING_ITEMS|bed_mesh default
+AUTO_ADDR_ONLY_PENDING|False
+[0;32m[OK][0m CFS/BOX and motor_control are connected
+[0;32m[OK][0m CFS/T1 firmware matches 2026-07-07 handover baseline: 1.4.2
+[0;32m[OK][0m Direct BOX/CFS macro hazards are known; helper avoids direct load/refresh tests
+[0;32m[OK][0m Creality M8200/CR_BOX_* material-change path exists
+
+CFS command/log safety scan summary:
+CFS_SCAN_SUMMARY|official_box=True|direct_box_path=True|config_risk=0|gcode_risk=0|config_direct_risk=0|gcode_direct_risk=0|config_official=0|gcode_official=0|config_hits=0|gcode_hits=0|gcode_files_scanned=17|gcode_files_total=17|gcode_scan_limited=False|log_severe_hits=0|log_timeout_hits=27|log_error_hits=27|log_noise_hits=105|log_hits=132
+[0;32m[OK][0m No direct high-risk CFS commands found in custom config files
+[0;32m[OK][0m No direct high-risk CFS commands found in scanned G-code files
+[0;32m[OK][0m No recent severe CFS error log evidence found by safety scan
+[0;32m[OK][0m CFS RS485 timeout level acceptable in compact scan: 27
+[0;32m[OK][0m CFS bus raw-frame/noise level acceptable in compact scan: 105
+CFS_PROTOCOL_SUMMARY|status_error=False|state=connect|t1_state=connect|t1_version=1.4.2|slot_count=4|blank_live_labels=1|db_missing=0|db_ambiguous=1|official_m8200=True|stock_start_end=True
+[0;32m[OK][0m CFS protocol report confirms official M8200/CR_BOX path
+[0;32m[OK][0m CFS protocol report confirms stock START/END CFS hooks
+[0;32m[OK][0m CFS protocol report found no missing live material DB IDs
+[0;32m[OK][0m CFS protocol report notes DB-backed blank live labels: 1
+[0;32m[OK][0m CFS protocol report notes shared/ambiguous generic DB IDs: 1
+
+CFS material database integrity:
+DB_JSON_OK|material_database.json|272110
+DB_JSON_OK|material_box_info.json|3419
+DB_JSON_OK|material_modify_info.json|5788
+DB_JSON_OK|tn_data.json|972
+DB_JSON_OK|usrMaterial/userMaterial.json|1036
+DB_JSON_OK|material_option.json|145
+DB_PROFILE_COUNT|52
+DB_LIVE_ID_MATCH|101001,090001,000002,090002
+DB_CUSTOM_PROFILE_OK|90001|eSUN/ePLA-HS+ Gray
+DB_CUSTOM_PROFILE_OK|90002|Sovol/PLA Steel Blue
+[0;32m[OK][0m CFS material database matches live CFS slots
+[0;32m[OK][0m CFS material DB guard is installed
+2026-07-12 08:48:54 No CFS DB repair needed: profile 90001 already ok; profile 90002 already ok; material options already ok; user materials already ok
+2026-07-12 08:48:54 VERIFY profile 90001=ok
+2026-07-12 08:48:54 VERIFY profile 90002=ok
+2026-07-12 08:48:54 DB_BASE_STATUS official=50 custom=2 total=52 status=unchanged fingerprint=b47830039ca9a451
+[0;32m[OK][0m CFS material DB guard check passed
+[0;32m[OK][0m CFS Safe Tools is installed
+CFS_SAFE_SERVICE|running: 29467
+[0;32m[OK][0m CFS Safe Tools passive monitor has exactly one process
+Safety: passive only; no G-code, CFS/BOX, serial, cutter, heater or motor commands.
+BUILD|cfs-safe-tools-1.0
+LIVE|box=connect|t1=connect|fw=1.4.2|slot=T1A|spool=1|print=standby|filament=False
+ENV|temperature_c=28.0|humidity_percent=28.0|mode=0|measuring_wheel=-15660.4677734375
+DB|profiles=52|live_ids=101001,090001,000002,090002|missing=none|custom_90001=True|custom_90002=True|option=True
+RS485|timeouts=55|unknown_frames=217|buf_len=1|severe=0
+[OK] CFS_CONNECTED: CFS/BOX and T1 are connected
+[OK] HUMIDITY_OK: CFS humidity is 28%
+[OK] DB_OK: Live IDs and custom CFS profiles are present
+[OK] SPOOLMAN_OK: CFS slot map and active Spoolman spool agree
+[OK] RS485_OK: RS485 polling noise is within the known baseline
+SUMMARY|OK=5|WARN=0|FAIL=0
+[0;32m[OK][0m CFS Safe Tools live summary has no warnings or failures
+[0;32m[OK][0m CFS Safe Tools state heartbeat is current
+[0;32m[OK][0m No recent CFS key60/direct macro evidence in last 2000 klippy lines
+[0;32m[OK][0m RS485 timeout noise acceptable in last 1000 klippy lines: 22
+[0;32m[OK][0m RS485 buf_len/noisy-frame level acceptable in last 1000 klippy lines: 0
+[0;32m[OK][0m Serial_485 unknown/noisy frame level acceptable in last 1000 klippy lines: 88
+[0;32m[OK][0m GET_BOX_STATE polling level acceptable in last 500 klippy lines: 61
+[0;32m[OK][0m No recent motor_control ready-callback bug evidence
+
+== Logs and space ==
+Filesystem                Size      Used Available Use% Mounted on
+overlayfs:/overlay      239.9M    203.8M     32.1M  86% /
+/dev/by-name/UDISK       27.5G    704.0M     26.8G   3% /mnt/UDISK
+[0;32m[OK][0m No important Moonraker errors in last 500 lines
+[0;32m[OK][0m No important Klipper errors in last 500 lines
+[0;32m[OK][0m buf_len noise acceptable in last 500 lines: 0
+
+== Summary ==
+OK: 72
+WARN: 0
+FAIL: 0

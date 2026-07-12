@@ -1,0 +1,4 @@
+2026-07-12 08:50:05 No CFS DB repair needed: profile 90001 already ok; profile 90002 already ok; material options already ok; user materials already ok
+2026-07-12 08:50:05 VERIFY profile 90001=ok
+2026-07-12 08:50:05 VERIFY profile 90002=ok
+2026-07-12 08:50:05 DB_BASE_STATUS official=50 custom=2 total=52 status=unchanged fingerprint=b47830039ca9a451
