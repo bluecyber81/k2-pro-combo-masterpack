@@ -1,6 +1,6 @@
 # K2 Pro Combo Masterpack
 
-Stand: 2026-07-12 08:50 Europe/Berlin
+Stand: 2026-07-12 09:45 Europe/Berlin
 
 Aktueller Arbeits-, Diagnose- und Wiederherstellungsstand fuer den Creality K2 Pro Combo. Das Paket enthaelt keine Passwoerter, Tokens, privaten SSH-Schluessel oder Browser-Sitzungen.
 
@@ -12,14 +12,16 @@ Aktueller Arbeits-, Diagnose- und Wiederherstellungsstand fuer den Creality K2 P
 - Fluidd: `1.37.2`
 - Mainsail: `2.18.2`
 - go2rtc: `1.9.14`
-- HelixScreen auf dem separaten Raspberry Pi: `v0.99.88`
-- Gesamt-Health: `OK 72 / WARN 0 / FAIL 0`
+- HelixScreen auf dem separaten Raspberry Pi: `v0.99.89`
+- Raspberry-Pi-Pakete: aktuell, `0` ausstehend
+- Gesamt-Health: `OK 73 / WARN 0 / FAIL 0`
 - CFS-Health: `OK 27 / WARN 0 / FAIL 0`
 - Kamera-Health: `OK 12 / WARN 0 / FAIL 0`
 
 ## Aktuelle Struktur
 
 - `docs/CURRENT_STATE_20260712_084930.md` - kompakter, bestaetigter Ist-Stand.
+- `docs/HELIXSCREEN_PI_UPDATE_20260712.md` - verifizierter Pi-/HelixScreen-Update- und Restore-Stand.
 - `docs/BACKUP_AND_RESTORE.md` - sichere Wiederherstellungsreihenfolge.
 - `helper-source-v5.2.21.62-cfs-safe-tools/` - bereinigte Helper-Quelle ohne Laufzeitdaten.
 - `helixscreen/` - getestete Raspberry-Pi-/HelixScreen-Overrides fuer den K2 Pro Combo.
@@ -39,6 +41,8 @@ Aktueller Arbeits-, Diagnose- und Wiederherstellungsstand fuer den Creality K2 P
 - Lokales Config-Git ist sauber und hat den aktuellen Kammer-Temperaturabgleich committed.
 - Entware-Paketlisten wurden aktualisiert; keine Pakete sind ausstehend.
 - HelixScreen-Timerwerte wurden auf gueltige Werte korrigiert, Landschaftsmodus und CFS-sichere Sensorrolle bleiben updatefest.
+- HelixScreen wurde auf `v0.99.89` aktualisiert; ein kleiner Upstream-Shellfehler bei erwarteten Konsolen-Zugriffen wird updatefest und ohne Funktionsaenderung bereinigt.
+- Alle 48 angebotenen stabilen Debian-Paketupdates des Display-Pi wurden ohne Paketentfernung installiert.
 - Raspberry Pi, HelixScreen, Moonraker-Zugriff, Kamera und Spoolman wurden vom Pi aus mit HTTP 200 validiert.
 
 ## Nicht blind aktualisieren
