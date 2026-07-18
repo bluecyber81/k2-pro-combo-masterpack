@@ -1,0 +1,7 @@
+### helper_cfs_db_guard_status
+### command: sh /mnt/UDISK/helper-script/helper.sh --cfs-db-guard-status
+
+2026-07-18 10:19:42 No CFS DB repair needed: profile 90001 already ok; profile 90002 already ok; material options already ok; user materials already ok
+2026-07-18 10:19:42 VERIFY profile 90001=ok
+2026-07-18 10:19:42 VERIFY profile 90002=ok
+2026-07-18 10:19:42 DB_BASE_STATUS version=1784085280 official=50 custom=2 total=52 status=unchanged fingerprint=b47830039ca9a451

@@ -8,4 +8,6 @@ helper.sh text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
 *.tar.gz binary
+*.exe binary
+*.gcode binary
 go2rtc binary

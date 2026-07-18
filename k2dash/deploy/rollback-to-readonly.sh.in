@@ -1,0 +1,22 @@
+#!/bin/sh
+set -eu
+
+BASE=/opt/k2dash-readonly
+PREVIOUS_RELEASE='@PREVIOUS_RELEASE@'
+BACKUP='@BACKUP@'
+
+test -d "$PREVIOUS_RELEASE"
+test -f "$BACKUP/nginx.conf"
+test -f "$BACKUP/k2dash-readonly.service"
+
+systemctl stop k2dash-readonly.service
+cp "$BACKUP/nginx.conf" "$BASE/nginx.conf"
+cp "$BACKUP/k2dash-readonly.service" /etc/systemd/system/k2dash-readonly.service
+ln -sfn "$PREVIOUS_RELEASE" "$BASE/current"
+systemctl daemon-reload
+systemctl restart k2dash-readonly.service
+sleep 2
+systemctl is-active --quiet k2dash-readonly.service
+curl -fsS http://127.0.0.1:8090/ >/dev/null
+
+echo "K2Dash restored to the previous read-only release."

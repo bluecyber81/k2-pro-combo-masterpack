@@ -1,0 +1,43 @@
+### helper_health_camera
+### command: sh /mnt/UDISK/helper-script/helper.sh --health-camera
+
+
+== Camera ==
+[0;32m[OK][0m go2rtc binary is executable
+go2rtc API listening
+process counts: go2rtc=1 k2rtc=0 watchdog=1
+ 5754 root     15:54 /mnt/UDISK/helper-script/go2rtc -config /mnt/UDISK/helper-script/go2rtc.yaml
+ 5775 root      2:19 python3 -B /mnt/UDISK/helper-script/camera_watchdog.py
+[0;32m[OK][0m one go2rtc process
+[0;32m[OK][0m direct go2rtc mode without k2rtc.py process
+[0;32m[OK][0m one camera_watchdog.py process
+[0;32m[OK][0m go2rtc listens on 1984
+[0;32m[OK][0m nginx go2rtc proxy blocks exist for Fluidd/Mainsail
+[0;32m[OK][0m go2rtc streams|200|application/json|117|attempt=1
+[0;32m[OK][0m go2rtc direct frame|200|image/jpeg|39808|attempt=1
+[0;32m[OK][0m Fluidd go2rtc frame proxy|200|image/jpeg|39586|attempt=1
+[0;32m[OK][0m Mainsail go2rtc frame proxy|200|image/jpeg|39568|attempt=1
+[0;32m[OK][0m Mainsail go2rtc WebRTC page|200|text/html; charset=utf-8|2064|attempt=1
+WEBCAM_COUNT|1
+WEBCAM_K2_SERVICE|webrtc-go2rtc
+WEBCAM_K2_ENABLED|True
+WEBCAM_K2_ICON|mdiWebcam
+WEBCAM_K2_TARGET_FPS|20
+WEBCAM_K2_TARGET_FPS_IDLE|20
+WEBCAM_K2_ASPECT_RATIO|16:9
+WEBCAM_K2_STREAM|http://192.168.178.74:1984/stream.html?src=k2camera&mode=webrtc
+WEBCAM_K2_SNAPSHOT|http://192.168.178.74:1984/api/frame.jpeg?src=k2camera
+[0;32m[OK][0m Moonraker webcam entry is K2/Mainsail compatible
+[0;32m[OK][0m Moonraker ss listener format is parseable (SS_FORMAT_OK|rows=20|ports=1984,22,37805,39059,41455,4408,4409,443,45329,49807,5037,57333,7125,80,8000,8554,8555,9998,9999)
+[0;32m[OK][0m Moonraker built-in webcam test returns usable K2 Camera URLs
+CAMERA_MAIN_ONLINE|1
+NOZZLE_AI_CAMERA_ONLINE|0
+NOZZLE_AI_CAMERA_SUB_NODES|missing
+NOZZLE_AI_CAMERA_VIDEO_NODES|/dev/video0 /dev/video1
+[INFO] Nozzle AI camera is offline/standby; Creality may enable it on demand, run nozzle camera recover only if AI calibration fails
+[INFO] NOZZLE_USB_DIAG|gpio=1|sub_nodes=missing|video_nodes=/dev/video0 /dev/video1 |legacy_video2=missing|hotplug=present|udevadm=present|recent_usb_log_hits=53
+
+== Summary ==
+OK: 14
+WARN: 0
+FAIL: 0

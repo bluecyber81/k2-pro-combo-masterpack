@@ -1,24 +1,23 @@
-# Upload / Archiv
+# GitHub / Archiv
 
-Dieses Paket ist eher ein privates Wartungs- und Restore-Paket als ein oeffentliches GitHub-Repo.
+Der aktuelle Stand trennt oeffentliche Wiederherstellungsdaten und private Roharchive.
 
-## Wenn es privat bleibt
+## Oeffentlich geeignet
 
-ZIP unveraendert aufheben. Es enthaelt echte Drucker-Backups, lokale IPs, Geraetekennungen, CFS-Datenbankauszuege und Betriebsreports.
+- bereinigte Helper-Quelle
+- Textreports nach Geheimnispruefung
+- `backups/k2pro_public_restore_20260718.tar.gz`
+- HelixScreen-Overrides und K2Dash-Paket
 
-## Wenn du es auf GitHub hochlaedst
+## Nur lokal oder in einem privaten, verschluesselten Archiv
 
-Nur in ein privates Repo hochladen.
-Nicht in ein oeffentliches Repo laden, ausser du entfernst vorher mindestens:
-
-- `live_snapshot_20260710_210033/remote_files/*.tar.gz`
-- `live_snapshot_20260710_210033/reports/`
-- alle Dateien mit lokalen IPs, Seriennummern, Materialdatenbank oder Systemdetails
-
-Die Helper-Quelle allein ist deutlich unkritischer als die Live-Backups.
+- Moonraker `data.mdb` und `lock.mdb`
+- komplette Config-Git-Verzeichnisse
+- Browser-Sitzungen, Tokens, SSH-Schluessel und Passwoerter
+- unbereinigte Helper-Laufzeitarchive
 
 ## Sinnvolle Commit-Message
 
 ```text
-Add K2 Pro Combo maintenance masterpack 2026-07-08
+Sync K2 Pro Combo live state 2026-07-18
 ```

@@ -1,0 +1,56 @@
+### service_process_status
+### command: sh -c 
+    date
+    /etc/init.d/moonraker status 2>/dev/null || true
+    /etc/init.d/go2rtc status 2>/dev/null || true
+    /etc/init.d/S99spoolman_cfs_sync status 2>/dev/null || true
+    ps w | grep -E "[m]oonraker|[k]lippy|[g]o2rtc|[s]poolman_cfs_sync|[c]reality_timelapse" || true
+    netstat -lntp 2>/dev/null || true
+
+
+Sat Jul 18 10:19:44 CEST 2026
+running
+running: 12732
+2026-07-18 09:31:33 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:31:48 OK slot T1A already active as spool 1
+2026-07-18 09:36:38 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:36:54 OK slot T1A already active as spool 1
+2026-07-18 09:41:44 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:41:59 OK slot T1A already active as spool 1
+2026-07-18 09:46:50 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:47:05 OK slot T1A already active as spool 1
+2026-07-18 09:51:56 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:52:11 OK slot T1A already active as spool 1
+2026-07-18 09:57:02 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:57:17 OK slot T1A already active as spool 1
+2026-07-18 10:02:08 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 10:02:23 OK slot T1A already active as spool 1
+2026-07-18 10:07:13 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 10:07:29 OK slot T1A already active as spool 1
+2026-07-18 10:12:19 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 10:12:35 OK slot T1A already active as spool 1
+2026-07-18 10:17:25 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 10:17:40 OK slot T1A already active as spool 1
+ 3982 root      4h25 /usr/share/moonraker-env/bin/python /usr/share/moonraker/moonraker.py -c /mnt/UDISK/printer_data/config/moonraker.conf -l /mnt/UDISK/printer_data/logs/moonraker.log
+ 4441 root      8h41 /usr/share/klippy-env/bin/python /usr/share/klipper/klippy/klippy.py /mnt/UDISK//printer_data/config/printer.cfg -l /mnt/UDISK//printer_data/logs/klippy.log -a /tmp/klippy_uds
+ 4832 root      1:54 python3 -B /mnt/UDISK/helper-script/creality_timelapse_recover.py --daemon
+ 5754 root     15:59 /mnt/UDISK/helper-script/go2rtc -config /mnt/UDISK/helper-script/go2rtc.yaml
+12732 root      2:42 /usr/bin/python3 -B /mnt/UDISK/helper-script/spoolman_cfs_sync.py --daemon
+14535 root      0:00 sh -c      date     /etc/init.d/moonraker status 2>/dev/null || true     /etc/init.d/go2rtc status 2>/dev/null || true     /etc/init.d/S99spoolman_cfs_sync status 2>/dev/null || true     ps w | grep -E "[m]oonraker|[k]lippy|[g]o2rtc|[s]poolman_cfs_sync|[c]reality_timelapse" || true     netstat -lntp 2>/dev/null || true 
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      14280/webrtc_local
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      15122/webrtc_local
+tcp        0      0 0.0.0.0:5037            0.0.0.0:*               LISTEN      1822/adbd
+tcp        0      0 0.0.0.0:9998            0.0.0.0:*               LISTEN      3895/web-server
+tcp        0      0 0.0.0.0:9999            0.0.0.0:*               LISTEN      3895/web-server
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      3895/web-server
+tcp        0      0 0.0.0.0:7125            0.0.0.0:*               LISTEN      3982/python
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      4703/dropbear
+tcp        0      0 0.0.0.0:4408            0.0.0.0:*               LISTEN      2837/nginx.conf -g 
+tcp        0      0 0.0.0.0:4409            0.0.0.0:*               LISTEN      2837/nginx.conf -g 
+tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      3895/web-server
+tcp        0      0 :::1984                 :::*                    LISTEN      5754/go2rtc
+tcp        0      0 :::8554                 :::*                    LISTEN      5754/go2rtc
+tcp        0      0 :::8555                 :::*                    LISTEN      5754/go2rtc
+tcp        0      0 :::22                   :::*                    LISTEN      4703/dropbear

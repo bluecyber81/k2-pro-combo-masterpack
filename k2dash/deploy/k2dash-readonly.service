@@ -1,0 +1,24 @@
+[Unit]
+Description=K2Dash full dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=mks
+Group=mks
+RuntimeDirectory=k2dash-readonly
+RuntimeDirectoryMode=0755
+ExecStartPre=/usr/sbin/nginx -t -p /run/k2dash-readonly/ -c /opt/k2dash-readonly/nginx.conf
+ExecStart=/usr/sbin/nginx -p /run/k2dash-readonly/ -c /opt/k2dash-readonly/nginx.conf -g "daemon off;"
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadOnlyPaths=/opt/k2dash-readonly
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

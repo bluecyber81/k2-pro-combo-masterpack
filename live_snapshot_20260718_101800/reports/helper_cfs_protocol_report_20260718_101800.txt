@@ -1,0 +1,42 @@
+### helper_cfs_protocol_report
+### command: sh /mnt/UDISK/helper-script/helper.sh --cfs-protocol-report
+
+== CFS protocol and slot report ==
+Safety: read-only only. This does not load, unload, extrude, cut, refresh or send raw BOX/RS485 commands.
+Bus:
+- device: /dev/ttyS5
+- baud: 230400
+- stack: serial_485 -> auto_addr -> box_wrapper -> filament_rack_wrapper
+- frame: head 0xF7, addr, len, status, function, data, crc8(poly 0x07)
+- material-box addresses: 0x01..0x04, shown as T1A..T4D
+
+Live CFS:
+BOX_STATE|connect
+BOX_ENABLE|1
+BOX_AUTO_REFILL|1
+T1_STATE|connect
+T1_VERSION|1.4.2
+T1_SN|100009738533426CRQV
+
+Slots:
+T1A|id=101001|color=0FFFFFF|remain=100|live_label=PLA|db=Creality/Hyper PLA PLA 190-240C|OK
+T1B|id=090001|color=09ea7ae|remain=100|live_label=PLA|db=eSUN/ePLA-HS+ Gray PLA 210-230C|OK
+T1C|id=000002|color=0ce58f8|remain=100|live_label=PLA|db=AMBIGUOUS: Generic/Generic PLA-Silk PLA 190-240C | Sovol/Sovol Rainbow Silk PLA @Creality K2 Pro 0.4 nozzle PLA 210-230C | Generic/Generic PLA-Silk @Creality K2 Pro 0.4 nozzle - Kopieren(1) PLA 210-230C|DB_AMBIGUOUS
+T1D|id=090002|color=000a3ff|remain=100|live_label=(empty)|db=Sovol/PLA Steel Blue PLA 190-210C|LIVE_LABEL_EMPTY_DB_OK
+
+Creality command model:
+OFFICIAL_M8200_PATH|True
+STOCK_START_END_CFS_PATH|True
+- M8200 P/C/R/L/W/F/O maps to CR_BOX_* inside stock box.cfg.
+- T/toolchange and Creality UI should use the stock CFS path.
+- START_PRINT/END_PRINT must keep BOX_START_PRINT, BOX_END and BOX_END_PRINT.
+
+Risk policy:
+- Safe: Moonraker object reads, CFS DB JSON validation, log scans, G-code scans.
+- Avoid blindly: BOX_SEND_DATA, BOX_INFO_REFRESH, BOX_SET_PRE_LOADING, BOX_LOAD_MATERIAL, BOX_EXTRUDE_MATERIAL, BOX_RETRUDE_MATERIAL, raw _CFS_LOAD/_CFS_UNLOAD.
+- Reason: those commands can send RS485 commands or move/heat/cut/extrude material.
+
+CFS_PROTOCOL_SUMMARY|status_error=False|state=connect|t1_state=connect|t1_version=1.4.2|slot_count=4|blank_live_labels=1|db_missing=0|db_ambiguous=1|official_m8200=True|stock_start_end=True
+NOTE: One or more live CFS labels are empty while the DB profile exists. This is a Creality live-state/display quirk; do not use BOX_INFO_REFRESH just to force it.
+NOTE: One or more material IDs map to multiple DB profiles. This is common for generic/custom profiles sharing Creality IDs; choose the intended slicer/CFS profile explicitly.
+ACTION: No CFS DB repair is required from this report.

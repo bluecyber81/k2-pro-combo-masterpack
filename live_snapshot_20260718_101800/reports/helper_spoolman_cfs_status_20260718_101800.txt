@@ -1,0 +1,70 @@
+### helper_spoolman_cfs_status
+### command: sh /mnt/UDISK/helper-script/helper.sh --spoolman-cfs-status
+
+
+Spoolman CFS sync status
+Status probe is read-only. Full-control commands below can actively set Spoolman active spools.
+
+  MAP_PATH=/mnt/UDISK/helper-script/spoolman_cfs_map.json
+  EXAMPLE_MAP_PATH=/mnt/UDISK/helper-script/spoolman_cfs_map.example.json
+  MAP_STATE=ready
+  MAP_ENABLED=True
+  MAP_IDS_1_TO_4=True
+  MAP_IDS_1_TO_4_NOTE=IDs 1-4 can be real Spoolman spool IDs; this is informational only
+  MAP_MISSING_SLOTS=none
+  MAP_SLOT_T1A=1
+  MAP_SLOT_T1B=2
+  MAP_SLOT_T1C=3
+  MAP_SLOT_T1D=4
+  MAP_BLOCKER=none
+  SPOOLMAN_CONNECTED=True
+  SPOOLMAN_ACTIVE_SPOOL=1
+  CFS_SLOT_T1A_MATERIAL="101001"
+  CFS_SLOT_T1A_COLOR="FFFFFF"
+  CFS_SLOT_T1A_REMAIN_PERCENT=100
+  CFS_SLOT_T1B_MATERIAL="090001"
+  CFS_SLOT_T1B_COLOR="9EA7AE"
+  CFS_SLOT_T1B_REMAIN_PERCENT=100
+  CFS_SLOT_T1C_MATERIAL="000002"
+  CFS_SLOT_T1C_COLOR="CE58F8"
+  CFS_SLOT_T1C_REMAIN_PERCENT=100
+  CFS_SLOT_T1D_MATERIAL="090002"
+  CFS_SLOT_T1D_COLOR="00A3FF"
+  CFS_SLOT_T1D_REMAIN_PERCENT=100
+
+Live CFS slot view:
+  map_enabled=True
+  Slot Spool    Remain  Brand              Name                                           Color     RFID   
+  T1A  1        100     Creality           Hyper PLA                                      #FFFFFF   2      
+  T1B  2        100     eSUN               ePLA-HS+ Gray                                  #9ea7ae   1      
+  T1C  3        100     Sovol              Sovol Rainbow Silk PLA @Creality K2 Pro 0.4 no #ce58f8   1      
+  T1D  4        100     Sovol              PLA Steel Blue                                 #00a3ff   1      
+
+Service:
+running: 12732
+2026-07-18 09:31:33 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:31:48 OK slot T1A already active as spool 1
+2026-07-18 09:36:38 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:36:54 OK slot T1A already active as spool 1
+2026-07-18 09:41:44 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:41:59 OK slot T1A already active as spool 1
+2026-07-18 09:46:50 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:47:05 OK slot T1A already active as spool 1
+2026-07-18 09:51:56 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:52:11 OK slot T1A already active as spool 1
+2026-07-18 09:57:02 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 09:57:17 OK slot T1A already active as spool 1
+2026-07-18 10:02:08 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 10:02:23 OK slot T1A already active as spool 1
+2026-07-18 10:07:13 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 10:07:29 OK slot T1A already active as spool 1
+2026-07-18 10:12:19 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 10:12:35 OK slot T1A already active as spool 1
+2026-07-18 10:17:25 OK slot T1A already active as spool 1; CFS metadata current for 4 mapped slots
+2026-07-18 10:17:40 OK slot T1A already active as spool 1
+
+Full-control setup:
+  /mnt/UDISK/helper-script/helper.sh --spoolman-cfs-map-wizard
+  /mnt/UDISK/helper-script/helper.sh --spoolman-cfs-sync-once
+  /mnt/UDISK/helper-script/helper.sh --spoolman-cfs-restart
+

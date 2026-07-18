@@ -1,0 +1,3 @@
+Repository: https://github.com/pdromnt/k2dash
+Base commit: b7dc27d
+Local variant: K2 Pro Combo full control with go2rtc camera proxy

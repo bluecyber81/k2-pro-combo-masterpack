@@ -1,0 +1,15 @@
+### helper_timelapse_recover_status
+### command: sh /mnt/UDISK/helper-script/helper.sh --timelapse-recover-status
+
+running: 4832
+{
+  "raw_exists": true,
+  "raw_size": 5596200,
+  "delay_image_switch": 1,
+  "delay_image_count": 31,
+  "state": {
+    "last_source_key": "1784139977348073602:5596200",
+    "last_id": 1784139977,
+    "last_video": "/mnt/UDISK/creality/userdata/delay_image/video/1784139977.mp4"
+  }
+}

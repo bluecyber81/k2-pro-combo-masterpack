@@ -1,0 +1,578 @@
+diff --git a/public/sw.js b/public/sw.js
+index 791600b..1f45af2 100644
+--- a/public/sw.js
++++ b/public/sw.js
+@@ -3,7 +3,7 @@
+ // Navigations are network-first so a deploy is visible on the next reload.
+ // Hashed static assets are cache-first. Printer traffic is never cached.
+ 
+-const CACHE = 'k2dash-v4'
++const CACHE = 'k2dash-v5'
+ 
+ self.addEventListener('install', (event) => {
+   event.waitUntil(
+diff --git a/src/api/client.ts b/src/api/client.ts
+index 2be8d3d..6077876 100644
+--- a/src/api/client.ts
++++ b/src/api/client.ts
+@@ -1,4 +1,5 @@
+ import { getMoonrakerBaseUrl } from '@/utils/env'
++import { READ_ONLY } from '@/utils/env'
+ 
+ class ApiError extends Error {
+   status: number
+@@ -45,6 +46,7 @@ export const api = {
+     return request<T>(path)
+   },
+   post<T>(path: string, body?: unknown) {
++    if (READ_ONLY) return Promise.reject<T>(new Error('Read-only mode blocks printer changes'))
+     return request<T>(path, {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+@@ -52,6 +54,7 @@ export const api = {
+     })
+   },
+   delete<T>(path: string) {
++    if (READ_ONLY) return Promise.reject<T>(new Error('Read-only mode blocks printer changes'))
+     return request<T>(path, { method: 'DELETE' })
+   },
+   /**
+@@ -59,6 +62,7 @@ export const api = {
+    * Bypasses the JSON encoding of `post` and lets the caller supply a FormData body.
+    */
+   async upload<T = unknown>(path: string, form: FormData, timeoutMs = REQUEST_TIMEOUT_MS): Promise<T> {
++    if (READ_ONLY) throw new Error('Read-only mode blocks printer changes')
+     const resp = await fetch(`${getMoonrakerBaseUrl()}${path}`, {
+       method: 'POST',
+       body: form,
+diff --git a/src/api/creality.ts b/src/api/creality.ts
+index c873d5a..083ab3c 100644
+--- a/src/api/creality.ts
++++ b/src/api/creality.ts
+@@ -1,5 +1,5 @@
+ import { api } from './client'
+-import { getUploadBaseUrl } from '@/utils/env'
++import { getUploadBaseUrl, READ_ONLY } from '@/utils/env'
+ 
+ export async function checkConnection(): Promise<Record<string, unknown>> {
+   return api.get('/api/version')
+@@ -9,6 +9,7 @@ export async function uploadFileKlipper4408(
+   file: File,
+   onProgress?: (pct: number, speed: number) => void
+ ): Promise<unknown> {
++  if (READ_ONLY) throw new Error('Read-only mode blocks printer changes')
+   const filename = encodeURIComponent(file.name)
+   const url = `${getUploadBaseUrl()}/upload/${filename}`
+ 
+diff --git a/src/components/dashboard/HistoryPanel.vue b/src/components/dashboard/HistoryPanel.vue
+index c13137a..41890be 100644
+--- a/src/components/dashboard/HistoryPanel.vue
++++ b/src/components/dashboard/HistoryPanel.vue
+@@ -5,6 +5,7 @@ import { useBannerStore } from '@/stores/banner'
+ import { useToastStore } from '@/stores/toast'
+ import { usePrinterStore } from '@/stores/printer'
+ import { fmtDur, fmtDate, fmtFilamentMeters, errMsg } from '@/utils/format'
++import { READ_ONLY } from '@/utils/env'
+ 
+ const jobs = ref<HistoryJob[]>([])
+ const loading = ref(false)
+@@ -13,6 +14,7 @@ const banner = useBannerStore()
+ const toast = useToastStore()
+ const printer = usePrinterStore()
+ const historyHasActiveJob = computed(() => jobs.value.some((job) => job.status === 'in_progress'))
++const readOnly = READ_ONLY
+ let refreshTimer: ReturnType<typeof setTimeout> | null = null
+ 
+ const statusClass = (s: string) => {
+@@ -97,7 +99,7 @@ onUnmounted(() => {
+       <div class="flex items-center gap-3">
+         <span v-if="!loading && jobs.length > 0" class="t-mute font-mono">{{ jobs.length }} jobs</span>
+         <button
+-          v-if="jobs.length > 0"
++          v-if="jobs.length > 0 && !readOnly"
+           class="btn btn-danger btn-sm"
+           :disabled="loading || mutating || historyHasActiveJob"
+           :title="historyHasActiveJob ? 'Wait for the active print to finish' : 'Clear all print history'"
+@@ -134,6 +136,7 @@ onUnmounted(() => {
+               {{ fmtStatus(j.status) }}
+             </span>
+             <button
++              v-if="!readOnly"
+               class="btn btn-danger btn-sm"
+               :disabled="mutating || j.status === 'in_progress'"
+               :title="j.status === 'in_progress' ? 'Cannot remove an active job' : 'Remove history entry'"
+diff --git a/src/components/dashboard/TimelapsePanel.vue b/src/components/dashboard/TimelapsePanel.vue
+index 9de0a34..1f83028 100644
+--- a/src/components/dashboard/TimelapsePanel.vue
++++ b/src/components/dashboard/TimelapsePanel.vue
+@@ -6,12 +6,13 @@ import { useBannerStore } from '@/stores/banner'
+ import { useToastStore } from '@/stores/toast'
+ import { computed } from 'vue'
+ import { fmtSize, fmtDate, fmtDur } from '@/utils/format'
+-import { HOST } from '@/utils/env'
++import { HOST, READ_ONLY } from '@/utils/env'
+ 
+ const printer = usePrinterStore()
+ const printerWs = usePrinterWs()
+ const banner = useBannerStore()
+ const toast = useToastStore()
++const readOnly = READ_ONLY
+ 
+ const hasFiles = computed(() => printer.timelapseFiles.length > 0)
+ const refreshing = ref(false)
+@@ -82,7 +83,7 @@ async function deleteTimelapse(f: { video: string }) {
+             </div>
+           </div>
+           <a :href="downloadUrl(f)" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Download</a>
+-          <button class="btn btn-danger btn-sm" @click="deleteTimelapse(f)">Delete</button>
++          <button v-if="!readOnly" class="btn btn-danger btn-sm" @click="deleteTimelapse(f)">Delete</button>
+         </li>
+       </ul>
+     </div>
+diff --git a/src/components/files/FilesPanel.vue b/src/components/files/FilesPanel.vue
+index 5772397..a43344a 100644
+--- a/src/components/files/FilesPanel.vue
++++ b/src/components/files/FilesPanel.vue
+@@ -7,11 +7,13 @@ import { getFileList, deleteFile, renameFile, type FileInfo } from '@/api/moonra
+ import { uploadFileKlipper4408 } from '@/api/creality'
+ import { usePrinterWs } from '@/composables/usePrinterWs'
+ import { fmtSize, fmtDate, splitPath, replaceBasename, errMsg } from '@/utils/format'
++import { READ_ONLY } from '@/utils/env'
+ 
+ const banner = useBannerStore()
+ const toast = useToastStore()
+ const printer = usePrinterStore()
+ const printerWs = usePrinterWs()
++const readOnly = READ_ONLY
+ 
+ const jobActive = computed(() => printer.isPrinting || printer.isPaused)
+ const ACTIONS_LOCKED_TIP = "Can't modify or start G-code files while a print is active"
+@@ -125,7 +127,7 @@ onMounted(load)
+     </div>
+ 
+     <!-- Upload zone -->
+-    <label class="flex items-center gap-3 cursor-pointer">
++    <label v-if="!readOnly" class="flex items-center gap-3 cursor-pointer">
+       <div class="flex-1 flex items-center gap-3 px-4 py-3.5 rounded-lg bg-[var(--bg-input)] border border-dashed border-[var(--border-strong)] hover:border-white/25 transition-colors min-w-0">
+         <svg class="w-4 h-4 text-[var(--text-mute)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+           <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+@@ -166,7 +168,7 @@ onMounted(load)
+                 {{ fmtSize(f.size) }} · {{ fmtDate(f.modified) }}
+               </div>
+             </div>
+-            <div class="flex items-center gap-2 max-sm:w-full max-sm:justify-end">
++            <div v-if="!readOnly" class="flex items-center gap-2 max-sm:w-full max-sm:justify-end">
+               <button class="btn btn-primary btn-sm" :disabled="jobActive" :title="jobActive ? ACTIONS_LOCKED_TIP : `Print ${splitPath(f.path)}`" @click="pr(f)">Print</button>
+               <button class="btn btn-sm" :disabled="jobActive || !f.permissions.includes('w')" :title="jobActive ? ACTIONS_LOCKED_TIP : `Rename ${splitPath(f.path)}`" @click="rename(f)">Rename</button>
+               <button class="btn btn-danger btn-sm" :disabled="jobActive || !f.permissions.includes('w')" :title="jobActive ? ACTIONS_LOCKED_TIP : `Delete ${splitPath(f.path)}`" @click="del(f)">Delete</button>
+diff --git a/src/components/layout/AppLayout.vue b/src/components/layout/AppLayout.vue
+index 90f7312..620980b 100644
+--- a/src/components/layout/AppLayout.vue
++++ b/src/components/layout/AppLayout.vue
+@@ -4,12 +4,14 @@ import { usePrinterWs } from '@/composables/usePrinterWs'
+ import { computed, onMounted, onUnmounted, ref, watch, defineAsyncComponent } from 'vue'
+ import { checkConnection } from '@/api/creality'
+ import AppBanner from '@/components/layout/AppBanner.vue'
++import { READ_ONLY } from '@/utils/env'
+ const ConfigModal = defineAsyncComponent(() => import('@/components/config/ConfigModal.vue'))
+ 
+ const printer = usePrinterStore()
+ const printerHost = import.meta.env.VITE_PRINTER_HOST || ''
+ const printerWs = usePrinterWs()
+ const isDev = import.meta.env.DEV
++const readOnly = READ_ONLY
+ const showOffline = ref(false)
+ const everConnected = ref(false)
+ const connectionBanner = ref('')
+@@ -103,7 +105,8 @@ onUnmounted(() => {
+       </div>
+ 
+       <div class="flex items-center gap-3">
+-        <ConfigModal />
++        <span v-if="readOnly" class="text-[11px] font-semibold uppercase tracking-wider text-[var(--green)]">Read only</span>
++        <ConfigModal v-if="!readOnly" />
+         <span
+           v-if="isDev"
+           class="text-[12px] font-mono text-[var(--text-mute)]"
+diff --git a/src/components/webcam/WebcamPanel.vue b/src/components/webcam/WebcamPanel.vue
+index 33f63b1..92a1e47 100644
+--- a/src/components/webcam/WebcamPanel.vue
++++ b/src/components/webcam/WebcamPanel.vue
+@@ -1,10 +1,45 @@
+ <script setup lang="ts">
+-import { onMounted } from 'vue'
+-import { useWebcam } from '@/composables/useWebcam'
++import { computed, onMounted, ref } from 'vue'
+ 
+-const { videoRef, connected, connecting, error, connect, disconnect } = useWebcam()
++const active = ref(false)
++const connecting = ref(false)
++const error = ref<string | null>(null)
++const streamVersion = ref(0)
+ 
+-onMounted(() => { if (import.meta.env.VITE_PRINTER_HOST) connect() })
++const streamUrl = computed(() =>
++  `/api/go2rtc/stream.html?src=k2camera&mode=webrtc&background=true&v=${streamVersion.value}`
++)
++
++async function connect() {
++  if (connecting.value) return
++  connecting.value = true
++  error.value = null
++
++  try {
++    const response = await fetch(`/api/go2rtc/api/frame.jpeg?src=k2camera&t=${Date.now()}`, {
++      signal: globalThis.AbortSignal.timeout(10000),
++      cache: 'no-store',
++    })
++    if (!response.ok) throw new Error(`Camera check failed (HTTP ${response.status})`)
++    const frame = await response.blob()
++    if (frame.size < 1000) throw new Error('Camera check returned no image')
++
++    streamVersion.value++
++    active.value = true
++  } catch (connectError) {
++    active.value = false
++    error.value = connectError instanceof Error ? connectError.message : 'Camera unavailable'
++  } finally {
++    connecting.value = false
++  }
++}
++
++function disconnect() {
++  active.value = false
++  error.value = null
++}
++
++onMounted(() => { void connect() })
+ </script>
+ 
+ <template>
+@@ -12,7 +47,15 @@ onMounted(() => { if (import.meta.env.VITE_PRINTER_HOST) connect() })
+     <div class="t-title">Webcam</div>
+ 
+     <div class="relative grow min-h-[200px] bg-black rounded-lg overflow-hidden border border-[var(--border)]">
+-      <video ref="videoRef" class="w-full h-full object-contain" autoplay playsinline muted></video>
++      <iframe
++        v-if="active"
++        :key="streamVersion"
++        :src="streamUrl"
++        class="w-full h-full border-0"
++        title="K2 camera"
++        allow="autoplay; fullscreen"
++      ></iframe>
++
+       <div v-if="connecting" class="absolute inset-0 flex items-center justify-center bg-black/60">
+         <div class="text-center">
+           <span class="spinner"></span>
+@@ -27,7 +70,7 @@ onMounted(() => { if (import.meta.env.VITE_PRINTER_HOST) connect() })
+         </div>
+       </div>
+ 
+-      <div v-else-if="!connected" class="absolute inset-0 flex items-center justify-center text-[var(--text-mute)]">
++      <div v-else-if="!active" class="absolute inset-0 flex items-center justify-center text-[var(--text-mute)]">
+         <div class="text-center">
+           <svg class="w-10 h-10 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+             <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+@@ -35,17 +78,16 @@ onMounted(() => { if (import.meta.env.VITE_PRINTER_HOST) connect() })
+           <p class="t-mute uppercase tracking-wider">Idle</p>
+         </div>
+       </div>
+-
+     </div>
+ 
+     <div class="flex items-center justify-between">
+       <div class="flex items-center gap-2.5">
+-        <span class="status-dot" :class="connected ? 'bg-[var(--green)]' : connecting ? 'bg-[var(--amber)] dot-pulse' : 'bg-[var(--text-mute)]'"></span>
+-        <span class="text-[13px] font-medium uppercase tracking-wider" :class="connected ? 'text-[var(--green)]' : connecting ? 'text-[var(--amber)]' : 'text-[var(--text-mute)]'">
+-          {{ connected ? 'Streaming' : connecting ? 'Connecting…' : 'Idle' }}
++        <span class="status-dot" :class="active ? 'bg-[var(--green)]' : connecting ? 'bg-[var(--amber)] dot-pulse' : 'bg-[var(--text-mute)]'"></span>
++        <span class="text-[13px] font-medium uppercase tracking-wider" :class="active ? 'text-[var(--green)]' : connecting ? 'text-[var(--amber)]' : 'text-[var(--text-mute)]'">
++          {{ active ? 'Streaming via go2rtc' : connecting ? 'Connecting…' : 'Idle' }}
+         </span>
+       </div>
+-      <button v-if="!connected && !connecting" class="btn btn-primary btn-sm" @click="connect">Connect</button>
++      <button v-if="!active && !connecting" class="btn btn-primary btn-sm" @click="connect">Connect</button>
+       <button v-else class="btn btn-sm" @click="disconnect">Stop</button>
+     </div>
+   </div>
+diff --git a/src/composables/usePrinterWs.ts b/src/composables/usePrinterWs.ts
+index a9bc832..fe1ffc6 100644
+--- a/src/composables/usePrinterWs.ts
++++ b/src/composables/usePrinterWs.ts
+@@ -2,6 +2,7 @@ import { ref } from 'vue'
+ import { usePrinterStore } from '@/stores/printer'
+ import type { CfsSlot, TimelapseFile, PrinterState } from '@/stores/printer'
+ import { getWsUrl } from '@/utils/env'
++import { READ_ONLY } from '@/utils/env'
+ import { normalizeGcodePath } from '@/utils/format'
+ import {
+   cancelPrint as cancelPrintMoonraker,
+@@ -415,6 +416,10 @@ function matchEstimatedData(files: Array<Record<string, unknown>>) {
+ export function usePrinterWs() {
+   const store = usePrinterStore()
+ 
++  function assertWritable() {
++    if (READ_ONLY) throw new Error('Read-only mode blocks printer changes')
++  }
++
+   async function withMoonrakerFallback(
+     message: CrealityMessage,
+     fallback: () => Promise<unknown>,
+@@ -425,26 +430,32 @@ export function usePrinterWs() {
+   }
+ 
+   function sendGcodeCommand(command: string): Promise<CommandTransport> {
++    assertWritable()
+     return withMoonrakerFallback(gcodeCommand(command), () => sendGcodeMoonraker(command))
+   }
+ 
+   function pausePrint(): Promise<CommandTransport> {
++    assertWritable()
+     return withMoonrakerFallback(pauseCommand(), pausePrintMoonraker)
+   }
+ 
+   function resumePrint(): Promise<CommandTransport> {
++    assertWritable()
+     return withMoonrakerFallback(resumeCommand(), resumePrintMoonraker)
+   }
+ 
+   function cancelPrint(): Promise<CommandTransport> {
++    assertWritable()
+     return withMoonrakerFallback(cancelCommand(), cancelPrintMoonraker)
+   }
+ 
+   function emergencyStop(): Promise<CommandTransport> {
++    assertWritable()
+     return withMoonrakerFallback(gcodeCommand('M112'), emergencyStopMoonraker)
+   }
+ 
+   function startPrint(path: string): Promise<CommandTransport> {
++    assertWritable()
+     return withMoonrakerFallback(startPrintCommand(path), () => startPrintMoonraker(path))
+   }
+ 
+@@ -454,6 +465,7 @@ export function usePrinterWs() {
+   }
+ 
+   async function deleteTimelapse(file: string) {
++    assertWritable()
+     // Recent firmware acknowledges ctrlVideoFiles. Older versions do not,
+     // so an acknowledgement timeout is non-fatal; the refreshed list is
+     // the source of truth either way.
+diff --git a/src/composables/useWebcam.ts b/src/composables/useWebcam.ts
+index e2e5537..ffc228e 100644
+--- a/src/composables/useWebcam.ts
++++ b/src/composables/useWebcam.ts
+@@ -3,6 +3,8 @@ import { getWebcamBaseUrl } from '@/utils/env'
+ 
+ const ICE_GATHER_TIMEOUT_MS = 10000
+ const SIGNALING_TIMEOUT_MS = 15000
++const VIDEO_START_TIMEOUT_MS = 15000
++const MAX_AUTO_RETRIES = 3
+ 
+ function encodeOffer(sdp: string): string {
+   const json = JSON.stringify({ type: 'offer', sdp })
+@@ -53,13 +55,40 @@ export function useWebcam() {
+   let stream: MediaStream | null = null
+   let signalingUrl = ''
+   let signalingAbort: AbortController | null = null
++  let videoStartTimer: ReturnType<typeof setTimeout> | null = null
++  let reconnectTimer: ReturnType<typeof setTimeout> | null = null
++  let autoRetries = 0
++  let allowReconnect = true
+   let activeAttempt = 0
+ 
+   function getSignalingUrl(): string {
+     return `${getWebcamBaseUrl()}/call/webrtc_local`
+   }
+ 
++  function clearReconnectTimer() {
++    if (reconnectTimer) clearTimeout(reconnectTimer)
++    reconnectTimer = null
++  }
++
++  function scheduleReconnect() {
++    if (!allowReconnect || reconnectTimer || autoRetries >= MAX_AUTO_RETRIES) return
++    const delay = 1500 * 2 ** autoRetries
++    autoRetries++
++    reconnectTimer = setTimeout(() => {
++      reconnectTimer = null
++      cleanupConnection()
++      void startConnection()
++    }, delay)
++  }
++
+   async function connect() {
++    allowReconnect = true
++    autoRetries = 0
++    clearReconnectTimer()
++    await startConnection()
++  }
++
++  async function startConnection() {
+     if (connecting.value || connected.value) return
+     cleanupConnection()
+     const attempt = ++activeAttempt
+@@ -80,10 +109,37 @@ export function useWebcam() {
+         if (attempt !== activeAttempt || pc !== connection) return
+         log('Track received:', event.track.kind)
+         if (event.track.kind === 'video' && videoRef.value) {
+-          stream = event.streams[0]
+-          videoRef.value.srcObject = stream
+-          connected.value = true
+-          connecting.value = false
++          stream = event.streams[0] || new MediaStream([event.track])
++          const video = videoRef.value
++          video.srcObject = stream
++
++          const markPlaying = () => {
++            if (attempt !== activeAttempt || pc !== connection) return
++            if (videoStartTimer) clearTimeout(videoStartTimer)
++            videoStartTimer = null
++            connected.value = true
++            connecting.value = false
++            error.value = null
++            autoRetries = 0
++            clearReconnectTimer()
++          }
++
++          if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
++            markPlaying()
++          } else {
++            video.addEventListener('loadeddata', markPlaying, { once: true })
++          }
++
++          void video.play().catch((playError) => {
++            logErr('Video playback did not start:', playError)
++          })
++
++          videoStartTimer = setTimeout(() => {
++            if (attempt !== activeAttempt || connected.value) return
++            error.value = 'Camera connected, but no video frames arrived'
++            cleanupConnection()
++            scheduleReconnect()
++          }, VIDEO_START_TIMEOUT_MS)
+         }
+       })
+ 
+@@ -92,14 +148,16 @@ export function useWebcam() {
+         const state = connection.iceConnectionState
+         log('ICE state:', state)
+         if (state === 'connected') {
+-          connected.value = true
+           error.value = null
++          clearReconnectTimer()
+         } else if (state === 'disconnected') {
+           connected.value = false
+           error.value = 'Connection lost'
++          scheduleReconnect()
+         } else if (state === 'failed') {
+           error.value = 'Connection lost'
+           cleanupConnection()
++          scheduleReconnect()
+         }
+       })
+ 
+@@ -121,6 +179,7 @@ export function useWebcam() {
+       error.value = e instanceof Error ? e.message : 'Failed'
+       logErr('Error:', e)
+       cleanupConnection()
++      scheduleReconnect()
+     }
+   }
+ 
+@@ -162,6 +221,8 @@ export function useWebcam() {
+   function cleanupConnection() {
+     signalingAbort?.abort()
+     signalingAbort = null
++    if (videoStartTimer) clearTimeout(videoStartTimer)
++    videoStartTimer = null
+     if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null }
+     if (pc) { pc.close(); pc = null }
+     if (videoRef.value) videoRef.value.srcObject = null
+@@ -170,6 +231,9 @@ export function useWebcam() {
+   }
+ 
+   function disconnect() {
++    allowReconnect = false
++    autoRetries = 0
++    clearReconnectTimer()
+     activeAttempt++
+     error.value = null
+     cleanupConnection()
+diff --git a/src/utils/env.ts b/src/utils/env.ts
+index 640dbc4..d67c6a7 100644
+--- a/src/utils/env.ts
++++ b/src/utils/env.ts
+@@ -10,6 +10,8 @@ export const API_PORT = import.meta.env.VITE_API_PORT || '7125'
+ export const UPLOAD_PORT = import.meta.env.VITE_UPLOAD_PORT || '80'
+ export const WEBCAM_PORT = import.meta.env.VITE_WEBCAM_PORT || '8000'
+ export const WS_PORT = '9999'
++export const READ_ONLY = import.meta.env.VITE_READ_ONLY === 'true'
++export const PROXY_MODE = import.meta.env.VITE_PROXY_MODE === 'true'
+ 
+ /**
+  * Dev: routed through the Vite proxy (configured in vite.config.ts) to avoid CORS.
+@@ -17,21 +19,24 @@ export const WS_PORT = '9999'
+  *       from a host that can reach the printer on the LAN.
+  */
+ export function getMoonrakerBaseUrl(): string {
+-  if (import.meta.env.DEV) return '/api/moonraker'
++  if (import.meta.env.DEV || PROXY_MODE) return '/api/moonraker'
+   return `http://${HOST}:${API_PORT}`
+ }
+ 
+ export function getUploadBaseUrl(): string {
+-  if (import.meta.env.DEV) return '/api/printer-upload'
++  if (import.meta.env.DEV || PROXY_MODE) return '/api/printer-upload'
+   return `http://${HOST}:${UPLOAD_PORT}`
+ }
+ 
+ export function getWebcamBaseUrl(): string {
+-  if (import.meta.env.DEV) return '/api/printer-camera'
++  if (import.meta.env.DEV || PROXY_MODE) return '/api/printer-camera'
+   return `http://${HOST}:${WEBCAM_PORT}`
+ }
+ 
+ export function getWsUrl(): string {
+-  if (import.meta.env.DEV) return `ws://${window.location.host}/api/printer-ws`
++  if (import.meta.env.DEV || PROXY_MODE) {
++    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
++    return `${protocol}//${window.location.host}/api/printer-ws`
++  }
+   return `ws://${HOST}:${WS_PORT}`
+ }
+diff --git a/src/views/DashboardView.vue b/src/views/DashboardView.vue
+index ebee0af..0064fc3 100644
+--- a/src/views/DashboardView.vue
++++ b/src/views/DashboardView.vue
+@@ -7,6 +7,9 @@ import ConsolePanel from '@/components/console/ConsolePanel.vue'
+ import HistoryPanel from '@/components/dashboard/HistoryPanel.vue'
+ import FilamentPanel from '@/components/dashboard/FilamentPanel.vue'
+ import TimelapsePanel from '@/components/dashboard/TimelapsePanel.vue'
++import { READ_ONLY } from '@/utils/env'
++
++const readOnly = READ_ONLY
+ </script>
+ 
+ <template>
+@@ -24,14 +27,14 @@ import TimelapsePanel from '@/components/dashboard/TimelapsePanel.vue'
+ 
+     <!-- Row 3: Controls + Files -->
+     <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 lg:gap-8 mb-8 lg:mb-12">
+-      <div class="xl:col-span-7"><ControlsPanel /></div>
+-      <div class="xl:col-span-5"><FilesPanel /></div>
++      <div v-if="!readOnly" class="xl:col-span-7"><ControlsPanel /></div>
++      <div :class="readOnly ? 'xl:col-span-12' : 'xl:col-span-5'"><FilesPanel /></div>
+     </div>
+ 
+     <!-- Row 4: Console + History -->
+     <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 lg:gap-8 mb-8 lg:mb-12">
+-      <div class="xl:col-span-7"><ConsolePanel /></div>
+-      <div class="xl:col-span-5"><HistoryPanel /></div>
++      <div v-if="!readOnly" class="xl:col-span-7"><ConsolePanel /></div>
++      <div :class="readOnly ? 'xl:col-span-12' : 'xl:col-span-5'"><HistoryPanel /></div>
+     </div>
+ 
+     <!-- Row 5: Timelapse -->

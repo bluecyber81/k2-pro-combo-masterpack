@@ -1,0 +1,31 @@
+### helper_health_frontends
+### command: sh /mnt/UDISK/helper-script/helper.sh --health-frontends
+
+
+== Fluidd / Mainsail ==
+[0;32m[OK][0m Fluidd installed: v1.37.2
+[0;32m[OK][0m Mainsail installed: v2.18.2
+[0;32m[OK][0m Fluidd UI|200|text/html|4068|attempt=1
+[0;32m[OK][0m Mainsail UI|200|text/html|2411|attempt=1
+SENSORS_LIST|OK|200
+TIMELAPSE_SETTINGS|OK|200
+PERIPHERALS_CANBUS|OK|200
+DEVICE_POWER_DEVICES|OK|200
+UPDATE_STATUS_PASSIVE|OK|200
+METASCAN|OK|1familie_wendt_namensschild.st.gcode|thumbnails=3
+[0;32m[OK][0m Frontend compatibility API checks passed
+MAINSAIL_LANGUAGE|de
+MAINSAIL_INIT_VERSION|2.18.0
+MAINSAIL_WEBCAM_PANEL|True
+MAINSAIL_SPOOLMAN_PANEL|True
+[0;32m[OK][0m Mainsail dashboard is K2 Pro Combo friendly
+PRINTER_INFO_WS|OK|printer.info
+OBJECTS_LIST_WS|OK|printer.objects.list
+OBJECTS_QUERY_WS|OK|printer.objects.query
+SERVER_INFO_WS|OK|server.info
+[0;32m[OK][0m Frontend WebSocket compatibility checks passed
+
+== Summary ==
+OK: 7
+WARN: 0
+FAIL: 0

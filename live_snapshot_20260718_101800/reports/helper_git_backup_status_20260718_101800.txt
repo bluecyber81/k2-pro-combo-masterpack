@@ -1,0 +1,10 @@
+### helper_git_backup_status
+### command: sh /mnt/UDISK/helper-script/helper.sh --git-backup-status
+
+
+K2 Pro local Git Backup status
+Config repo: /mnt/UDISK/printer_data/config
+Last commit: 7728d39 K2 Pro config backup 2026-07-15 17:59:27
+Remote origin: not configured
+Optional later: sh /mnt/UDISK/helper-script/scripts/git_backup.sh remote <git-url>
+

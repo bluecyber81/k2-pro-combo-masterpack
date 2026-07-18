@@ -2,13 +2,14 @@
 
 ## Aktuelle Sicherungen
 
-- Voller Live-Snapshot: `live_snapshot_20260712_084930/`
-- Config/System: `live_snapshot_20260712_084930/remote_files/k2pro_config_system_20260712_084930.tar.gz`
-- Kompletter Helper: `live_snapshot_20260712_084930/remote_files/helper-script-live-v62-20260712_085000.tar.gz`
-- Bereinigte Neuinstallationsquelle: `helper-source-v5.2.21.62-cfs-safe-tools/`
+- Oeffentlich sicherer Live-Report: `live_snapshot_20260718_101800/`
+- Oeffentlich sicherer Restore: `backups/k2pro_public_restore_20260718.tar.gz`
+- Bereinigte Neuinstallationsquelle: `helper-source-v5.2.21.68-stable-health-count/`
+- HelixScreen-Overrides: `helixscreen/helixscreen_k2pro_overrides_20260718.tar.gz`
+- K2Dash-Pi-Paket: `k2dash/k2dash-full-go2rtc-pi-final-20260718_092156.tar.gz`
 - Separates Home-Assistant-Teilbackup fuer Spoolman wurde am 2026-07-10 erzeugt.
 
-Das Config/System-Archiv enthaelt die Druckerkonfiguration, Moonraker-Datenbank, CFS-/Materialdaten und relevante Systemdateien. Der Helper-Snapshot enthaelt den installierten Live-Stand inklusive lokaler Laufzeitkonfiguration.
+Der Public-Restore enthaelt Druckerkonfiguration, aktuelle CFS-/Materialdaten, relevante Systemdateien und die bereinigte Helper-Quelle. Er enthaelt bewusst keine Moonraker-LMDB, keine Config-Git-Objekte und keine privaten Laufzeitzuordnungen. Die vollstaendigen Roharchive liegen lokal unter `outputs/k2pro_masterpack_20260718_101800/remote_files/`; ihre Hashes stehen in `backups/README.md`.
 
 ## Sichere Reihenfolge nach Firmware-Reset
 
@@ -21,6 +22,7 @@ Das Config/System-Archiv enthaelt die Druckerkonfiguration, Moonraker-Datenbank,
 7. CFS nur lesend mit `helper.sh --health-cfs` und `scripts/cfs_db_guard.sh` pruefen.
 8. Spoolman-Mapping mit `helper.sh --spoolman-cfs-status` kontrollieren.
 9. Kamera, Timelapse, Fluidd und Mainsail einzeln pruefen.
+10. HelixScreen und K2Dash erst nach erfolgreichem Drucker-Basistest wiederherstellen.
 
 ## Helper-Befehle
 

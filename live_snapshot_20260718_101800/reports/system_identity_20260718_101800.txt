@@ -1,0 +1,16 @@
+### system_identity
+### command: sh -c date; hostname; id; uname -a; fw_printenv version 2>/dev/null || true; fw_printenv HW_VERSION 2>/dev/null || true; df -h
+
+Sat Jul 18 10:16:09 CEST 2026
+K2Pro-Chris
+uid=0(root) gid=0(root)
+Linux K2Pro-Chris 5.4.61 #1 SMP PREEMPT Wed Jun 17 14:14:41 CST 2026 armv7l GNU/Linux
+version=1.1.6.3
+Filesystem                Size      Used Available Use% Mounted on
+/dev/root               134.0M    134.0M         0 100% /rom
+devtmpfs                234.9M         0    234.9M   0% /rom/dev
+tmpfs                   244.1M      5.2M    238.9M   2% /tmp
+/dev/mmcblk0p10         239.9M     69.2M    166.7M  29% /overlay
+overlayfs:/overlay      239.9M     69.2M    166.7M  29% /
+tmpfs                   512.0K         0    512.0K   0% /dev
+/dev/by-name/UDISK       27.5G      1.0G     26.5G   4% /mnt/UDISK

@@ -1,0 +1,26 @@
+#!/bin/sh
+HELPER=/mnt/UDISK/helper-script/scripts/nozzle_camera_recover.sh
+
+case "$1" in
+    start|boot)
+        if [ -x "$HELPER" ]; then
+            ( "$HELPER" boot ) &
+        fi
+        ;;
+    restart)
+        echo "Nozzle-AI restart is status-only in this helper; use explicit recover only after AI/flow/first-layer failure."
+        [ -x "$HELPER" ] && "$HELPER" status
+        ;;
+    status)
+        [ -x "$HELPER" ] && "$HELPER" status
+        ;;
+    diagnose)
+        [ -x "$HELPER" ] && "$HELPER" diagnose
+        ;;
+    standby|off)
+        [ -x "$HELPER" ] && "$HELPER" standby
+        ;;
+    *)
+        echo "Usage: $0 {start|boot|restart|standby|off|status|diagnose}"
+        ;;
+esac

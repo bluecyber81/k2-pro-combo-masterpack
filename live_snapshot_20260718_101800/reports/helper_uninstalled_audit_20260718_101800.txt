@@ -1,0 +1,37 @@
+### helper_uninstalled_audit
+### command: sh /mnt/UDISK/helper-script/helper.sh --uninstalled-audit
+
+
+K2 Pro Combo uninstalled-module audit
+Safety: read-only only. This does not install, flash, move, heat or restart.
+
+Module                   Decision       Reason
+------------------------ -------------- ----------------------------------------
+Moonraker Timelapse      keep-off       Creality Timelapse Recover is installed and matches the stock Creality workflow; ffmpeg=yes
+M600                     keep-off       correct: only use M600 on printers without CFS/Box
+Z-Offset Macros          blocked        not better for normal K2 Pro use; wrong persisted offset can damage bed/nozzle
+HelixScreen              test-only      upstream supports K2 Pro, but stock display/CFS/AI/camera workflow is working here
+OctoEverywhere           external       official cloud installer is available, but requires explicit confirmation/account setup
+Mobileraker              info           local app access needs no printer-side install; Companion is better on Raspberry Pi/Debian
+Git Backup               installed      local config Git history is active
+Klipper GC               installed      validated upstream runtime optimization is active
+
+Detected state
+--------------
+moonraker_timelapse_marked=no
+timelapse_cfg=no
+m600_marked=no
+m600_cfg=no
+z_offset_marked=no
+z_offset_cfg=no
+helixscreen_marked=no
+helixscreen_service=no
+helixscreen_dir=no
+stock_display_server_running=yes
+creality_timelapse_recover_marked=yes
+git_backup_marked=yes
+git_backup_repo=yes
+klipper_gc_marked=yes
+klipper_gc_module=yes
+
+Recommendation: keep these modules off by default. The current installed set is the better K2 Pro Combo baseline. Use --helixscreen-audit before any HelixScreen experiment.
