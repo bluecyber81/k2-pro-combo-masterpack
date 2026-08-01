@@ -1,0 +1,11 @@
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+exclude = [
+    "backups",
+    "reports",
+    "state",
+]
+
+[tool.ruff.lint]
+select = ["F"]

@@ -6,7 +6,8 @@ Der aktuelle Stand trennt oeffentliche Wiederherstellungsdaten und private Rohar
 
 - bereinigte Helper-Quelle
 - Textreports nach Geheimnispruefung
-- `backups/k2pro_public_restore_20260718.tar.gz`
+- `backups/k2pro_public_restore_20260731.tar.gz`
+- unveraenderte Helper-Installationsarchive unter `releases/`
 - HelixScreen-Overrides und K2Dash-Paket
 
 ## Nur lokal oder in einem privaten, verschluesselten Archiv
@@ -19,5 +20,5 @@ Der aktuelle Stand trennt oeffentliche Wiederherstellungsdaten und private Rohar
 ## Sinnvolle Commit-Message
 
 ```text
-Sync K2 Pro Combo live state 2026-07-18
+Sync K2 Pro Combo v86 and Helix display 2026-08-01
 ```

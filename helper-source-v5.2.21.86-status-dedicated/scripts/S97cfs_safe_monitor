@@ -1,0 +1,64 @@
+#!/bin/sh
+
+WORKER=/mnt/UDISK/helper-script/scripts/cfs_safe_tools.py
+PY=/usr/bin/python3
+PID=/tmp/cfs_safe_monitor.pid
+LOG=/tmp/cfs_safe_monitor.log
+
+is_running() {
+    [ -f "$PID" ] || return 1
+    pid="$(cat "$PID" 2>/dev/null)"
+    [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null
+}
+
+start_service() {
+    if is_running; then
+        echo "running: $(cat "$PID")"
+        return 0
+    fi
+    rm -f "$PID"
+    [ -x "$WORKER" ] || { echo "worker missing or not executable: $WORKER"; return 1; }
+    [ -x "$PY" ] || PY=python3
+    mkdir -p /mnt/UDISK/helper-script/state /mnt/UDISK/helper-script/reports
+    PYTHONDONTWRITEBYTECODE=1 "$PY" -B "$WORKER" --daemon >>"$LOG" 2>&1 &
+    echo $! > "$PID"
+    sleep 2
+    if is_running; then
+        echo "running: $(cat "$PID")"
+        return 0
+    fi
+    echo "failed to start; see $LOG"
+    rm -f "$PID"
+    return 1
+}
+
+stop_service() {
+    if is_running; then
+        pid="$(cat "$PID")"
+        kill "$pid" 2>/dev/null || true
+        count=0
+        while kill -0 "$pid" 2>/dev/null && [ "$count" -lt 10 ]; do
+            sleep 1
+            count=$((count + 1))
+        done
+    fi
+    rm -f "$PID"
+    echo "stopped"
+}
+
+status_service() {
+    if is_running; then
+        echo "running: $(cat "$PID")"
+    else
+        echo "stopped"
+        return 1
+    fi
+}
+
+case "$1" in
+    start|boot) start_service ;;
+    stop) stop_service ;;
+    restart) stop_service; start_service ;;
+    status) status_service ;;
+    *) echo "Usage: $0 {start|stop|restart|status|boot}"; exit 2 ;;
+esac

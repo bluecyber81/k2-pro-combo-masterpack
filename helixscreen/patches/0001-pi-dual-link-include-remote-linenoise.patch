@@ -1,0 +1,10 @@
+diff --git a/mk/pi-dual-link.mk b/mk/pi-dual-link.mk
+index 449f01888..4020203b0 100644
+--- a/mk/pi-dual-link.mk
++++ b/mk/pi-dual-link.mk
+@@ -186,4 +186,4 @@
+-$(FBDEV_TARGET): $(APP_C_OBJS) $(FBDEV_APP_OBJS) $(FBDEV_GLES_VARIANT_OBJS) $(FBDEV_CRASH_OBJ) \
++$(FBDEV_TARGET): $(APP_C_OBJS) $(FBDEV_APP_OBJS) $(REMOTE_LINENOISE_OBJ) $(FBDEV_GLES_VARIANT_OBJS) $(FBDEV_CRASH_OBJ) \
+                  $(FBDEV_LVGL_OBJS) $(HELIX_XML_OBJS) $(THORVG_OBJS) $(LV_MARKDOWN_OBJS) \
+                  $(QUIRC_OBJS) $(FONT_OBJS) $(TRANS_OBJS) $(DISPLAY_LIB_FBDEV) $(WPA_DEPS)
+ 	$(Q)mkdir -p $(dir $@)

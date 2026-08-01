@@ -1,15 +1,22 @@
 # Backup And Restore Notes
 
+Stand: 2026-08-01
+
 ## Aktuelle Sicherungen
 
-- Oeffentlich sicherer Live-Report: `live_snapshot_20260718_101800/`
-- Oeffentlich sicherer Restore: `backups/k2pro_public_restore_20260718.tar.gz`
-- Bereinigte Neuinstallationsquelle: `helper-source-v5.2.21.68-stable-health-count/`
-- HelixScreen-Overrides: `helixscreen/helixscreen_k2pro_overrides_20260718.tar.gz`
+- Aktueller Bericht: `docs/CURRENT_STATE_20260731.md`
+- Oeffentlich sicherer Restore: `backups/k2pro_public_restore_20260731.tar.gz`
+- Bereinigte Neuinstallationsquelle: `helper-source-v5.2.21.86-status-dedicated/`
+- Installationsarchive: `releases/`
+- HelixScreen-Overrides und Pi-Rueckfall: siehe `helixscreen/README.md`
 - K2Dash-Pi-Paket: `k2dash/k2dash-full-go2rtc-pi-final-20260718_092156.tar.gz`
 - Separates Home-Assistant-Teilbackup fuer Spoolman wurde am 2026-07-10 erzeugt.
 
-Der Public-Restore enthaelt Druckerkonfiguration, aktuelle CFS-/Materialdaten, relevante Systemdateien und die bereinigte Helper-Quelle. Er enthaelt bewusst keine Moonraker-LMDB, keine Config-Git-Objekte und keine privaten Laufzeitzuordnungen. Die vollstaendigen Roharchive liegen lokal unter `outputs/k2pro_masterpack_20260718_101800/remote_files/`; ihre Hashes stehen in `backups/README.md`.
+Der Public-Restore enthaelt die aktive Druckerkonfiguration, die CFS-
+Materialbasis, relevante Systemreferenzen und die bereinigte Helper-Quelle. Er
+enthaelt bewusst keine Moonraker-LMDB, keine Config-Git-Objekte, keine
+Zugangsdaten und keine privaten Laufzeitzuordnungen. Die vollstaendige private
+v86-Sicherung bleibt lokal ausserhalb des oeffentlichen Git-Verlaufs.
 
 ## Sichere Reihenfolge nach Firmware-Reset
 
@@ -17,12 +24,13 @@ Der Public-Restore enthaelt Druckerkonfiguration, aktuelle CFS-/Materialdaten, r
 2. Vor jeder Wiederherstellung einen neuen Ist-Stand sichern.
 3. Helper nach `/mnt/UDISK/helper-script` zurueckspielen und Rechte pruefen.
 4. `helper.sh --preflight` und `helper.sh --status` ausfuehren.
-5. Druckerkonfiguration nur bei passender K2-Pro-Firmware wiederherstellen.
-6. Klipper/Moonraker neu starten und `helper.sh --health` ausfuehren.
-7. CFS nur lesend mit `helper.sh --health-cfs` und `scripts/cfs_db_guard.sh` pruefen.
-8. Spoolman-Mapping mit `helper.sh --spoolman-cfs-status` kontrollieren.
-9. Kamera, Timelapse, Fluidd und Mainsail einzeln pruefen.
-10. HelixScreen und K2Dash erst nach erfolgreichem Drucker-Basistest wiederherstellen.
+5. Den Spoolman-Platzhalter in `moonraker.conf` lokal anpassen.
+6. Druckerkonfiguration nur bei passender K2-Pro-Firmware wiederherstellen.
+7. Klipper/Moonraker neu starten und `helper.sh --health` ausfuehren.
+8. CFS nur lesend mit `helper.sh --health-cfs` und `scripts/cfs_db_guard.sh` pruefen.
+9. Spoolman-Mapping mit `helper.sh --spoolman-cfs-status` kontrollieren.
+10. Kamera, Timelapse, Fluidd und Mainsail einzeln pruefen.
+11. HelixScreen und K2Dash erst nach erfolgreichem Drucker-Basistest wiederherstellen.
 
 ## Helper-Befehle
 
@@ -37,9 +45,15 @@ sh helper.sh --cfs-safe-status
 sh helper.sh --cfs-safe-events
 sh helper.sh --health-camera
 sh helper.sh --health-frontends
+sh helper.sh --health-firmware
+sh helper.sh --dependency-audit
+sh helper.sh --protection-guard-status
+sh helper.sh --filament-calibration-status
 ```
 
-Die interaktive Helper-Restore-Funktion stellt standardmaessig nur `printer_data/config` wieder her. System- und CFS-Daten aus dem Tarball sind fuer eine kontrollierte manuelle Rettung gedacht.
+Die interaktive Helper-Restore-Funktion stellt standardmaessig nur
+`printer_data/config` wieder her. System- und CFS-Daten aus dem Tarball sind
+fuer eine kontrollierte manuelle Rettung gedacht.
 
 ## Nicht automatisch wiederherstellen
 

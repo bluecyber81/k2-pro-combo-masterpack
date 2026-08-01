@@ -1,0 +1,11 @@
+repos:
+  - repo: local
+    hooks:
+      - id: k2-helper-validate
+        name: Validate K2 Pro Combo helper
+        entry: >-
+          powershell.exe -NoProfile -ExecutionPolicy Bypass
+          -File tools/validate_helper.ps1
+        language: system
+        pass_filenames: false
+        always_run: true

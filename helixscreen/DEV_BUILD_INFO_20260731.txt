@@ -1,0 +1,45 @@
+HelixScreen K2 Pro Combo remote-display development build
+
+Upstream: https://github.com/prestonbrown/helixscreen
+Base version: 0.99.105
+Commit: c3d8be0978040d8b1948b9db5a29022c9c9cc659
+Commit date: 2026-07-31
+Target: Raspberry Pi 64-bit, DRM plus framebuffer fallback
+Build host: Raspberry Pi 5, Debian 13 (trixie), AArch64
+
+Build options:
+
+PLATFORM_TARGET=pi-both
+CROSS_COMPILE=
+ENABLE_MOCKS=no
+ENABLE_REMOTE_CONTROL=yes
+ENABLE_DEV_PANELS=no
+
+Local build-only correction:
+
+helixscreen/patches/0001-pi-dual-link-include-remote-linenoise.patch
+
+The patch only repairs the pi-both FBDEV link when remote control is enabled.
+It does not change runtime printer behavior.
+
+Installed stripped binary SHA-256 values:
+
+DRM:   d9a6ee4ffffc3ba8478f1000a8467d533294c88f1b6c5eb0fcf4e5090d352496
+FBDEV: e5c1b9b06c125adbafdd440a7ef0b404572fb5aa29cc354eea88825d30a2a528
+
+Release archive SHA-256:
+
+4e5663d310e403dd1e94e086e2c57314f31a47cecd9b81844edd4cbcde9c352f
+
+The remote-control server is bound only to the local Unix socket:
+
+/run/helixscreen/helixctl.sock
+
+No remote-control HTTP listener is enabled. The development build exists to
+test the post-0.99.105 webcam probe fix and current UI corrections on the
+separate display Raspberry Pi. It does not replace Creality firmware,
+Klipper, Moonraker, CFS firmware or any printer MCU component.
+
+Installed and live-validated on 2026-08-01. The local K2 Pro Combo override
+keeps one real camera widget and removes the disabled duplicate details-page
+instance so it cannot overwrite the shared status with "Connecting Camera".

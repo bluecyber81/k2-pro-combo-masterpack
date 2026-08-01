@@ -1,0 +1,149 @@
+{
+  "patch_dir": "files/cfs_db_patch",
+  "database_count": 52,
+  "database_version": "1781668740",
+  "added_profiles": [
+    {
+      "brand": "eSUN",
+      "name": "ePLA-HS+ Gray",
+      "base_id": "90001",
+      "filament_id": "090001",
+      "color": "09ea7ae",
+      "temp": [
+        210,
+        230
+      ],
+      "maxVSpeed": "21"
+    },
+    {
+      "brand": "Sovol",
+      "name": "PLA Steel Blue",
+      "base_id": "90002",
+      "filament_id": "090002",
+      "color": "04682b4",
+      "temp": [
+        190,
+        210
+      ],
+      "maxVSpeed": "7"
+    }
+  ],
+  "slots": [
+    {
+      "materialId": "A",
+      "state": 0,
+      "times": 1,
+      "scrap": 0,
+      "remainLen": "100",
+      "filamentId": "101001",
+      "brand": "Creality",
+      "name": "Hyper PLA",
+      "materialType": "PLA",
+      "density": 1.24,
+      "diameter": "1.75",
+      "minTemp": 190,
+      "maxTemp": 240,
+      "pressure": "0.04",
+      "maxVSpeed": "23",
+      "venderId": "0276",
+      "color": "#0FFFFFF",
+      "filamentLen": "0165",
+      "serialNum": "000001",
+      "reserve": "000000",
+      "rfid": 2,
+      "editStatus": 0
+    },
+    {
+      "materialId": "B",
+      "state": 0,
+      "times": 1,
+      "scrap": 0,
+      "remainLen": "100",
+      "rfid": 1,
+      "editStatus": 1,
+      "filamentId": "090001",
+      "color": "#09ea7ae",
+      "brand": "eSUN",
+      "name": "ePLA-HS+ Gray",
+      "materialType": "PLA",
+      "minTemp": 210,
+      "maxTemp": 230,
+      "pressure": "0.04",
+      "maxVSpeed": "21"
+    },
+    {
+      "materialId": "C",
+      "state": 0,
+      "times": 2,
+      "scrap": 0,
+      "remainLen": "100",
+      "rfid": 1,
+      "editStatus": 1,
+      "filamentId": "000002",
+      "color": "#0ce58f8",
+      "brand": "Sovol",
+      "name": "Sovol Rainbow Silk PLA @Creality K2 Pro 0.4 nozzle",
+      "materialType": "PLA",
+      "minTemp": 210,
+      "maxTemp": 230,
+      "pressure": "0.04",
+      "maxVSpeed": "0"
+    },
+    {
+      "materialId": "D",
+      "state": 0,
+      "times": 2,
+      "scrap": 0,
+      "remainLen": "100",
+      "rfid": 1,
+      "editStatus": 1,
+      "filamentId": "090002",
+      "color": "#04682b4",
+      "brand": "Sovol",
+      "name": "PLA Steel Blue",
+      "materialType": "PLA",
+      "minTemp": 190,
+      "maxTemp": 210,
+      "pressure": "0.04",
+      "maxVSpeed": "7"
+    }
+  ],
+  "same_material": [
+    [
+      "101001",
+      "0FFFFFF",
+      [
+        "T1A"
+      ],
+      "PLA"
+    ],
+    [
+      "090001",
+      "09ea7ae",
+      [
+        "T1B"
+      ],
+      "PLA"
+    ],
+    [
+      "000002",
+      "0ce58f8",
+      [
+        "T1C"
+      ],
+      "PLA"
+    ],
+    [
+      "090002",
+      "04682b4",
+      [
+        "T1D"
+      ],
+      "PLA"
+    ]
+  ],
+  "user_material_paths": [
+    "/mnt/UDISK/creality/userdata/box/usrMaterial/3290576467/k2pro-esun-epla-hs-gray",
+    "/mnt/UDISK/creality/userdata/box/usrMaterial/3290576467/k2pro-sovol-pla-steel-blue"
+  ]
+}
