@@ -5,8 +5,8 @@ Stand: 2026-08-01
 ## Aktuelle Sicherungen
 
 - Aktueller Bericht: `docs/CURRENT_STATE_20260731.md`
-- Oeffentlich sicherer Restore: `backups/k2pro_public_restore_20260731.tar.gz`
-- Bereinigte Neuinstallationsquelle: `helper-source-v5.2.21.86-status-dedicated/`
+- Oeffentlich sicherer Restore: `backups/k2pro_public_restore_20260801.tar.gz`
+- Bereinigte Neuinstallationsquelle: `helper-source-v5.2.21.87-motor-status/`
 - Installationsarchive: `releases/`
 - HelixScreen-Overrides und Pi-Rueckfall: siehe `helixscreen/README.md`
 - K2Dash-Pi-Paket: `k2dash/k2dash-full-go2rtc-pi-final-20260718_092156.tar.gz`
@@ -16,7 +16,7 @@ Der Public-Restore enthaelt die aktive Druckerkonfiguration, die CFS-
 Materialbasis, relevante Systemreferenzen und die bereinigte Helper-Quelle. Er
 enthaelt bewusst keine Moonraker-LMDB, keine Config-Git-Objekte, keine
 Zugangsdaten und keine privaten Laufzeitzuordnungen. Die vollstaendige private
-v86-Sicherung bleibt lokal ausserhalb des oeffentlichen Git-Verlaufs.
+v87-Sicherung bleibt lokal ausserhalb des oeffentlichen Git-Verlaufs.
 
 ## Sichere Reihenfolge nach Firmware-Reset
 
@@ -40,6 +40,7 @@ sh helper.sh --backup
 sh helper.sh --preflight
 sh helper.sh --health
 sh helper.sh --health-cfs
+sh helper.sh --motor-controller-status
 sh helper.sh --spoolman-cfs-status
 sh helper.sh --cfs-safe-status
 sh helper.sh --cfs-safe-events

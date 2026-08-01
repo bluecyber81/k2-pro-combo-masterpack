@@ -1,31 +1,33 @@
 # Backup-Staende
 
-Stand: 2026-07-31
+Stand: 2026-08-01
 
 ## GitHub-sicherer Restore
 
-`k2pro_public_restore_20260731.tar.gz` enthaelt:
+`k2pro_public_restore_20260801.tar.gz` enthaelt:
 
 - aktuelle Druckerkonfiguration ohne Config-Git-Objekte
 - aktuelle CFS-/Materialdaten ohne historische Archivsammlung
 - relevante System-/Init-Dateien
-- bereinigte Helper-Quelle `v5.2.21.86-status-dedicated`
+- bereinigte Helper-Quelle `v5.2.21.87-motor-status`
 
 Bewusst ausgeschlossen sind Moonraker-LMDB, Git-Interna, Zugangsdaten,
 private Laufzeitzuordnungen und alte Diagnosearchive. Die lokale
 Spoolman-Adresse in `moonraker.conf` ist absichtlich durch den Platzhalter
 `HOME_ASSISTANT_OR_SPOOLMAN_HOST` ersetzt.
 
-SHA-256: `12298df7202500128bf9f373107d4d2a6e2b0654ba9af92f9659131f595cdb78`
+SHA-256: `28617e8d2d106c17f1577f06ff80dd3a15c84db1b0f8ee75911b50cfbf58442d`
 
 ## Vollstaendige private Roharchive
 
 Der aktuelle private Restore bleibt lokal unter `outputs/`:
 
-- `K2-Pro-Combo-Restore-v5.2.21.86-status-dedicated-current-20260731.zip`
-- enthaelt `K2-Pro-Combo-Printer-Restore-v5.2.21.86-final-20260731.tar.gz`
+- `K2-Pro-Combo-Restore-v5.2.21.87-motor-status-current-20260801.zip`
+- enthaelt `K2-Pro-Combo-Printer-Restore-v5.2.21.87-final-20260801.tar.gz`
 - Drucker-Payload SHA-256:
-  `d1065f4613db524f5c3f3e25828a4ff7b52061e45562171f9a5695fd93575f87`
+  `d446c75879fe0d76e2415c6912ab89b4d5078d20ea602d36d20414641f72fbc3`
+- Privates Wrapper-ZIP SHA-256:
+  `1d298f197b17358dafee8c07cd5ce213adeef085f2e63538bae278ef72f98936`
 
 Die Roharchive enthalten unter anderem Moonraker-Datenbank, Config-Git,
 Laufzeitstatus, Spoolman-Zuordnungen und ausfuehrliche Historie. Sie sind das

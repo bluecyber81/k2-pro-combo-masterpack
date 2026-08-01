@@ -3,7 +3,7 @@
 ## Ergebnis
 
 Der Drucker ist kalt und im Standby voll funktionsfaehig. Die komplette
-Helper-Pruefung endete mit `110 OK / 0 WARN / 0 FAIL`. Es wurde kein Druck,
+Helper-Pruefung endete mit `114 OK / 0 WARN / 0 FAIL`. Es wurde kein Druck,
 keine Kalibrierung und kein Firmware-, MCU-, Kamera- oder CFS-Flash gestartet.
 
 ## Verifizierter Live-Stand
@@ -11,7 +11,7 @@ keine Kalibrierung und kein Firmware-, MCU-, Kamera- oder CFS-Flash gestartet.
 - Modell `F012`, Mainboard `CR0CN200400C10`
 - Drucker-Firmware `1.1.6.7`
 - CFS-Firmware `1.5.0`, verbunden, Betriebsmodus `idle`
-- Helper `v5.2.21.86-status-dedicated`
+- Helper `v5.2.21.87-motor-status`
 - Fluidd `1.37.3`, Mainsail `2.18.2`, go2rtc `1.9.14`
 - K2Dash Commit `5e960411b8b35a4d3b8ebc17f76b943929f59d20`
 - Spoolman `0.24.0` ueber das Home-Assistant-Add-on
@@ -34,7 +34,12 @@ Benutzerprofilen; es fehlt keine Live-ID.
 - Creality-Timelapse ist aktiv; keine unvollstaendige Aufnahme unter 1 MB.
 - Statusseite auf Port 4410 liefert HTML und gueltiges JSON ohne Cache.
 - Keine aktuellen schweren Klipper-, Moonraker-, Kamera- oder CFS-Logfehler.
-- UDISK: rund 25.2 GB frei; Root-Dateisystem: 31 Prozent belegt.
+- Der neue read-only Motorcontroller-Bericht endet mit
+  `11 OK / 8 INFO / 0 WARN / 0 FAIL`; alle aktiven Controller und MCUs werden
+  erkannt, ohne G-Code oder Busbefehle zu senden.
+- Live-Helper-Manifest `128/128`; generierte Python-/Ruff-/Mypy-/Pytest-Caches
+  und lose Bytecode-Dateien: `0`.
+- UDISK: rund 24.7 GB frei; Root-Dateisystem: 31 Prozent belegt.
 
 ## Update-Entscheidungen
 
@@ -49,6 +54,14 @@ Benutzerprofilen; es fehlt keine Live-ID.
   Live-Test, verworfene A/B-Varianten und Rueckfall.
 - Git-Zeilenendungsregeln decken alle Helper-Bootskripte ab, damit Windows-
   Checkouts keine ungueltigen CRLF-Startdateien erzeugen.
+- Helper v87 ergaenzt einen rein lesenden Motorcontroller-Status, trennt
+  Discovery-Timeouts von echten Updaterfehlern und prueft Motorfehler
+  `key781` bis `key797`.
+- Die Release-Pruefung verhindert und der Installer entfernt generierte
+  Python-Bytecodes sowie Python-, Ruff-, Mypy- und Pytest-Cacheordner.
+- Ein neuer privater Rohsnapshot und ein bereinigter Public-Restore wurden mit
+  SHA-256-Nachweis erstellt; nur der geheimnisfreie Public-Restore liegt in
+  diesem Repository.
 
 ### Bewusst nicht erzwungen
 

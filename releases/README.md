@@ -7,13 +7,14 @@ pruefen.
 
 Aktueller Stand:
 
-- `Creality-Helper-Script-K2-Pro-Combo-v5.2.21.86-status-dedicated-reviewed-final.zip`
-- `Creality-Helper-Script-K2-Pro-Combo-v5.2.21.86-status-dedicated-reviewed-final.tar.gz`
+- `Creality-Helper-Script-K2-Pro-Combo-v5.2.21.87-motor-status-reviewed-final.zip`
+- `Creality-Helper-Script-K2-Pro-Combo-v5.2.21.87-motor-status-reviewed-final.tar.gz`
 
 SHA-256:
 
-- ZIP: `1caa039e8b32c098856f06765775f6b0df82793b7fb8d65b87a6e86ee6d84d1c`
-- TAR.GZ: `813d656bd577200f10ffda60fd8572eacc560439b79f99efc83bc53be7f1cd5e`
+- ZIP: `17af3c1425a555c7e3538a3e0c501e564f1bd0c098b8f658d1abc9490e6f3ee0`
+- TAR.GZ: `66f17910a0f03fff4fb16fae53d77e4e799e3a70ace26d809c61940bea12211f`
 
 Die zugehoerige entpackte und pruefbare Quelle liegt unter
-`helper-source-v5.2.21.86-status-dedicated/`.
+`helper-source-v5.2.21.87-motor-status/`. Das Release hat 79 Regressionstests
+bestanden und enthaelt keine erzeugten Python-Cachedateien.
