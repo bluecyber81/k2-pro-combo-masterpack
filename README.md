@@ -17,9 +17,9 @@ privaten SSH-Schluessel, Browser-Sitzungen oder unbereinigten Laufzeitdaten.
 - go2rtc: `1.9.14`
 - Spoolman: `0.24.0` ueber Home Assistant
 - K2Dash: Upstream-Commit `5e960411b8b35a4d3b8ebc17f76b943929f59d20`
-- HelixScreen: verifizierter Pi-Entwicklungsstand `0.99.105-c3d8be0` mit
-  Stable-Rueckfall, Kamera-Fix und lokaler Teststeuerung
-- CFS-Datenbank: `1785291996`, 50 offizielle und 2 lokale Profile
+- HelixScreen: Stable `0.99.106` (`6f7f5bddb`) mit offizieller
+  K2-Kamera-Erkennung; lokaler Diagnose-Socket und Rueckfall sind dokumentiert
+- CFS-Datenbank: `1785291996`, 51 offizielle und 2 lokale Profile
 - Gesamt-Health: `110 OK / 0 WARN / 0 FAIL`
 - Helper-Regressionstests: `73/73` bestanden
 
@@ -27,6 +27,9 @@ privaten SSH-Schluessel, Browser-Sitzungen oder unbereinigten Laufzeitdaten.
 
 - `docs/CURRENT_STATE_20260731.md` - verifizierter Drucker-, CFS-, Kamera- und Helper-Stand.
 - `docs/UPDATE_AUDIT_20260731.md` - Firmware- und Upstream-Bewertung.
+- `docs/UPDATE_AUDIT_20260801.md` - erneute Live- und Upstream-Pruefung.
+- `docs/HELIXSCREEN_PI_UPDATE_20260801.md` - Stable-0.99.106-Installation,
+  Kamera-Nachweis und Rueckfallweg.
 - `docs/BACKUP_AND_RESTORE.md` - kontrollierte Wiederherstellungsreihenfolge.
 - `helper-source-v5.2.21.86-status-dedicated/` - lesbare Helper-Quelle ohne generierte Python-Caches.
 - `releases/` - unveraenderte, lokal validierte Helper-Installationsarchive.
@@ -36,6 +39,8 @@ privaten SSH-Schluessel, Browser-Sitzungen oder unbereinigten Laufzeitdaten.
 - `k2dash/` - getestetes Pi-Paket, Rollback-Dateien und Quell-Patch.
 - `live_snapshot_*` - historische, oeffentlich sichere Diagnose-Snapshots.
 - `scripts/` - Werkzeuge fuer erneute Snapshots und kontrollierte Veroeffentlichung.
+- `scripts/update_masterpack_manifest.ps1` - erzeugt Manifest und SHA-256-
+  Liste reproduzierbar neu und schliesst Git-Interna automatisch aus.
 
 ## Wichtige Verbesserungen
 

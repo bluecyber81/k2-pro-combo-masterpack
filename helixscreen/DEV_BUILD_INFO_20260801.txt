@@ -1,0 +1,44 @@
+HelixScreen K2 Pro Combo remote-display build
+
+Upstream: https://github.com/prestonbrown/helixscreen
+Version: 0.99.106
+Commit: 6f7f5bddb
+Target: Raspberry Pi 64-bit, DRM plus framebuffer fallback
+Build host: Raspberry Pi 5, Debian 13 (trixie), AArch64
+
+Build options:
+
+PLATFORM_TARGET=pi-both
+CROSS_COMPILE=
+NM_CMD=nm
+OBJCOPY_CMD=objcopy
+STRIP_CMD=strip
+ENABLE_MOCKS=no
+ENABLE_REMOTE_CONTROL=yes
+ENABLE_DEV_PANELS=no
+
+Build-only corrections:
+
+patches/0001-pi-dual-link-include-remote-linenoise.patch
+patches/0002-pi-dual-link-native-libraries.patch
+
+The patches only repair the native pi-both link. They do not change runtime
+printer, Moonraker, Klipper, CFS or camera behavior.
+
+Installed stripped binary SHA-256 values:
+
+DRM:   235d0291c73831e6d4b1814dde83346c5b227d4afbf8ac3be63f48a877c026bc
+FBDEV: c4c989d3b5ffea7e58556355138c57bb20b731546ded563c1a2b1b8fc22659fd
+
+Normalized release archive SHA-256:
+
+a399aac6fcbd50b7bdfc4518e267c58ea1b98da4625217f09bc1e58f6bac147f
+
+The diagnostic control server is bound only to the local Unix socket:
+
+/run/helixscreen/helixctl.sock
+
+No control HTTP listener is enabled. Live verification on 2026-08-01 covered
+service health, local control, camera rendering, CFS rendering, safe
+navigation cycles and automatic rollback. A shorter camera snapshot timeout
+and a permanent MJPEG transcoder were measured and deliberately rejected.

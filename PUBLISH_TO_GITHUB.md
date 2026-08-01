@@ -22,6 +22,7 @@ Vor dem Push im Paketordner ausfuehren und die Aenderung ueber einen eigenen
 Branch pruefen:
 
 ```powershell
+./scripts/update_masterpack_manifest.ps1
 git status
 git diff --check
 git switch -c agent/sync-k2-masterpack

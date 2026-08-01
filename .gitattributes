@@ -1,8 +1,13 @@
 .gitattributes text eol=lf
 .gitignore text eol=lf
 *.sh text eol=lf
+*.patch text eol=lf -whitespace
+*.ps1 text eol=lf
+S97* text eol=lf
 S98* text eol=lf
+S99* text eol=lf
 helper.sh text eol=lf
+.shellcheckrc text eol=lf
 *.py text eol=lf
 *.md text eol=lf
 *.txt text eol=lf

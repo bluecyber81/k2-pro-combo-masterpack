@@ -1,0 +1,15 @@
+diff --git a/mk/pi-dual-link.mk b/mk/pi-dual-link.mk
+--- a/mk/pi-dual-link.mk
++++ b/mk/pi-dual-link.mk
+@@ -177,6 +177,11 @@
+ # Fbdev linker flags (no DRM/GLES libraries)
+ # =============================================================================
+ 
++# PLATFORM_TARGET=pi-both is resolved after the base Makefile linker block,
++# so the native DRM link can miss these backend libraries. Keep this local to
++# the dual-link target; FBDEV_LDFLAGS below deliberately filters them back out.
++LDFLAGS += -ldrm -linput -lEGL -lgbm
++
+ FBDEV_LDFLAGS := $(filter-out -ldrm -linput -lEGL -lGLESv2 -lgbm,$(LDFLAGS))
+ 
+ # =============================================================================
