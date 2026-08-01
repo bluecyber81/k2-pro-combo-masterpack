@@ -1,0 +1,29 @@
+#!/bin/sh
+HELPER=/mnt/UDISK/helper-script/scripts/nozzle_camera_recover.sh
+
+case "$1" in
+    start|boot)
+        if [ -x "$HELPER" ]; then
+            ( "$HELPER" boot ) &
+        fi
+        ;;
+    restart)
+        echo "Nozzle-AI service restart is status-only; use the protected temporary probe only after Auto PA, Flow Ratio or CFS waste capture fails."
+        [ -x "$HELPER" ] && "$HELPER" status
+        ;;
+    status)
+        [ -x "$HELPER" ] && "$HELPER" status
+        ;;
+    diagnose)
+        [ -x "$HELPER" ] && "$HELPER" diagnose
+        ;;
+    probe)
+        [ -x "$HELPER" ] && "$HELPER" probe
+        ;;
+    standby|off)
+        [ -x "$HELPER" ] && "$HELPER" standby
+        ;;
+    *)
+        echo "Usage: $0 {start|boot|restart|probe|standby|off|status|diagnose}"
+        ;;
+esac
