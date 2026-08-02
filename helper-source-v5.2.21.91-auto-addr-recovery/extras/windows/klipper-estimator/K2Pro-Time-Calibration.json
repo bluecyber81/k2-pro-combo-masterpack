@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "model": "median_residual_seconds",
+  "single_color_base": "klipper_estimator",
+  "cfs_base": "creality_slicer",
+  "cfs_remaining_time_model": "source_m73_plus_remaining_transition_share",
+  "offset_seconds": 110,
+  "sample_count": 9,
+  "history_cutoff": "2026-07-14",
+  "target_metric": "moonraker_print_duration",
+  "validation": {
+    "single_color_raw_estimator_mae_seconds": 158.3,
+    "single_color_calibrated_loocv_mae_seconds": 94.3,
+    "single_color_raw_creality_mae_seconds": 193.5,
+    "completed_cfs_jobs": 2,
+    "observed_cfs_change_overhead_seconds_range": [86.3, 101.8],
+    "cfs_m73_gap_model_validated_real_files": 3,
+    "cfs_m73_gap_model_transition_counts": [15, 68, 254]
+  }
+}

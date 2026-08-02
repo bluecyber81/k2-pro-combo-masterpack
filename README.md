@@ -1,6 +1,6 @@
 # K2 Pro Combo Masterpack
 
-Stand: 2026-08-01 Europe/Berlin
+Stand: 2026-08-02 Europe/Berlin
 
 Aktueller Arbeits-, Diagnose- und Wiederherstellungsstand fuer den Creality
 K2 Pro Combo. Das oeffentliche Repository enthaelt keine Passwoerter, Tokens,
@@ -11,7 +11,7 @@ privaten SSH-Schluessel, Browser-Sitzungen oder unbereinigten Laufzeitdaten.
 - Drucker: Creality K2 Pro Combo, Modell `F012`, Mainboard `CR0CN200400C10`
 - Drucker-Firmware: `1.1.6.7`
 - CFS-Firmware: `1.5.0`
-- Helper: `v5.2.21.87-motor-status`
+- Helper: `v5.2.21.91-auto-addr-recovery`
 - Fluidd: `1.37.3`
 - Mainsail: `2.18.2`
 - go2rtc: `1.9.14`
@@ -20,8 +20,15 @@ privaten SSH-Schluessel, Browser-Sitzungen oder unbereinigten Laufzeitdaten.
 - HelixScreen: Stable `0.99.106` (`6f7f5bddb`) mit offizieller
   K2-Kamera-Erkennung; lokaler Diagnose-Socket und Rueckfall sind dokumentiert
 - CFS-Datenbank: `1785291996`, 51 offizielle und 2 lokale Profile
-- Gesamt-Health: `114 OK / 0 WARN / 0 FAIL`
-- Helper-Regressionstests: `79/79` bestanden
+- Gesamt-Health: `112 OK / 3 WARN / 0 FAIL`
+- Helper-Regressionstests: `94/94` bestanden
+
+Die drei Warnzeilen gehen auf zwei bekannte F012-Versionsabfrage-Befunde
+zurueck: Die Extruder-Version fehlt in Crealitys Tabelle und der kombinierte
+`ttyS2`-/`ttyS3`-Updater-Probe liefert Rueckgabewert 2; der Healthcheck fasst
+beide anschliessend in einer dritten Warnzeile zusammen. Der Runtime-Nachweis
+blieb `motor_ready=true`, beide X/Y-Controller Revision 081 wurden erkannt und
+das CFS 1.5.0 blieb verbunden.
 
 ## Aktuelle Struktur
 
@@ -33,11 +40,13 @@ privaten SSH-Schluessel, Browser-Sitzungen oder unbereinigten Laufzeitdaten.
 - `docs/K2_PRO_CFS_MOTOR_CONTROLLER_20260801.md` - read-only Studie und
   verifizierter Live-Status der X/Y-, Extruder-, CFS-, MCU- und Nozzle-MCU-
   Controller.
+- `docs/CFS_4SLOT_AUTO_ADDR_LIVE_TEST_20260802.md` - erfolgreicher realer
+  Vier-Slot-Druck, RS485-/Logauswertung und Auto-Addr-Recovery-Nachweis.
 - `docs/BACKUP_AND_RESTORE.md` - kontrollierte Wiederherstellungsreihenfolge.
-- `helper-source-v5.2.21.87-motor-status/` - lesbare Helper-Quelle ohne
+- `helper-source-v5.2.21.91-auto-addr-recovery/` - lesbare Helper-Quelle ohne
   generierte Python-Caches.
 - `releases/` - unveraenderte, lokal validierte Helper-Installationsarchive.
-- `backups/k2pro_public_restore_20260801.tar.gz` - oeffentlich sicherer Restore
+- `backups/k2pro_public_restore_20260802.tar.gz` - oeffentlich sicherer Restore
   mit aktuellem CFS-Datenstand, ohne Geheimnisse und Git-Interna.
 - `helixscreen/` - getestete Raspberry-Pi-/HelixScreen-Overrides,
   Buildkorrektur, Hashes und Rueckfallhinweise.
@@ -62,6 +71,11 @@ privaten SSH-Schluessel, Browser-Sitzungen oder unbereinigten Laufzeitdaten.
 - Der Motorcontroller-Bericht trennt echte Updater-/Controllerfehler von
   harmlosen Discovery-Timeouts und liest ausschliesslich Status, Versionsdateien
   und Logs.
+- Die Auto-Addr-Wiederherstellung behandelt unbekannte ACK-Antworten defensiv
+  und prueft beim Wiederfinden eines CFS-Geraets beide bekannten
+  Herstellertabellen. Das Originalmodul wird vor jeder Installation gesichert.
+- Ein realer Hersteller-Vierfarbdruck durchlief alle vier CFS-Slots ohne
+  CFS-Trennung, Pause, Runtime-Motorfehler oder Klipper-Shutdown.
 - Ein Regressionstest verhindert, dass erzeugte `__pycache__`, `.pyc` oder
   `.pyo` erneut in ein Release gelangen.
 - KAMP, Klipper Garbage Collection, G-Code-Vorpruefung, Zeitabschaetzung,
@@ -75,7 +89,7 @@ Das GitHub-Archiv ist ein praktisch nutzbarer, auf Geheimnisse gepruefter
 Public-Restore. Sein SHA-256 lautet:
 
 ```text
-28617e8d2d106c17f1577f06ff80dd3a15c84db1b0f8ee75911b50cfbf58442d
+00dab9f6d27ef088521684e06fdbfc5cdcc417f011a7b876b550c15f48e820ad
 ```
 
 Die vollstaendigen Roharchive mit Moonraker-LMDB, Config-Git,
@@ -95,5 +109,6 @@ der vollstaendigere Notfallback.
 
 Details, Hashes und Restore-Grenzen stehen in
 `docs/CURRENT_STATE_20260731.md`,
+`docs/CFS_4SLOT_AUTO_ADDR_LIVE_TEST_20260802.md`,
 `docs/K2_PRO_CFS_MOTOR_CONTROLLER_20260801.md`, `backups/README.md` und
 `SHA256SUMS_PACKAGE.txt`.

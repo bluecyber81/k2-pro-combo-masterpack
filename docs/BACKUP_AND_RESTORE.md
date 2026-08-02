@@ -1,12 +1,13 @@
 # Backup And Restore Notes
 
-Stand: 2026-08-01
+Stand: 2026-08-02
 
 ## Aktuelle Sicherungen
 
-- Aktueller Bericht: `docs/CURRENT_STATE_20260731.md`
-- Oeffentlich sicherer Restore: `backups/k2pro_public_restore_20260801.tar.gz`
-- Bereinigte Neuinstallationsquelle: `helper-source-v5.2.21.87-motor-status/`
+- Aktueller Basisbericht: `docs/CURRENT_STATE_20260731.md`
+- Vier-Slot-/Recovery-Test: `docs/CFS_4SLOT_AUTO_ADDR_LIVE_TEST_20260802.md`
+- Oeffentlich sicherer Restore: `backups/k2pro_public_restore_20260802.tar.gz`
+- Bereinigte Neuinstallationsquelle: `helper-source-v5.2.21.91-auto-addr-recovery/`
 - Installationsarchive: `releases/`
 - HelixScreen-Overrides und Pi-Rueckfall: siehe `helixscreen/README.md`
 - K2Dash-Pi-Paket: `k2dash/k2dash-full-go2rtc-pi-final-20260718_092156.tar.gz`
@@ -16,21 +17,24 @@ Der Public-Restore enthaelt die aktive Druckerkonfiguration, die CFS-
 Materialbasis, relevante Systemreferenzen und die bereinigte Helper-Quelle. Er
 enthaelt bewusst keine Moonraker-LMDB, keine Config-Git-Objekte, keine
 Zugangsdaten und keine privaten Laufzeitzuordnungen. Die vollstaendige private
-v87-Sicherung bleibt lokal ausserhalb des oeffentlichen Git-Verlaufs.
+v91-Sicherung bleibt lokal ausserhalb des oeffentlichen Git-Verlaufs.
 
 ## Sichere Reihenfolge nach Firmware-Reset
 
 1. Drucker vollstaendig starten und Firmware-/Boardkennung pruefen.
 2. Vor jeder Wiederherstellung einen neuen Ist-Stand sichern.
 3. Helper nach `/mnt/UDISK/helper-script` zurueckspielen und Rechte pruefen.
-4. `helper.sh --preflight` und `helper.sh --status` ausfuehren.
-5. Den Spoolman-Platzhalter in `moonraker.conf` lokal anpassen.
-6. Druckerkonfiguration nur bei passender K2-Pro-Firmware wiederherstellen.
-7. Klipper/Moonraker neu starten und `helper.sh --health` ausfuehren.
-8. CFS nur lesend mit `helper.sh --health-cfs` und `scripts/cfs_db_guard.sh` pruefen.
-9. Spoolman-Mapping mit `helper.sh --spoolman-cfs-status` kontrollieren.
-10. Kamera, Timelapse, Fluidd und Mainsail einzeln pruefen.
-11. HelixScreen und K2Dash erst nach erfolgreichem Drucker-Basistest wiederherstellen.
+4. `helper.sh --preflight`, `helper.sh --status` und
+   `helper.sh --auto-addr-status` ausfuehren.
+5. Den Auto-Addr-Recovery-Fix nur ueber `helper.sh --auto-addr-install`
+   installieren; dadurch wird das Originalmodul vor dem Austausch gesichert.
+6. Den Spoolman-Platzhalter in `moonraker.conf` lokal anpassen.
+7. Druckerkonfiguration nur bei passender K2-Pro-Firmware wiederherstellen.
+8. Klipper/Moonraker neu starten und `helper.sh --health` ausfuehren.
+9. CFS nur lesend mit `helper.sh --health-cfs` und `scripts/cfs_db_guard.sh` pruefen.
+10. Spoolman-Mapping mit `helper.sh --spoolman-cfs-status` kontrollieren.
+11. Kamera, Timelapse, Fluidd und Mainsail einzeln pruefen.
+12. HelixScreen und K2Dash erst nach erfolgreichem Drucker-Basistest wiederherstellen.
 
 ## Helper-Befehle
 
@@ -41,6 +45,7 @@ sh helper.sh --preflight
 sh helper.sh --health
 sh helper.sh --health-cfs
 sh helper.sh --motor-controller-status
+sh helper.sh --auto-addr-status
 sh helper.sh --spoolman-cfs-status
 sh helper.sh --cfs-safe-status
 sh helper.sh --cfs-safe-events
@@ -63,6 +68,8 @@ fuer eine kontrollierte manuelle Rettung gedacht.
 - Keine direkten CFS-Materialbewegungsbefehle zum Testen.
 - Keine Nozzle-AI-Kamera dauerhaft erzwingen.
 - Keine Spoolman-Datenbank ueberschreiben, bevor das Home-Assistant-Backup und der aktuelle Serverstand geprueft wurden.
+- `auto_addr_wrapper.py` niemals manuell auf eine andere Firmwareversion
+  kopieren; fuer Rueckfall `helper.sh --auto-addr-restore` verwenden.
 
 ## Neuen Snapshot erzeugen
 

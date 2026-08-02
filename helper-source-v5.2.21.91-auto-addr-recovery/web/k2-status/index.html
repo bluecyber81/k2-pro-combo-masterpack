@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="icon" href="data:,">
+  <title>K2 Pro Combo Status</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111417;
+      --band: #181d21;
+      --line: #343b40;
+      --text: #f2f5f6;
+      --muted: #a9b2b8;
+      --green: #4fc47c;
+      --amber: #f2b84b;
+      --red: #ed6a5a;
+      --cyan: #55b8d1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-width: 300px;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 68px;
+      padding: 12px clamp(16px, 4vw, 44px);
+      border-bottom: 1px solid var(--line);
+      background: #0d1012;
+    }
+    h1, h2 { margin: 0; letter-spacing: 0; }
+    h1 { font-size: 22px; font-weight: 680; }
+    h2 { font-size: 15px; color: var(--muted); font-weight: 650; }
+    button {
+      min-width: 88px;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: #22282d;
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+    }
+    button:hover { border-color: var(--cyan); }
+    main { width: min(1120px, 100%); margin: 0 auto; }
+    section {
+      padding: 20px clamp(16px, 4vw, 44px);
+      border-bottom: 1px solid var(--line);
+      background: var(--band);
+    }
+    section:nth-child(even) { background: var(--bg); }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+    .metric {
+      min-width: 0;
+      min-height: 76px;
+      padding: 11px 12px;
+      background: #15191c;
+    }
+    .label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .value {
+      display: block;
+      overflow-wrap: anywhere;
+      font-size: 17px;
+      font-weight: 650;
+    }
+    .small { font-size: 13px; font-weight: 550; }
+    .ok { color: var(--green); }
+    .warn { color: var(--amber); }
+    .fail { color: var(--red); }
+    .info { color: var(--cyan); }
+    .updated { color: var(--muted); font-size: 13px; }
+    .message {
+      padding: 16px;
+      border-left: 3px solid var(--red);
+      background: #251817;
+      color: #ffd8d3;
+    }
+    .startup-message {
+      border-left-color: var(--cyan);
+      background: #132126;
+      color: var(--text);
+    }
+    a { color: var(--cyan); }
+    footer {
+      padding: 14px clamp(16px, 4vw, 44px) 24px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 460px) {
+      header { align-items: flex-start; }
+      h1 { font-size: 19px; }
+      .grid { grid-template-columns: minmax(0, 1fr); }
+      .metric { min-height: 64px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>K2 Pro Combo</h1>
+      <div class="updated" id="updated">Status wird geladen</div>
+    </div>
+    <button type="button" id="refresh">Aktualisieren</button>
+  </header>
+  <main id="startup">
+    <section>
+      <div class="message startup-message">
+        Live-Status wird geladen. Bleibt diese Meldung sichtbar, die
+        <a href="status.json">Statusdaten direkt oeffnen</a> und die Seite neu laden.
+      </div>
+    </section>
+  </main>
+  <main id="content" hidden>
+    <section>
+      <div class="section-head"><h2>Drucker</h2><span id="printer-state"></span></div>
+      <div class="grid">
+        <div class="metric"><span class="label">Bett</span><span class="value" id="bed-temp"></span></div>
+        <div class="metric"><span class="label">Duese</span><span class="value" id="extruder-temp"></span></div>
+        <div class="metric"><span class="label">Datei</span><span class="value small" id="print-file"></span></div>
+        <div class="metric"><span class="label">Frontends</span><span class="value small" id="frontends"></span></div>
+      </div>
+    </section>
+    <section>
+      <div class="section-head"><h2>CFS</h2><span id="cfs-state"></span></div>
+      <div class="grid">
+        <div class="metric"><span class="label">Version</span><span class="value" id="cfs-version"></span></div>
+        <div class="metric"><span class="label">Klima</span><span class="value" id="cfs-climate"></span></div>
+        <div class="metric"><span class="label">Slot / Spule</span><span class="value" id="cfs-slot"></span></div>
+        <div class="metric"><span class="label">Slot-Vertrauen</span><span class="value small" id="cfs-confidence"></span></div>
+      </div>
+    </section>
+    <section>
+      <div class="section-head"><h2>KI und Kalibrierung</h2><span id="ai-state"></span></div>
+      <div class="grid">
+        <div class="metric"><span class="label">Druckueberwachung</span><span class="value small" id="ai-monitoring"></span></div>
+        <div class="metric"><span class="label">Auto Pressure Advance</span><span class="value" id="ai-pa"></span></div>
+        <div class="metric"><span class="label">Auto Flow Ratio</span><span class="value" id="ai-flow"></span></div>
+        <div class="metric"><span class="label">Nozzle-Kamera</span><span class="value small" id="ai-nozzle"></span></div>
+      </div>
+    </section>
+    <section>
+      <div class="section-head"><h2>Verbrauchsschaetzung</h2><span class="updated">Dry-run</span></div>
+      <div class="grid">
+        <div class="metric"><span class="label">Verbrauchslauf</span><span class="value" id="usage-active"></span></div>
+        <div class="metric"><span class="label">Beobachtet</span><span class="value" id="usage-total"></span></div>
+        <div class="metric"><span class="label">Nach Slot</span><span class="value small" id="usage-slots"></span></div>
+        <div class="metric"><span class="label">Nicht zugeordnet</span><span class="value" id="usage-unattributed"></span></div>
+      </div>
+    </section>
+    <section>
+      <div class="section-head"><h2>Bettmesh-Verlauf</h2><span id="mesh-observed" class="updated"></span></div>
+      <div class="grid">
+        <div class="metric"><span class="label">Profil / Raster</span><span class="value" id="mesh-profile"></span></div>
+        <div class="metric"><span class="label">Neigung X / Y</span><span class="value" id="mesh-tilt"></span></div>
+        <div class="metric"><span class="label">Restform P-P</span><span class="value" id="mesh-residual"></span></div>
+        <div class="metric"><span class="label">Beobachtete Betttemperatur</span><span class="value" id="mesh-bed"></span></div>
+      </div>
+    </section>
+  </main>
+  <main id="error" hidden><section><div class="message" id="error-message"></div></section></main>
+  <footer>Statusseite 1.3. Eigener Port ohne Fluidd/Mainsail-Cache. Auto PA/Flow benoetigen zusaetzlich die Druckkalibrierung je Auftrag; Slot-Auswahl beweist nicht den CFS-Einzugsarm.</footer>
+  <script>
+    "use strict";
+    const byId = (id) => document.getElementById(id);
+    const text = (id, value, fallback = "-") => {
+      byId(id).textContent = value === null || value === undefined || value === "" ? fallback : String(value);
+    };
+    const number = (value, digits = 1) => {
+      const parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed.toFixed(digits) : "-";
+    };
+    const temperature = (current, target) => `${number(current)} C / ${number(target)} C`;
+    const stateClass = (value) => {
+      const normal = String(value || "").toLowerCase();
+      if (["ready", "bereit", "standby", "active", "complete", "connect"].includes(normal)) return "ok";
+      if (["error", "shutdown", "disconnected", "main_camera_missing", "waking_or_fault"].includes(normal)) return "fail";
+      return "info";
+    };
+    const setState = (id, value) => {
+      const node = byId(id);
+      node.textContent = value || "-";
+      node.className = stateClass(value);
+    };
+    const slotUsage = (values) => {
+      const rows = Object.entries(values || {}).filter(([, value]) => Number(value) > 0);
+      return rows.length ? rows.map(([slot, value]) => `${slot}: ${number(value, 0)} mm`).join(" | ") : "-";
+    };
+    const flag = (value) => {
+      if (value === 1 || value === true) return "an";
+      if (value === 0 || value === false) return "aus";
+      return "-";
+    };
+    async function loadStatus() {
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 8000);
+        const statusUrl = new URL("status.json", window.location.href);
+        statusUrl.search = `t=${Date.now()}`;
+        const response = await fetch(statusUrl, {
+          cache: "no-store",
+          credentials: "same-origin",
+          headers: {Accept: "application/json"},
+          signal: controller.signal,
+        });
+        clearTimeout(timeout);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        const printer = data.printer || {};
+        const cfs = data.cfs || {};
+        const confidence = cfs.slot_confidence || {};
+        const usage = data.consumption_dry_run || {};
+        const active = usage.active || null;
+        const completed = usage.last_completed || null;
+        const observedUsage = active || completed;
+        const mesh = data.bed_mesh || {};
+        const plane = mesh.plane || {};
+        const residual = mesh.residual || {};
+        const meshBed = mesh.current_bed || {};
+        const grid = mesh.grid || {};
+        const frontends = data.frontends || {};
+        const ai = data.ai || {};
+        const nozzle = ai.nozzle_camera || {};
+
+        text("updated", data.updated ? `Aktualisiert: ${data.updated}` : "Noch keine Live-Daten");
+        setState("printer-state", printer.state);
+        text("bed-temp", temperature(printer.bed_temperature_c, printer.bed_target_c));
+        text("extruder-temp", temperature(printer.extruder_temperature_c, printer.extruder_target_c));
+        text("print-file", printer.file);
+        text("frontends", `Fluidd ${frontends.fluidd || "-"} | Mainsail ${frontends.mainsail || "-"}`);
+        setState("cfs-state", `${cfs.box_state || "-"} / ${cfs.t1_state || "-"}`);
+        text("cfs-version", cfs.version);
+        text("cfs-climate", `${number(cfs.temperature_c)} C | ${number(cfs.humidity_percent, 0)} %`);
+        text("cfs-slot", `${cfs.selected_slot || "-"} / ${cfs.active_spool || "-"}`);
+        text("cfs-confidence", `${confidence.level || "unknown"} | ${confidence.source || "unknown"}`);
+        setState("ai-state", ai.calibration_ready ? "bereit" : "teilweise");
+        text("ai-monitoring", `Druck-KI ${flag(ai.switch)} | Erste Schicht ${flag(ai.first_layer)}`);
+        text("ai-pa", flag(ai.auto_pa));
+        text("ai-flow", flag(ai.flow_ratio));
+        setState("ai-nozzle", nozzle.lifecycle || "-");
+        text("usage-active", active ? "aktiv" : completed ? "letzter Lauf" : "nein");
+        text("usage-total", observedUsage ? `${number(observedUsage.observed_total_mm, 0)} mm` : "-");
+        text("usage-slots", observedUsage ? slotUsage(observedUsage.by_slot_mm) : "-");
+        text("usage-unattributed", observedUsage ? `${number(observedUsage.unattributed_mm, 0)} mm` : "-");
+        text("mesh-observed", mesh.observed_at);
+        text("mesh-profile", `${mesh.profile || "-"} / ${grid.columns || "-"}x${grid.rows || "-"}`);
+        text("mesh-tilt", `${number(plane.delta_x_mm, 3)} / ${number(plane.delta_y_mm, 3)} mm`);
+        text("mesh-residual", `${number(residual.peak_to_peak_mm, 3)} mm`);
+        text("mesh-bed", `${number(meshBed.temperature_c)} C`);
+        byId("startup").hidden = true;
+        byId("content").hidden = false;
+        byId("error").hidden = true;
+      } catch (error) {
+        byId("startup").hidden = true;
+        byId("content").hidden = true;
+        byId("error").hidden = false;
+        text("error-message", `Status konnte nicht geladen werden: ${error.message}`);
+      }
+    }
+    byId("refresh").addEventListener("click", loadStatus);
+    loadStatus();
+    setInterval(loadStatus, 10000);
+  </script>
+</body>
+</html>

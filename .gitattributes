@@ -20,3 +20,12 @@ helper.sh text eol=lf
 *.pyc binary
 *.gcode binary
 go2rtc binary
+
+# Preserve byte-exact reviewed source/reference files; their hashes are part of
+# the recovery contract and upstream whitespace must not be normalized away.
+helper-source-*/files/auto_addr_recovery/auto_addr_wrapper.py -whitespace
+helper-source-*/k2rtc.py -whitespace
+helper-source-*/extras/windows/klipper-estimator/SOURCE_PATCH.diff -whitespace
+helper-source-*/docs/CFS_COMMUNICATION_READONLY_2026-07-06.md -whitespace
+helper-source-*/docs/K2_PRO_AI_NOZZLE_CAMERA_2026-07-31.md -whitespace
+helper-source-*/docs/K2_PRO_CFS_MOTOR_CONTROLLER_2026-08-01.md -whitespace
